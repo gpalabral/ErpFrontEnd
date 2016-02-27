@@ -1,0 +1,54 @@
+<div class="container-fluid page-container" style="margin: 0 15px 0 15px;">
+    <div class="panel panel-primary page-container" align="center">
+        <div class="panel-heading">
+            <h3 class="panel-title inline" align="center">REGISTRO DE INGRESOS Y DESCUENTOS</h3> <strong class="inline pull-right">PERIODO: {{periodo}}&nbsp;&nbsp;GESTIÓN: {{gestion}}</strong>
+        </div>
+        <div class="panel-body" style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+          <!--<div class="well" style="border-color: #286090">
+            <div class="row" >
+                <div class="col-sm-6" align="right">
+                    <label class="inline">Año:&nbsp;</label>
+                    <label class="inline"><h4>{{2015}}</h4></label>
+                </div>
+                <div class="col-sm-6" align="left">
+                    <label class="inline">Mes:&nbsp;</label>
+                    <label class="inline"><h4>{{'Octubre'}}</h4></label>
+                </div>
+            </div>
+          </div>-->
+            <tabset >
+                <tab>
+                    <tab-heading>
+                        Variaciones
+                    </tab-heading>
+                    <div ng-include src="'modules/rh/views/variaciones.html'"></div>
+                </tab>
+                <tab disabled="false">
+                    <tab-heading>
+                        Conceptos por Ingresos
+                    </tab-heading>
+                    <div ng-include src="'modules/rh/views/conceptosPorIngresos.html'"></div>
+                </tab>
+                <tab disabled="false">
+                    <tab-heading>
+                        Otros Descuentos
+                    </tab-heading>
+                    <div ng-include src="'modules/rh/views/descuentos.html'"></div>
+                </tab>
+                <tab disabled="false">
+                    <tab-heading>
+                       Crédito Fiscal RC-IVA
+                    </tab-heading>
+                    <div ng-include src="'modules/rh/views/rcIva.html'"></div>
+                </tab>
+                <tab disabled="false">
+                    <tab-heading>
+                       Prima
+                    </tab-heading>
+                    <div ng-include src="'modules/rh/views/primas.html'"></div>
+                </tab>
+            </tabset>
+        </div>
+
+    </div>
+</div>

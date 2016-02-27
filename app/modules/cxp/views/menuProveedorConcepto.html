@@ -1,0 +1,15 @@
+<div class="left-list panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Proveedores
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="item-row " ng-repeat="proveedorConcepto in listaCppProveedorClientePorTipoRegistroFiltrado"
+             ng-click="viewProveedorConceptoDetail(proveedorConcepto)">
+            {{(proveedorConcepto.parTipoProveedorCliente.codigo)=="JUR"?(proveedorConcepto.razonSocial):(proveedorConcepto.nombre+" "+proveedorConcepto.primerApellido+" "+proveedorConcepto.segundoApellido)}}
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,47 @@
+<div class="container-fluid" align="center" style="width: 100%">
+    <div class="panel panel-primary" align="center" ng-form="facBancarizarForm">
+        <div class="panel-heading">
+            <h3 class="panel-title">FACTURAS PARA BANCARIZAR</h3>
+        </div>
+        <div class="panel-body">
+            <br>
+            <div class="row" align="center">
+                <div class="col-sm-2" ></div>
+                <div class="col-sm-1">
+                    <label for="cliente" class="control-label pull-right">*Cliente:</label>
+                </div>
+                <div class="col-sm-4" align="right">
+                    <select name="cliente" id="cliente" class="form-control" ng-model="idProveedorCliente" ng-change="limpiar();" required>
+                        <option ng-repeat="cliente in listaClientes" value="{{cliente.idProveedorCliente}}" label="{{cliente.nombre}}">
+                        </option>
+                    </select>
+                    <p class="help-block" align="center" ng-show="facBancarizarForm.$invalid"><span class="text-justify">(*) Campo requerido. Seleccione un Cliente.</span></p>
+                </div>
+                <div class="col-sm-2" align="right">
+                    <button type="button" class="form-control btn btn-primary"
+                            ng-class="{disabled: facBancarizarForm.$invalid}"
+                            ng-disabled="facBancarizarForm.$invalid"
+                            ng-click="procesar(idProveedorCliente)">
+                        <span class="glyphicon glyphicon-retweet"></span>&nbsp;Procesar</button>
+                </div>
+            </div>
+            <!--<br>-->
+            <hr/>
+            <div ng-show="mostrar.grilla" class="gridStyles break-words" ng-grid="gridOptions" style="width: 100%;height: 400px"></div>
+
+        </div><!--fin panel body-->
+        <div class="footer">
+            <button id="seleccionar" name="guardar"
+                    class="btn btn-success"
+                    ng-show="mostrar.grilla"
+                    ng-class="{disabled: facBancarizarForm.$invalid || !mySelections || mySelections.length === 0}"
+                    ng-disabled="facBancarizarForm.$invalid || !mySelections || mySelections.length === 0"
+                    align="center" ng-click="seleccionarFacturas()">
+                <span class="glyphicon glyphicon-ok"></span>&nbsp;Bancarizar</button></button>
+            <button id="cancelar" name="cancelar" class="btn btn-default" align="center" ng-click="cancelar()">
+                <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</button>
+        </div>
+        <br />
+    </div><!--fin panel primary-->
+
+</div><!--fin container-->

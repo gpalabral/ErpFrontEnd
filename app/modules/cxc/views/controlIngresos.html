@@ -1,0 +1,38 @@
+<div class="container-fluid" align="center" style="width: 100%">
+    <div class="panel panel-primary" align="center" ng-form="controlIngresosForm">
+        <div class="panel-heading">
+            <h3 class="panel-title">SELECCION DE COLUMNAS PARA GENERAR REPORTE</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row" align="center">
+                <div class="col-sm-5" align="left">
+                    <div class="gridStyles" ng-grid="gridColumnas" style="width: 100%;height: 430px"></div>
+                    <sin-registros ng-if="listaColumnas.length == 0"></sin-registros>
+                </div>
+                <div class="col-sm-2 no-padding" align="center">
+                    <br><br><br><br>
+                    <button class="btn btn-primary" ng-click="moveRight()">
+                        <span class="glyphicon glyphicon-chevron-right"></span></button><br>
+                    <button class="btn btn-primary" ng-click="moveLeft()">
+                        <span class="glyphicon glyphicon-chevron-left"></span></button>
+                </div>
+                <div class="col-sm-5" align="left">
+                    <sin-registros ng-if="listaSeleccionadas.length == 0"></sin-registros>
+                    <div class="gridStyles" ng-grid="gridSeleccionadas" style="width: 100%;height: 430px"></div>
+                </div>
+            </div>
+        </div><!--fin panel body-->
+        <div class="footer">
+            <button id="seleccionar" name="guardar"
+                    class="btn btn-success"
+                    ng-class="{disabled: controlIngresosForm.$invalid || !listaSeleccionadas || listaSeleccionadas.length === 0}"
+                    ng-disabled="controlIngresosForm.$invalid || !listaSeleccionadas || listaSeleccionadas.length === 0"
+                    align="center" ng-click="generarReporte()">
+                <span class="glyphicon glyphicon-retweet"></span>&nbsp;Generar Reporte</button></button>
+            <button id="cancelar" name="cancelar" class="btn btn-default" align="center" ng-click="cancelar()">
+                <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</button>
+        </div>
+        <br />
+    </div><!--fin panel primary-->
+
+</div><!--fin container-->

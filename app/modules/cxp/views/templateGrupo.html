@@ -1,0 +1,23 @@
+<div>
+    <div class="panel-list-container">
+        <div class=" panel panel-primary custom-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">TIPIFICACIÓN DE GASTOS
+            <span style="cursor: pointer;" ng-click="addGrupo()">
+            <i class="fa fa-plus pull-right"></i>
+            </span>
+                </h3>
+            </div>
+            <div class="panel-body" style="top:40px;">
+                <angular-tree-grid tree-config="treeConfig">
+                </angular-tree-grid>
+                <sin-registros
+                        ng-if="treeConfig && (!treeConfig.collection || treeConfig.collection.length == 0)"></sin-registros>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-container">
+        <div ui-view="grupo-panel"></div>
+    </div>
+</div>

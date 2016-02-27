@@ -1,0 +1,144 @@
+<div class="container-fluid page-container" style="margin: 0 15px 0px 15px;">
+    <div class="panel panel-primary page-container" align="center" ng-form="servicioForm">
+        <div class="panel-heading" align="center">
+            <h3 class="panel-title">{{readOnlyEnable?'EDITAR BIENES O SERVICIOS':'NUEVO BIEN O SERVICIO'}}</h3>
+        </div>
+        <div style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+
+
+            <div align="center" style="padding:1em 2.2em">
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>*C&oacute;digo</label>
+                            <input name="codigo" type="text" class="form-control"
+                                   ng-model="cpcItem.codigo"
+                                   id="cpcItemCodigo"
+                                   style="text-align: right" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>*Descripci&oacute;n</label>
+                            <input name="descripcion" type="text"
+                                   class="form-control"
+                                   id="cpcItemDescripcion"
+                                   ng-model="cpcItem.descripcion" required/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row row-fluid" align="left">
+                    <!--<div class="col-sm-3">-->
+                        <!--<div class="form-group">-->
+                            <!--<label>Monto Fijo</label>-->
+
+                            <!--<div class="form-group">-->
+                                <!--<div class="btn-group">-->
+                                    <!--<label class="btn btn-default" btn-radio="true"-->
+                                           <!--ng-model="cpcItem.montoFijo" ng-click="activaCamposCosto(cpcItem.montoFijo)">SI</label>-->
+                                    <!--<label class="btn btn-default" btn-radio="false"-->
+                                           <!--ng-model="cpcItem.montoFijo" ng-click="activaCamposCosto(cpcItem.montoFijo)">NO</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="col-sm-3" ng-show="campoCosto">
+                        <div class="form-group">
+                            <label>*Precio Unitario (BOB)</label>
+                            <div class="input-group">
+                                <input name="precioUnitarioBs" class="form-control text-right"
+                                       type="text"
+                                       ng-model="cpcItem.precioUnitarioPrimeraMoneda"
+                                       ng-change="convierteMonedaDolar();"
+                                       style="text-align: right"
+                                       currency-input decimals="5" required/>
+                                <span class="input-group-addon">BOB</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-show="campoCosto">
+                        <div class="form-group">
+                            <label>* Precio Unitario (USD)</label>
+                            <div class="input-group">
+                                <input name="precioUnitarioSus" class="form-control text-right"
+                                       type="text"
+                                       ng-model="cpcItem.precioUnitarioSegundaMoneda"
+                                       ng-change="convierteMonedaBolivianos();"
+                                       style="text-align: right"
+                                       currency-input decimals="5" required/>
+                                <span class="input-group-addon">USD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" align="center">
+                    <div class="col-sm-9">
+                        <br>
+                        <label class="control-label text-left">* Tipo</label>&nbsp;&nbsp;
+                        <label class="radio-inline" for="radio-1">
+                            <input type="radio" name="codigoTipo"
+                                   ng-model="cpcItem.parTipoItem.codigo"
+                                   id="radio-1" value="BIE" required/>
+                            BIEN
+                        </label>
+                        <label class="radio-inline" for="radio-2">
+                            <input type="radio" name="codigoTipo"
+                                   ng-model="cpcItem.parTipoItem.codigo"
+                                   id="radio-2" value="SER" required/>
+                            SERVICIO
+                        </label>
+                    </div>
+                </div>
+
+                <hr>
+                <!--<div class="row row-fluid" align="left">-->
+                    <!--<div class="col-sm-10">-->
+                        <!--<div class="form-group">-->
+                            <!--<label>Cuenta de Ingreso</label>-->
+
+                            <!--<div class="row">-->
+                                <!--<div class="col-sm-1 no-padding-r">-->
+                                    <!--<button id="adicionaCuenta" type="button" height="5" class="btn btn-primary"-->
+                                            <!--ng-click="abrirModal();" style="cursor: pointer;">-->
+                                        <!--<span class="glyphicon glyphicon-plus"></span></button>-->
+                                <!--</div>-->
+                                <!--<div class="col-sm-3 no-padding">-->
+
+                                    <!--<input ng-model="ctaIngresoData.nroCuenta" class="form-control" type="text"-->
+                                           <!--placeholder="Numero de Cuenta" disabled/>-->
+                                <!--</div>-->
+                                <!--<div class="col-sm-7 no-padding-l">-->
+
+                                    <!--<input ng-model="ctaIngresoData.descripcionCuenta" class="form-control" type="text"-->
+                                           <!--placeholder="Descripcion" disabled/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <p class="help-block" align="center" ng-show="servicioForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span></p>
+                <div class="footer middle" align="center">
+                    <button ng-show="botonAdiciona"
+                            ng-class="{disabled: servicioForm.$invalid}"
+                            ng-disabled="servicioForm.$invalid"
+                            class="btn btn-success btn-md" ng-click="guardarServicio()"><span
+                            class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar
+                    </button>
+                    <button ng-show="botonModifica"
+                            ng-class="{disabled: servicioForm.$invalid}"
+                            ng-disabled="servicioForm.$invalid"
+                            class="btn btn-success btn-md" ng-click="modificaServicio()"><span
+                            class="glyphicon glyphicon-floppy-disk"></span>&nbsp;GuardarCambios
+                    </button>
+                    <!--<button ng-show="botonModifica" class="btn btn-default btn-md" ng-click="cancelar()"><span-->
+                    <!--class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Cancelar-->
+                    <!--</button>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

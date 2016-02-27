@@ -1,0 +1,304 @@
+<div class="container-fluid" align="center" style="width: 100%" >
+    <div class="panel panel-primary" align="center" ng-form="facturaForm">
+        <div class="panel-heading">
+            <h3 class="panel-title">EMISI&Oacute;N FACTURA</h3>
+        </div>
+        <div class="panel-body">
+          <div class="well" style="border-color: #286090">
+            <div class="row" align="left">
+                <div class="col-sm-12">
+                    <label class="inline">Actividad Económica:&nbsp;</label>
+                    <label class="inline"><h4>{{dosificacion.cpcActividadEconomica.descripcion|uppercase}}</h4></label>
+                </div>
+            </div>
+            <div class="row" align="left">
+                <div class="col-sm-3">
+                    <label class="inline">Sucursal:&nbsp;</label>
+                    <label class="inline"><h4>{{sucursal.descripcion|uppercase}}</h4></label>
+                </div>
+                <div class="col-sm-3">
+                    <label class="inline">Facturación:</label>
+                    <label class="inline"><h4>{{dosificacion.parModalidadFacturacion.descripcion|uppercase}}</h4></label>
+                </div>
+                <div class="col-sm-3">
+                    <label class="form-inline" for="nroFact">N° Factura:&nbsp;
+                        <input type="text" class="form-control" style="font-size:18px" id="nroFact" size="10" ng-model="facturaEmitidaPojo.cpcFacturaEmitida.numeroFactura" disabled></label>
+                </div>
+                <div class="col-sm-3">
+                    <label class="form-inline" for="nroAuto">N° Autorización:&nbsp;
+                        <input type="text"
+                               class="form-control"
+                               style="font-size:18px"
+                               id="nroAuto"
+                               size="10"
+                               ng-model="dosificacion.numeroAutorizacion" disabled required></label>
+                </div>
+            </div>
+            <hr style="margin-top: 0 !important;">
+            <div class="row" align="center">
+                <div class="col-sm-6" >
+                    <label class="control-label" align="left">*Modalidad Transacción:&nbsp;
+                        <label class="radio-inline" for="radios-0" align="right" >
+                            <input type="radio"
+                                   name="parModCodigo"
+                                   ng-model="facturaEmitidaPojo.cpcFacturaEmitida.parModalidadTransaccion.codigo"
+                                   id="radios-0"
+                                   value="CONT" ng-disabled="modo.valor"/>
+                            Contado
+                        </label>
+                        <label class="radio-inline" for="radios-1" align="right">
+                            <input type="radio"
+                                   name="parModCodigo"
+                                   ng-model="facturaEmitidaPojo.cpcFacturaEmitida.parModalidadTransaccion.codigo"
+                                   id="radios-1"
+                                   value="CRED" ng-disabled="modo.valor"/>
+                            Crédito
+                        </label>
+                    </label>
+                </div>
+                <div class="col-sm-6" readonly>
+                    <label class="control-label" align="left">*Tipo Transacción:&nbsp;
+                        <label class="radio-inline" for="rad-0" align="right" readonly>
+                            <input type="radio" ng-model="facturaEmitidaPojo.cpcFacturaEmitida.parTipoTransaccion.codigo" id="rad-0" value="VENT" ng-disabled="modo.valor">
+                            Ventas
+                        </label>
+                        <label class="radio-inline" for="rad-1" align="right" readonly>
+                            <input type="radio" ng-model="facturaEmitidaPojo.cpcFacturaEmitida.parTipoTransaccion.codigo" id="rad-1" value="EXPO" ng-disabled="modo.valor">
+                            Exportaciones
+                        </label>
+                        <label class="radio-inline" for="rad-2" align="right" readonly>
+                            <input type="radio" ng-model="facturaEmitidaPojo.cpcFacturaEmitida.parTipoTransaccion.codigo" id="rad-2" value="OTR" ng-disabled="modo.valor">
+                            Otros
+                        </label>
+                    </label>
+                </div>
+            </div>
+            <hr/>
+            <div class="row" align="left">
+                <div class="col-sm-3">
+                    <label class="control-label" for="nroContrato">N° Contrato:&nbsp;
+                        <input type="text"
+                               align="right"
+                               class="form-control"
+                               style="font-size:18px;text-transform: uppercase"
+                               id="nroContrato"
+                               ng-model="facturaEmitidaPojo.cpcFacturaEmitida.nroContrato"
+                               ng-disabled="modo.valor"></label>
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label" for="nroFactHuawei">N° Factura Huawei:&nbsp;
+                        <input name="nroFactHuawei"
+                               type="text"
+                               class="form-control"
+                               style="font-size:18px"
+                               id="nroFactHuawei"
+                               ng-model="facturaEmitidaPojo.cpcFacturaEmitida.nroFacturaInterno"
+                               ng-readonly="modo.valor"/></label>
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label" for="referencia">Referencia:&nbsp;
+                        <input name="referencia"
+                               type="text"
+                               class="form-control"
+                               style="font-size:18px;text-transform: uppercase"
+                               id="referencia"
+                               ng-model="facturaEmitidaPojo.cpcFacturaEmitida.referencia"
+                               ng-readonly="modo.valor"/></label>
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label">Fecha Aceptación:&nbsp;&nbsp;
+                        <input name="fechaAceptacion"
+                               type="date"
+                               class="form-control"
+                               style="font-size:18px"
+                               id="fechaAceptacion"
+                               ng-model="facturaEmitidaPojo.cpcFacturaEmitida.fechaAceptacion"
+                               ng-readonly="modo.valor"/></label>
+                </div>
+
+            </div>
+          </div><!--FIN Encabezado-->
+           <!-- <hr style="margin-top: 0 !important;border-color:#286090" class="bg-primary">-->
+          <div><!--Inicio Factura-->
+              <!--Logo-Datos Empresa-->
+              <div class="row" align="center">
+                  <div class="col-sm-4 pull-right" style="margin-right: 15px !important;">
+                      <br /> <br />
+                      <div class="row well">
+                          <div class="col-sm-7" align="left">
+                              <label class="control-label" align="left">NIT:</label><br />
+                              <label class="control-label">N° Factura:</label><br />
+                              <label class="control-label">N° Autorización:</label>
+                          </div>
+                          <div class="col-sm-5" align="left">
+                              <label class="control-label">{{datosEmpresa.nit}}</label><br />
+                              <label class="control-label">{{facturaEmitidaPojo.cpcFacturaEmitida.numeroFactura}}</label><br />
+                              <label class="control-label">{{dosificacion.numeroAutorizacion}}</label>
+                          </div>
+                      </div>
+                      <br />
+                      <label class="control-label">Actividad Económica: {{dosificacion.cpcActividadEconomica.descripcion|uppercase}}</label><br/>
+                  </div>
+                  <div class="col-sm-1 pull-right">
+                  </div>
+                  <div class="col-sm-6 pull-left" align="center" style="line-height: 50%">
+                      <img src="images/huaweiLogo.jpg" class="img-responsive" alt="Logo" width="100" height="50">
+                      <small>
+                          <label class="control-label">{{datosEmpresa.razonSocial}}</label><br/>
+                      </small>
+                      <small style="line-height: 50%" ng-if="mostrar.datosSucursal">
+                          <label class="control-label">{{sucursalCasaMatriz.descripcion}}</label><br/>
+                          <label class="control-label">{{sucursalCasaMatriz.direccion|uppercase}}</label><br/>
+                          <label class="control-label">{{sucursalCasaMatriz.parLocalizacion.descripcion|uppercase}}{{sucursalCasaMatriz.nombreLocalizacion|uppercase}}</label><br/>
+                          <label class="control-label">TELÉFONO(S): {{sucursalCasaMatriz.telefonoUno}} {{sucursalCasaMatriz.telefonoDos}}</label><br/>
+                          <label class="control-label">{{sucursalCasaMatriz.parDepartamento.descripcion}}-BOLIVIA</label><br/>
+                      </small>
+                      <small>
+                          <label class="control-label">{{sucursal.descripcion}}</label><br/>
+                          <label class="control-label">{{sucursal.direccion|uppercase}}</label><br/>
+                          <label class="control-label">{{sucursal.parLocalizacion.descripcion|uppercase}} {{sucursal.nombreLocalizacion|uppercase}}</label><br/>
+                          <label class="control-label">TELÉFONO(S):{{sucursal.telefonoUno}} {{sucursal.telefonoDos}}</label><br/>
+                          <label class="control-label">{{sucursal.parDepartamento.descripcion}}-BOLIVIA</label><br/>
+                      </small>
+                  </div>
+              </div><!--fin row logo y datos empresa-->
+
+              <div class="row">
+                  <div class="col-sm-12">
+                      <label class="control-label"><h4><b>FACTURA</b></h4></label>
+                  </div>
+              </div><!--fin factura-->
+
+              <div class="row">
+                  <div class="col-sm-12" align="center">
+                      <div class="panel panel-default" align="center">
+                          <div class="panel-body">
+                              <div class="row">
+                                  <div class="col-sm-1" align="left">
+                                      <label class="control-label">*Señor(es):</label>
+                                  </div>
+                                  <div class="col-sm-7" align="right">
+                                      <select class="form-control"
+                                              id="idProveedorCliente"
+                                              name="senores"
+                                              ng-model="facturaEmitidaPojo.cpcFacturaEmitida.cppProveedorCliente.idProveedorCliente"
+                                              ng-change="clienteSeleccionado(facturaEmitidaPojo.cpcFacturaEmitida.cppProveedorCliente.idProveedorCliente)"
+                                              ng-disabled="modo.valor"
+                                              required
+                                              autofocus="autofocus">
+                                          <option ng-repeat="cliente in clientes" value="{{cliente.idProveedorCliente}}" label="{{cliente.nombre}}">
+                                          </option>
+                                      </select>
+                                  </div>
+                                  <div class="col-sm-1" align="right">
+                                      <label class="control-label">NIT:</label>
+                                  </div>
+                                  <div class="col-sm-3" align="right">
+                                      <input type="text"
+                                             name="nit"
+                                             class="form-control text-right"
+                                             id="nitcliente"
+                                             ng-model="facturaEmitidaPojo.cpcFacturaEmitida.cppProveedorCliente.nit"
+                                             readonly></label>
+                                  </div>
+                              </div><!--fin fila cliente-->
+                              <br />
+                              <div class="row">
+                                  <div class="col-sm-7" align="left">
+                                      <label class="form-inline">*Lugar y Fecha:&nbsp;&nbsp;&nbsp;{{sucursal.parDepartamento.descripcion+ ', '}}
+                                          <input type="date"
+                                                 class="form-control"
+                                                 ng-model="facturaEmitidaPojo.cpcFacturaEmitida.fechaFactura"
+                                                 align="center"
+                                                 width="177" style="width: 177px"
+                                                 ng-disabled="modo.valor" required/>
+                                      </label><br />
+                                  </div>
+                                  <div class="col-sm-2" align="right">
+                                      <label class="control-label">*Tipo de Cambio:&nbsp;</label>
+                                  </div>
+                                  <div class="col-sm-3" align="right">
+                                      <input id="tipoCambio"
+                                             type="text"
+                                             name="tipoCambio"
+                                             class="form-control text-right"
+                                             currency-input decimals="2"
+                                             ng-model="facturaEmitidaPojo.cpcFacturaEmitida.tipoCambioFactura"
+                                             ng-blur="calcularPorTipoCambio(facturaEmitidaPojo.cpcFacturaEmitida.tipoCambioFactura)"
+                                             ng-disabled="modo.valor"
+                                             ng-pattern="/^[0-9]{1}\.[0-9]{1,2}$/" required/></label>
+                                      <p class="help-block" align="center" ng-show="facturaForm.tipoCambio.$error.pattern"><span class="text-center">Tipo de cambio incorrecto.</span></p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-12" align="center">
+                      <div class="gridStyles break-words" ng-grid="gridOptions" style="width: 100%;height: 250px"></div>
+                  </div>
+              </div>
+              <br>
+              <div class="row" align="left">
+                  <div class="col-sm-8" align="left">
+                      <label class="form-inline" for="numCta">Depositar en la Cta.Cte.:&nbsp;&nbsp;&nbsp;
+                          <select class="form-control"
+                                  id="numCta"
+                                  name="entidadFinanciera"
+                                  ng-model="facturaEmitidaPojo.cpcFacturaEmitida.cuentaBancaria.idCuentaBancaria"
+                                  ng-disabled="modo.valor"
+                                  required>
+                              <option value="0">&nbsp;</option>
+                              <option ng-repeat="cuenta in listaCuentas"
+                                      value="{{cuenta.idCuentaBancaria}}">
+                                  {{cuenta.descripcion}}
+                              </option>
+                          </select></label>
+                      <br/>
+                  </div>
+                  <div class="col-sm-4" align="left">
+                      <label class="form-inline" for="fechaLimiteEmision">Fecha Límite de Emisión:&nbsp;
+                          <input  name="fechaLimite" type="date" class="form-control" id="fechaLimiteEmision" size="12"
+                                  ng-model="dosificacion.fechaLimiteEmision" disabled required></label>
+                      <br/>
+                  </div>
+
+              </div>
+              <div class="row" align="left">
+                  <div class="col-sm-8" align="left">
+                      <label class="form-inline" for="codigoControl" ng-if="modo.codControl">Código de Control:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type="text" class="form-control" id="codigoControl" size="16" ng-model="facturaEmitidaPojo.cpcFacturaEmitida.codigoControl" readonly></label>
+                      <br/>
+                  </div>
+                  <div id="qr" class="col-sm-3" align="left"  width="100" height="50" >
+                  </div>
+              </div>
+              <hr />
+              <p class="help-block" align="center" ng-show="facturaForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span></p>
+              <div class="footer">
+                  <button id="descargar" name="descargar" class="btn btn-success"
+                          ng-if="!modo.mostrar && dosificacion.parModalidadFacturacion.codigo=='ELEC'"
+                          align="center" ng-click="exportarXML()">
+                      <span class="glyphicon glyphicon-eye-open"></span>&nbsp;Descargar</button>
+                  <button id="visualizar" name="visualizar" class="btn btn-success"
+                          ng-if="!modo.mostrar && dosificacion.parModalidadFacturacion.codigo=='COMP'"
+                          align="center" ng-click="visualizarPdf()">
+                      <span class="glyphicon glyphicon-eye-open"></span>&nbsp;Imprimir</button>
+                  <button id="guardar"
+                          name="guardar"
+                          class="btn btn-success"
+                          align="center"
+                          ng-class="{disabled:facturaForm.$invalid || datosDetalleFactura.length==0}"
+                          ng-disabled="facturaForm.$invalid || datosDetalleFactura.length==0"
+                          ng-click="guardarFacturaEmitida()"
+                          ng-if="modo.mostrar">
+                      <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar</button>
+                  <button id="cancelar" name="cancelar" class="btn btn-default" align="center" ng-click="cancelarFacturaEmitida()">
+                      <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</button>
+              </div>
+          </div><!--Fin Factura-->
+        </div><!--fin panel body-->
+    </div><!--fin panel primary-->
+
+</div><!--fin contenedor-->

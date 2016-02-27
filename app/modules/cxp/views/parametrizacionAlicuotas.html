@@ -1,0 +1,145 @@
+<div class="panel panel-primary page-container reduced-container">
+    <div class="panel panel-primary" align="center">
+        <div class="panel-heading">
+            <h3 class="panel-title">CONFIGURACIÓN DE LAS ALÍCUOTAS</h3>
+        </div>
+        <div class="panel-body" ng-form="alicuotaForm">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="panel panel-primary" style="position: relative">
+                        <div class="panel-leftheading">
+                            <h3 class="panel-lefttitle" style="top: 50px;left: 0px;">IUE</h3>
+                        </div>
+                        <div class="panel-rightbody">
+                            <div class="row row-fluid" align="left">
+                                <div class="col-sm-3"></div>
+                                <label for="servicios" class="col-lg-4 control-label">Retención por Servicios</label>
+
+                                <div class="col-lg-2">
+                                    <div class="input-group">
+                                        <input class="form-control" id="servicios"
+                                               ng-model="parTipoAlicuotaRIUES.valor"
+                                               currency-input decimals="2"
+                                               type="text"
+                                               style="text-align: right"
+                                               required>
+                                        <span class="input-group-addon"><label>%</label></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-fluid" align="left">
+                                <div class="col-sm-3"></div>
+                                <label for="bienes" class="col-lg-4 control-label">Retención por Bienes</label>
+
+                                <div class="col-lg-2">
+                                    <div class="input-group">
+                                        <input class="form-control" id="bienes"
+                                               ng-model="parTipoAlicuotaRIUEB.valor"
+                                               currency-input decimals="2"
+                                               type="text"
+                                               style="text-align: right"
+                                               required>
+                                        <span class="input-group-addon"><label>%</label></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-fluid" align="left">
+                                <div class="col-sm-3"></div>
+                                <label for="remesasExterior" class="col-lg-4 control-label">Retención por Beneficiarios al Exterior</label>
+
+                                <div class="col-lg-2">
+                                    <div class="input-group">
+                                        <input class="form-control" id="remesasExterior"
+                                               ng-model="parTipoAlicuotaRPRE.valor"
+                                               currency-input decimals="2"
+                                               type="text"
+                                               style="text-align: right"
+                                               required>
+                                        <span class="input-group-addon"><label>%</label></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success" style="position: relative">
+                        <div class="panel-leftheading">
+                            <h3 class="panel-lefttitle" style="top: 35px;left: 0px;">IT</h3>
+                        </div>
+                        <div class="panel-rightbody">
+                            <div class="row row-fluid" align="left">
+                                <div class="col-sm-3"></div>
+                                <label for="it" class="col-lg-4 control-label">Retención IT</label>
+
+                                <div class="col-lg-2">
+                                    <div class="input-group">
+                                        <input class="form-control" id="it"
+                                               ng-model="parTipoAlicuotaRIT.valor"
+                                               currency-input decimals="2"
+                                               type="text"
+                                               style="text-align: right"
+                                               required>
+                                        <span class="input-group-addon"><label>%</label></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning" style="position: relative">
+                        <div class="panel-leftheading">
+                            <h3 class="panel-lefttitle" style="top: 65px;left: 0px;">RC-IVA</h3>
+                        </div>
+                        <div class="panel-rightbody">
+                            <div class="row row-fluid" align="left">
+                                <div class="col-sm-3"></div>
+                                <label for="rc_iva" class="col-lg-4 control-label">Retención RC-IVA</label>
+
+                                <div class="col-lg-2">
+                                    <div class="input-group">
+                                        <input class="form-control" id="rc_iva"
+                                               ng-model="parTipoAlicuotaRRIVA.valor"
+                                               currency-input decimals="2"
+                                               type="text"
+                                               style="text-align: right"
+                                               required>
+                                        <span class="input-group-addon"><label>%</label></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <hr/>
+            <div class="footer">
+                <button id="guardar"
+                        ng-class="{disabled: alicuotaForm.$invalid}"
+                        ng-disabled="alicuotaForm.$invalid"
+                        name="guardar" class="btn btn-success" align="center" ng-click="guardaAlicuotas()">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Cambios Alícuotas
+                </button>
+                </button>
+                <button id="cancelar" name="cancelar" class="btn btn-default" align="center"
+                        ng-click="cancelarModificacionAlicuotas()">
+                    <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Cancelar
+                </button>
+            </div>
+        </div>
+        <!--fin panel body-->
+    </div>
+    <!--fin panel primary-->
+</div><!--fin contenedor-->

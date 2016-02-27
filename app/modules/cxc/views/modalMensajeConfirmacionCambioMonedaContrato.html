@@ -1,0 +1,32 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">Mensaje Alerta</h4>
+</div>
+<div class="modal-body">
+    <div class="blockquote-box blockquote-warning clearfix">
+        <p ng-show="muestraAlertaServiciosBienes" >
+            1. Si cambia la "Moneda Contrato", los siguientes registros de Bienes y Servicios se eliminaran:
+        </p>
+        <p ng-repeat="servicioBien in listaServiciosBienes" ng-show="muestraAlertaServiciosBienes" >
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <b>CÓDIGO : </b> <span>{{servicioBien.cpcItem.codigo}}</span> <b> DESCRIPCIÓN : </b><span>{{servicioBien.cpcItem.descripcion}}</span>
+        </p>
+        <p ng-show="muestraAlertaPlanFacturacion">
+            2. Si cambia la "Moneda Contrato", los siguientes registros del Plan Facturacion se eliminaran:
+        </p>
+        <p ng-repeat="planFacturacion in listaPlanFacturacion" ng-show="muestraAlertaPlanFacturacion" >
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <b>N° PAGO : </b> <span>{{planFacturacion.nroPago}}</span> <b> DESCRIPCIÓN : </b><span>{{planFacturacion.descripcionPago}}</span>
+        </p>
+        <br>
+        <p>
+            <h5><b> Desea continuar.</b></h5>
+        </p>
+    </div>
+
+</div>
+<div class="modal-footer header-center" align="center">
+    <button class="btn btn-success" ng-click="confirmar()">
+        <span class="glyphicon glyphicon-ok"></span>&nbsp;Confirmar
+    </button>
+    <button class="btn btn-default" ng-click="cancelar()">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span>&nbsp;Cancelar
+    </button>
+</div>

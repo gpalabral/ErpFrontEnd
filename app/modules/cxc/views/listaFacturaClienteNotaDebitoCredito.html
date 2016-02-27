@@ -1,0 +1,47 @@
+<div class="container-fluid" align="center" style="width: 100%">
+    <div class="panel panel-primary" align="center">
+        <div class="panel-heading">
+            <h3 class="panel-title">FACTURAS PARA EMITIR NOTAS CRÉDITO - DÉBITO</h3>
+        </div>
+        <div class="panel-body">
+            <br>
+            <div class="row" align="center">
+                <div class="col-sm-2" ></div>
+                <div class="col-sm-1" align="right">
+                    <label for="anio" class="control-label pull-right">Año:</label>
+                </div>
+                <div class="col-sm-2" align="center">
+                    <input id="anio" type="number" ng-model="datosEmpresa.gestion" class="form-control" readonly autofocus/>
+                </div>
+                <div class="col-sm-1">
+                    <label for="periodo" class="control-label pull-right">Mes:</label>
+                </div>
+                <div class="col-sm-2" align="right">
+                    <select id="periodo" class="form-control" ng-model="datosEmpresa.mes">
+                        <option value="1" label="Enero"></option>
+                        <option value="2" label="Febrero"></option>
+                        <option value="3" label="Marzo"></option>
+                        <option value="4" label="Abril"></option>
+                        <option value="5" label="Mayo"></option>
+                        <option value="6" label="Junio"></option>
+                        <option value="7" label="Julio"></option>
+                        <option value="8" label="Agosto"></option>
+                        <option value="9" label="Septiembre"></option>
+                        <option value="10" label="Octubre"></option>
+                        <option value="11" label="Noviembre"></option>
+                        <option value="12" label="Diciembre"></option>
+                    </select>
+                </div>
+                <div class="col-sm-2" align="right">
+                    <button type="button" class="form-control btn btn-primary" ng-click="procesar(datosEmpresa.mes,datosEmpresa.gestion)">
+                        <span class="glyphicon glyphicon-retweet"></span>&nbsp;Procesar</button>
+                </div>
+            </div>
+            <br>
+            <hr/>
+            <div class="gridStyles" ng-grid="gridOptionsCompras" style="width: 100%;height: 400px"></div>
+        </div><!--fin panel body-->
+
+    </div><!--fin panel primary-->
+
+</div><!--fin container-->

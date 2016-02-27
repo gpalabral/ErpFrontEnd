@@ -1,0 +1,471 @@
+<div class="container-fluid" align="center" style="width: 100%">
+    <div class="panel panel-primary" align="center" ng-form="formRegFactura">
+        <div class="panel-heading">
+            <h3 class="panel-title">REGISTRO {{valores.nomDocumento}}</h3>
+        </div>
+        <div class="panel-body">
+          <div class="well" style="border-color: #286090">
+            <div class="row" align="center">
+               <!--Opciones Factura BSP Poliza Alquileres-->
+               <div class="col-sm-12" align="center">
+                 <label class="control-label" align="left">*Documento:&nbsp;
+                    <label class="radio-inline" ng-repeat="doc in docFiscalesCompra">
+                        <input type="radio"
+                               ng-model="factura.cpcFacturaEmitida.parTipoDocumentoMercantil.codigo"
+                               name="radiob" value="{{doc.codigo}}"
+                               ng-change="documentoSeleccionado(factura.cpcFacturaEmitida.parTipoDocumentoMercantil.codigo)"
+                               ng-disabled="modo.valor"/>
+                        {{doc.descripcion}}
+                    </label>
+                 </label>
+               </div>
+            </div>
+            <hr/>
+            <div class="row" align="left">
+                <div class="col-sm-6">
+                    <label class="form-inline" for="tipoTran">*Tipo Transacción:&nbsp;
+                        <select class="form-inline form-control"
+                                id="tipoTran"
+                                name="tipoTran"
+                                ng-model="factura.cpcFacturaEmitida.parTipoTransaccion.codigo"
+                                ng-disabled="modo.valor" required>
+                            <option value="">&nbsp;</option>
+                            <option ng-repeat="transaccion in listaTransacciones"
+                                    value="{{transaccion.codigo}}" label="{{transaccion.descripcion}}">
+                            </option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label" align="center">*Modalidad Transacción:&nbsp;
+                        <label class="radio-inline" for="rad-0" align="right" >
+                            <input type="radio"
+                                   name="parModCodigo"
+                                   ng-model="factura.cpcFacturaEmitida.parModalidadTransaccion.codigo"
+                                   id="rad-0"
+                                   value="CONT"
+                                   ng-disabled="modo.valor" readonly>
+                            Contado
+                        </label>
+                        <label class="radio-inline" for="rad-1" align="right" readonly>
+                            <input type="radio"
+                                   name="parModCodigo"
+                                   ng-model="factura.cpcFacturaEmitida.parModalidadTransaccion.codigo"
+                                   id="rad-1"
+                                   value="CRED"
+                                   ng-disabled="modo.valor" readonly>
+                            Crédito
+                        </label>
+                    </label>
+                </div>
+            </div>
+          </div><!--Fin encabezado-->
+            <!--FACTURA-->
+            <div class="row">
+                <div class="col-sm-7" align="left">
+                    <div class="row row-fluid">
+                        <label class="text-primary pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATOS GENERALES</label>
+                    </div>
+                    <hr style="margin-top: 0 !important;">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"
+                                   for="tipoCompra">*Tipo Compra</label>
+                            <div class="controls col-sm-8">
+                                <select class="form-control"
+                                        id="tipoCompra"
+                                        name="tipoCompra"
+                                        ng-model="factura.cpcFacturaEmitida.parTipoCompra.codigo"
+                                        ng-disabled="modo.valor" required>
+                                    <option value="">&nbsp;</option>
+                                    <option ng-repeat="compra in listaCompras"
+                                            value="{{compra.codigo}}" label="{{compra.descripcion}}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2"
+                                 for="tipoTran1">
+                            Departamento:
+                          </label>
+                          <div class="controls col-sm-8">
+                              <select class="form-control"
+
+                                      id="tipoTran1"
+                                      name="tipoTran"
+                                      ng-model="factura.cpcFacturaEmitida.erpAplicante.erpDepartamento.idDepartamento"
+                                      ng-change="obtenerAplicantes(factura.cpcFacturaEmitida.erpAplicante.erpDepartamento.idDepartamento)"
+                                      ng-disabled="modo.valor">
+                                  <option ng-repeat="depto in listaDepartamentos"
+                                          value="{{depto.idDepartamento}}" label="{{depto.descripcion}}">
+                                  </option>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"
+                                   for="aplicante">Aplicante:</label>
+                            <div class="controls col-sm-8">
+                                <select class="form-control"
+
+                                        id="aplicante"
+                                        name="aplicante"
+                                        ng-model="factura.cpcFacturaEmitida.erpAplicante.idAplicante"
+                                        ng-disabled="modo.valor">
+                                    <option ng-repeat="aplicante in listaAplicantes"
+                                            value="{{aplicante.idAplicante}}" label="{{aplicante.nombreCompleto|uppercase}}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"
+                                   for="nroContrato">N° Contrato:</label>
+                            <div class="controls col-sm-8">
+                                <input name="nroContrato"
+                                       type="text"
+                                       class="form-control"
+
+                                       id="nroContrato"
+                                       size="11"
+                                       ng-model="factura.cpcFacturaEmitida.nroContrato"
+                                       ng-disabled="modo.valor"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4"
+                                   for="nroFactHuawei">N° Factura Huawei (Entry Item):</label>
+                            <div class="controls col-sm-6">
+                                <input name="nroFactHuawei"
+                                       type="text"
+                                       class="form-control"
+                                       id="nroFactHuawei"
+                                       size="13"
+                                       ng-model="factura.cpcFacturaEmitida.nroFacturaInterno"
+                                       ng-disabled="true"/>
+                            </div>
+                        </div>
+                    </div>
+                  <br/> <br/>
+                </div>
+                <div class="col-sm-3">
+                    <br/><br/><br/><br/><br/><br/>
+                    <label class="control-label" align="left"><h4><b>{{valores.nomDocumento}}</b></h4></label></br>
+                    <label>Fecha de Registro: {{factura.cpcFacturaEmitida.fechaRegistro|date:"longDate"}}</label>
+                </div>
+            </div><!--fin row datos empresa-->
+            <div class="row" align="left">
+              <div class="col-sm-6">
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                    <div class="row row-fluid">
+                        <label class="text-primary pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATOS DE LA FACTURA</label>
+                    </div>
+                    <hr style="margin-top: 0 !important;">
+                    <div class="form-horizontal">
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">*Proveedor:</label>
+                        <div class="controls col-sm-8">
+                          <div class="input-group">
+                            <input type="text"
+                                   class="form-control"
+                                   ng-model="valores.nombreRazonSocial"
+                                   placeholder="Buscar ..." required readonly/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" ng-click="modalBuscadorProveedores()">
+                                  <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">*NIT/CI:</label>
+                        <div class="controls col-sm-8">
+                          <input type="text"
+                                 class="form-control text-right"
+                                 id="nitCi"
+                                 ng-model="valores.nit"
+                                 readonly/>
+                        </div>
+                      </div>
+                      <div ng-if="factura.cpcFacturaEmitida.parTipoDocumentoMercantil.codigo=='POLIM'"
+                           class="form-group">
+                        <label class="control-label col-sm-3">*N° de DUI:</label>
+                        <div class="controls col-sm-8">
+                          <input type="text"
+                                 class="form-control text-right"
+                                 id="nroDUI"
+                                 ng-model="factura.cpcFacturaEmitida.numeroDui"
+                                 ng-disabled="modo.valor"
+                                 required
+                                 align="right"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">*N° Factura:</label>
+                        <div class="controls col-sm-8">
+                          <input type="text"
+                                 class="form-control text-right"
+                                 id="nroFactura"
+                                 ng-model="factura.cpcFacturaEmitida.numeroFactura"
+                                 ng-readonly="modo.valor"
+                                 align="right"
+                                 ng-disabled="(factura.cpcFacturaEmitida.parTipoDocumentoMercantil.codigo=='POLIM')?true:false" required/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">*N° Autorización:</label>
+                        <div class="controls col-sm-8">
+                          <input type="text"
+                                 class="form-control text-right"
+                                 id="autorizacion"
+                                 ng-model="factura.cpcFacturaEmitida.numeroAutorizacion"
+                                 ng-change="habilitaCodigoControl(factura.cpcFacturaEmitida.numeroAutorizacion)"
+                                 ng-readonly="modo.valor"
+                                 required
+                                 ng-disabled="(factura.cpcFacturaEmitida.parTipoDocumentoMercantil.codigo=='BSP'||factura.cpcFacturaEmitida.parTipoDocumentoMercantil.codigo=='POLIM')?true:false"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">*Fecha:</label>
+                        <div class="controls col-sm-8">
+                          <div class='input-group date' id='fecha'>
+                            <input type="date"
+                                   class="form-control"
+                                   ng-model="factura.cpcFacturaEmitida.fechaFactura"
+                                   required
+                                   align="right"
+                                   ng-disabled="modo.valor"/>
+                            <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">Código Control:</label>
+                        <div class="controls col-sm-8">
+                          <input type="text"
+                                 class="form-control text-right"
+                                 id="codControl"
+                                 ng-model="factura.cpcFacturaEmitida.codigoControl"
+                                 ng-readonly="modo.valor"
+                                 ng-disabled="!habilita"
+                                 readonly/>
+                        </div>
+                      </div>
+                    </div>
+                    <br /><br /><br /><br /><br /><br />
+                </div>
+                </div>
+               </div>
+              <div class="col-sm-6" >
+                 <div class="well">
+                   <div class="row row-fluid">
+                       <label class="text-primary pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATOS DE LA TRANSACCIÓN</label>
+                   </div>
+                   <hr style="margin-top: 0 !important;">
+                   <div class="form-horizontal" ng-if="factura.cpcFacturaEmitida.parTipoDocumentoMercantil.codigo!='POLIM'">
+                     <div class="form-group">
+                       <label class="control-label col-sm-3">*Concepto:</label>
+                       <div class="controls col-sm-8">
+                         <input type="text"
+                                name="concepto"
+                                class="form-control text-left"
+                                id="concepto"
+                                ng-model="factura.cpcFacturaEmitida.concepto"
+                                ng-disabled="modo.valor"
+                                required/>
+                       </div>
+                     </div>
+                     <div class="form-group">
+                       <label class="control-label col-sm-3">*Importe Total:</label>
+                       <div class="controls col-sm-8">
+                         <input type="text"
+                                name="montoBOB"
+                                class="form-control  text-right"
+                                currency-input decimals="2"
+                                id="montoBOB"
+                                ng-model="factura.cpcFacturaEmitida.montoPrimeraMoneda"
+                                ng-disabled="modo.valor"
+                                ng-blur="calcular()"
+                                required/>
+                       </div>
+                     </div>
+                     <div class="form-group">
+                       <label class="control-label col-sm-3">ICE:</label>
+                       <div class="controls col-sm-8">
+                         <input type="text"
+                                name="iceBOB"
+                                class="form-control text-right"
+                                currency-input decimals="2"
+                                ng-model="factura.cpcFacturaEmitida.icePrimeraMoneda"
+                                ng-blur="calcular()"
+                                ng-disabled="modo.valor" />
+                       </div>
+                     </div>
+                     <div class="form-group">
+                       <label class="control-label col-sm-3">Excento:</label>
+                       <div class="controls col-sm-8">
+                         <input type="text"
+                                name="excentoBOB"
+                                class="form-control text-right"
+                                ng-model="factura.cpcFacturaEmitida.excentoPrimeraMoneda"
+                                currency-input decimals="2"
+                                ng-blur="calcular()"
+                                ng-disabled="modo.valor"/>
+                       </div>
+                     </div>
+                     <div class="form-group">
+                       <label class="control-label col-sm-3">*Subtotal:</label>
+                       <div class="controls col-sm-8">
+                         <input type="text"
+                                name="subtotal"
+                                class="form-control text-right"
+                                ng-model="factura.cpcFacturaEmitida.subtotalPrimeraMoneda"
+                                currency-input decimals="2"
+                                ng-blur="calcular()"
+                                readonly required/>
+                       </div>
+                     </div>
+                     <div class="form-group">
+                       <label class="control-label col-sm-3">Descuento:</label>
+                       <div class="controls col-sm-8">
+                         <input type="text"
+                                name="descBOB"
+                                class="form-control text-right"
+                                currency-input decimals="2"
+                                ng-model="factura.cpcFacturaEmitida.totalDescuentoPrimeraMoneda"
+                                ng-blur="calcular()"
+                                ng-disabled="modo.valor"/>
+                       </div>
+                     </div>
+                     <div class="form-group">
+                       <label class="control-label col-sm-3">*Imp. Crédito Fiscal:</label>
+                       <div class="controls col-sm-8">
+                         <input type="text"
+                                name="baseCredito"
+                                class="form-control text-right"
+                                currency-input decimals="2"
+                                ng-model="valores.baseCreditoFiscal"
+                                ng-blur="calcular()"
+                                readonly required/>
+                       </div>
+                     </div>
+                     <div class="form-group">
+                       <label class="control-label col-sm-3">*Crédito Fiscal:</label>
+                       <div class="controls col-sm-8">
+                         <input type="text"
+                                name="creditoFiscal"
+                                class="form-control text-right"
+                                currency-input decimals="2"
+                                ng-model="factura.cpcFacturaEmitida.ivaPrimeraMoneda"
+                                ng-blur="calcular()"
+                                readonly required/>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!--POLIZA DE IMPORTACION-->
+                     <div class="form-horizontal" ng-if="factura.cpcFacturaEmitida.parTipoDocumentoMercantil.codigo=='POLIM'">
+                         <div class="form-group">
+                             <label class="control-label col-sm-3">*Concepto:</label>
+                             <div class="controls col-sm-8">
+                                 <input type="text"
+                                        name="concepto"
+                                        class="form-control text-left"
+                                        id="conceptoPolim"
+                                        ng-model="factura.cpcFacturaEmitida.concepto"
+                                        ng-disabled="modo.valor"
+                                        required/>
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label col-sm-3">*Crédito Fiscal:</label>
+                             <div class="controls col-sm-8">
+                                 <input type="text"
+                                        name="creditoFiscal"
+                                        class="form-control text-right"
+                                        currency-input decimals="2"
+                                        ng-model="factura.cpcFacturaEmitida.ivaPrimeraMoneda"
+                                        ng-blur="calcularPOLIM()"
+                                        required/>
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label col-sm-3">*Imp. Crédito Fiscal:</label>
+                             <div class="controls col-sm-8">
+                                 <input type="text"
+                                        name="baseCredito"
+                                        class="form-control text-right"
+                                        currency-input decimals="2"
+                                        ng-model="valores.baseCreditoFiscal"
+                                        ng-blur="calcularPOLIM()"
+                                        readonly required/>
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label col-sm-3">ICE:</label>
+                             <div class="controls col-sm-8">
+                                 <input type="text"
+                                        name="iceBOB"
+                                        class="form-control text-right"
+                                        currency-input decimals="2"
+                                        ng-model="factura.cpcFacturaEmitida.icePrimeraMoneda"
+                                        ng-blur="calcularPOLIM()"
+                                        ng-disabled="modo.valor" />
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label col-sm-3">Excento:</label>
+                             <div class="controls col-sm-8">
+                                 <input type="text"
+                                        name="excentoBOB"
+                                        class="form-control text-right"
+                                        ng-model="factura.cpcFacturaEmitida.excentoPrimeraMoneda"
+                                        currency-input decimals="2"
+                                        ng-blur="calcularPOLIM()"
+                                        ng-disabled="modo.valor"/>
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label col-sm-3">*Importe Total:</label>
+                             <div class="controls col-sm-8">
+                                 <input type="text"
+                                        name="montoBOB"
+                                        class="form-control  text-right"
+                                        currency-input decimals="2"
+                                        id="montoBobPolim"
+                                        ng-model="factura.cpcFacturaEmitida.montoPrimeraMoneda"
+                                        ng-blur="calcularPOLIM()"
+                                        readonly required/>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+              </div><!--FIN DATOS DE LA TRANSACCION-->
+            </div>
+            <br/>
+            <p class="help-block" align="center" ng-show="formRegFactura.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span></p>
+            <div class="footer">
+                <button id="visualizar" name="visualizar" class="btn btn-success"
+                        ng-if="!modo.mostrar"
+                        align="center"
+                        ng-click="nuevoRegistro()">
+                    <span class="glyphicon glyphicon-save-file"></span>&nbsp;Registrar Nueva Factura</button>
+                <button id="guardar"
+                        name="guardar"
+                        class="btn btn-success" align="center"
+                        ng-class="{disabled:formRegFactura.$invalid}"
+                        ng-disabled="formRegFactura.$invalid"
+                        ng-click="guardarFactura()"
+                        ng-if="modo.mostrar">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar</button></button>
+                <button id="cancelar" name="cancelar" class="btn btn-default" align="center"  ng-click="cancelar()">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</button>
+            </div>
+       </div><!--fin panel body-->
+    </div><!--fin panel primary-->
+    <!--  <button id="planPagos" name="planPagos" class="btn btn-info pull-left" align="left" ng-click="showModalPlanPagos()">Generar Plan de Pagos</button>-->
+</div><!--fin contenedor-->

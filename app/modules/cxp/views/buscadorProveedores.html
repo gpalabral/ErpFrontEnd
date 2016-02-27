@@ -1,0 +1,15 @@
+<div class="modal-header bg-primary" width="50%" align="left">
+    <h4 class="modal-title">Facturación por Compras>&nbsp;<strong>SELECCIONE PROVEEDOR:</strong></h4>
+</div>
+<div class="modal-body">
+    <div class="gridStyles"
+         ng-grid="gridOptions"
+         style="width: 100%;height: 300px"></div>
+    <sin-registros ng-if="gridOptions && (!listaProveedores || listaProveedores.length == 0)"></sin-registros>
+</div>
+<div class="modal-footer header-center" align="center">
+    <button class="btn btn-success"
+            ng-class="{disabled: !proveedorSeleccionado}"
+            ng-disabled="!proveedorSeleccionado" ng-click="seleccionar()">Seleccionar</button>
+    <button class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+</div>

@@ -1,0 +1,46 @@
+<div class="container-fluid page-container" style="margin: 0 15px 0 15px;">
+    <div class="panel panel-primary page-container" align="center">
+        <div class="panel-heading" align="center">
+            <h3 class="panel-title">FICHA DE PERSONAL</h3>
+<!--
+            <h3 class="panel-title">{{readOnlyEnable?'EDITAR EMPLEADO':'NUEVO EMPLEADO'}}</h3>
+-->
+        </div>
+        <div class="panel-body" style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+            <tabset >
+                <tab>
+                    <tab-heading>
+                        Datos Personales
+                    </tab-heading>
+                    <div ng-include src="'modules/rh/views/datosPersonalesEdita.html'"></div>
+                </tab>
+                <tab disabled="activar.tab">
+                    <tab-heading>
+                        Datos Laborales
+                    </tab-heading>
+                    <div ng-include src="'modules/rh/views/datosLaborales.html'"></div>
+                </tab>
+                <!--<tab disabled="activar.tab">-->
+                <!--<tab disabled="activar.tab">-->
+                <!--<tab-heading>-->
+                <!--Datos Adicionales-->
+                <!--</tab-heading>-->
+                <!--<div ng-include src="'modules/cxc/views/datosAdicionalesCliente.html'"></div>-->
+                <!--</tab>-->
+                <!--<tab>-->
+                <!--<tab-heading>-->
+                <!--Cuentas Bancarias-->
+                <!--</tab-heading>-->
+                <!--<div ng-include src="'modules/cxc/views/cuentasBancariasCliente.html'"></div>-->
+                <!--</tab>-->
+                <!--<tab disabled="activar.tab">
+                    <tab-heading>
+                        Asignar Conceptos
+                    </tab-heading>
+                    <div ng-include src="'modules/cxp/views/proveedorConcepto.html'"></div>
+                </tab>-->
+            </tabset>
+        </div>
+
+    </div>
+</div>

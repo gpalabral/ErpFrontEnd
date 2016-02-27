@@ -1,0 +1,12 @@
+<div style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+    <div ng-show="activar.treeDosificacionNotaDebitoCredito"
+         ng-include="'modules/cxc/views/dosificacionNotaDebitoCreditoTree.html'"
+         ng-controller="dosificacionNotaDebitoCreditoTreeCtrl"></div>
+    <div ng-show="activar.adicionaDosificacionNotaDebidoCredito"
+         ng-include="'modules/cxc/views/dosificacionNotaDebitoCredito.html'"
+         ng-controller="dosificacionNotaDebitoCreditoAdicionaCtrl"></div>
+    <div ng-show="activar.modifcaDosificacionNotaDebidoCredito"
+         ng-include="'modules/cxc/views/dosificacionNotaDebitoCredito.html'"
+         ng-controller="dosificacionNotaDebitoCreditoModificaCtrl"></div>
+</div>
+

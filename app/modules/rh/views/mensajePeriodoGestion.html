@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h3 class="panel-title">Mensaje</h3>
+</div>
+<div class="modal-body">
+    <div align="center" style="padding:1em 2.2em">
+
+        <div class="panel panel-primary" style="width: 80%;padding:1em 1em" align="center">
+            <div class="panel-heading" align="center">
+                <h3 class="panel-title">MENSAJE</h3>
+            </div>
+            <br>
+
+            <div class="blockquote-box blockquote-info clearfix">
+                <div class="square pull-left">
+                    <span class="glyphicon glyphicon-info-sign glyphicon-lg"></span>
+                </div>
+                <h4>Información</h4>
+
+                <p>
+                    No puede ingresar al periodo seleccionado, porque el periodo que se describe a continuación, aun se encuentra abierto.
+                </p>
+
+            </div>
+
+            <div align="center" style="padding:0em 5em;">
+
+                <div class="form-group" style="padding:1em 0em;">
+                    <label for="periodo" class="col-sm-4 control-label">Periodo</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="periodo" ng-model="rhPeriodoGestion.periodo"
+                               disabled/>
+                    </div>
+                </div>
+                <div class="form-group" style="padding:1em 0em;">
+                    <label for="gestion" class="col-sm-4 control-label">Gestión</label>
+                    <div class="col-sm-8">
+                        <input id="gestion" type="number" class="form-control" ng-model="rhPeriodoGestion.gestion" disabled>
+                    </div>
+                </div>
+
+            </div>
+
+            <div cltipoass="footer" align="center" style="padding:1em 1em;">
+                <button class="btn btn-info" ng-click="entrarConOtroPeriodo()">
+                    <span class="glyphicon glyphicon-share"></span>&nbsp;Selecione Otro Periodo
+                </button>
+                <button class="btn btn-default" ng-click="retornaMenuPrincipal()">
+                    <span class="glyphicon glyphicon-list-alt"></span>&nbsp;Volver Menú
+                </button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

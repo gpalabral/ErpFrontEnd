@@ -1,0 +1,152 @@
+<div style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+
+    <div align="center" style="padding:1em 2.2em">
+
+        <div class="panel panel-primary" align="center"
+             style="position: absolute;top: 0;bottom: 0;left:0px;right: 0px;">
+            <div class="panel-heading" align="center">
+                <h3 class="panel-title">{{readOnlyEnable?'PERFIL USUARIO':'PERFIL USUARIO'}}</h3>
+            </div>
+            <div style="padding: 1em 1em 0 1em;position: absolute;top: 39px;left:0;right:0;bottom: 0;overflow-y: auto;">
+                <div align="center" style="padding:1em 2.2em">
+
+                    <div class="row row-fluid" align="left">
+                        <div class="col-sm-6">
+                            <label>Nombre</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" id="nombre" placeholder="Nombre"
+                                       ng-model="nombreUsuario" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="row row-fluid" align="left">
+                        <div class="col-sm-6">
+                            <label>SUCURSAL PREDETERMINADA</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+                                <input type="text" class="form-control"
+                                       ng-model="cpcSucursal.descripcion" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--DOSIFICACION PREDETERMINADA-->
+                    <div class="row row-fluid" align="left">
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label>&nbsp;</label>
+
+                                <div class="row">
+                                    <div class="col-sm-1 no-padding-r">
+                                        <button id="adicionaCuenta" type="button" height="5" class="btn btn-primary"
+                                                ng-click="abrirModalDosificaciones();" style="cursor: pointer;">
+                                            <span class="glyphicon glyphicon-plus"></span></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>N° Autorizacion</label>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                       placeholder="N° Autorizacion"
+                                       ng-model="cpcdosificaciones.numeroAutorizacion" disabled/>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Modalidad Facturacion</label>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                       placeholder="Modalidad Facturacion"
+                                       ng-model="cpcdosificaciones.parActividadEconomica.descripcion" disabled/>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Actividad Economica</label>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                       placeholder="Actividad Economica"
+                                       ng-model="cpcdosificaciones.parModalidadFacturacion.descripcion" disabled/>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="footer" align="left" style="padding:0em 2.2em 1.2em 1em;">
+                        <button class="btn btn-success btn-md" ng-click="guardaCambiosPerfilUsuario()"><span
+                                class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Cambios Dosificacion
+                        </button>
+
+
+                    </div>
+                    <hr>
+                    <div class="row row-fluid" align="left">
+                        <div class="col-sm-6">
+                            <label>Introduzca Password Actual</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                <input type="password" class="form-control"
+                                       ng-model="usuario.password">
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="row row-fluid" align="left">
+                        <div class="col-sm-6">
+                            <label>Nuevo Password</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><span
+                                        class="glyphicon glyphicon-eye-open"></span></span>
+                                <input type="password" class="form-control"
+                                       ng-model="objetoPassword.passwordNuevo"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-fluid" align="left">
+                        <div class="col-sm-6">
+                            <label>Repita Password</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><span
+                                        class="glyphicon glyphicon-eye-open"></span></span>
+                                <input type="password" class="form-control"
+                                       ng-model="objetoPassword.passwordNuevoRepite"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer" align="left" style="padding:0em 2.2em 1.2em 1em;">
+                        <button class="btn btn-success btn-md" ng-click="guardaCambiosPassword()"><span
+                                class="glyphicon glyphicon-floppy-disk">
+                        </span>&nbsp;Guardar Cambios Paswword
+                        </button>
+
+
+                    </div>
+                    <hr>
+
+
+                    <!--FIN DOSIFICACION PREDETERMINADA-->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

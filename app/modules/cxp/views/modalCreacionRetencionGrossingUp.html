@@ -1,0 +1,101 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">CALCULO DE RETENCIÓN</h4>
+</div>
+<div class="modal-body" align="center" ng-form="retencionGrossingUpForm">
+    <div align="center" style="padding:1em 0em" >
+        <div class="row" align="left">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon"><label>* Concepto Opcional&nbsp;:</label></span>
+                    <input type="text" class="form-control"
+                           ng-model="concepto" align="right" required/>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left" style="padding:0.5em 0em">
+            <div class="col-sm-12" ng-show="muestraPrimeraMoneda">
+                <div class="input-group">
+                    <span class="input-group-addon"><label>*
+                        Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label></span>
+                    <input type="text" class="form-control"
+                           ng-model="cpcRetencion.montoPrimeraMoneda"
+                           currency-input decimals="5" required>
+                    <span class="input-group-addon"><label>BOB</label></span>
+                </div>
+            </div>
+            <div class="col-sm-12" ng-show="muestraSegundaMoneda">
+                <div class="input-group">
+                    <span class="input-group-addon"><label>*
+                        Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label></span>
+                    <input type="text" class="form-control"
+                           ng-model="cpcRetencion.montoSegundaMoneda"
+                           currency-input decimals="5" required>
+                    <span class="input-group-addon"><label>USD</label></span>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="center" style="padding:0.5em 0em">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon"><label>* Retencion&nbsp;:</label></span>
+                    <select name="hitoContrato" class="form-control"
+                            ng-model="cpcRetencion.parTipoRetencion.codigo" required>
+                        <option value="" label="[Seleccione una Opción]"></option>
+                        <option ng-repeat="retencion in listaRetencion"
+                                ng-selected="retencion.codigo== cpcRetencion.parTipoRetencion.codigo"
+                                value="{{retencion.codigo}}">
+                            {{retencion.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-fluid" align="left" style="padding:0.5em 0em">
+            <div class="col-sm-12" align="center">
+                <label class="control-label">* Tipo:&nbsp;
+                    <label class="radio-inline" for="rad-0" align="right">
+                        <input type="radio"
+                               name="parSinFacturaCodigo"
+                               ng-model="cpcRetencion.parTipoAplicacionRetencion.codigo"
+                               id="rad-0"
+                               value="DPAG" required/>
+                        Descuento Pago
+                    </label>
+                    <label class="radio-inline" for="rad-1" align="right">
+                        <input type="radio"
+                               name="parSinFacturaCodigo"
+                               ng-model="cpcRetencion.parTipoAplicacionRetencion.codigo"
+                               id="rad-1"
+                               value="GROS" required/>
+                        Grossing Up
+                    </label>
+                </label>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left" ng-show="activaMensaje">
+            <div class="col-sm-12">
+                <div class="badger-left badger-danger estilo-mensaje-error"
+                     data-badger="MENSAJE ERROR">
+                    <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                    &nbsp;&nbsp;{{mensaje}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="modal-footer header-center" align="center">
+
+    <button ng-class="{disabled: retencionGrossingUpForm.$invalid}"
+            ng-disabled="retencionGrossingUpForm.$invalid"
+            class="btn btn-success btn-md" ng-click="aceptaRetencionGrossingUp()">
+        <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;Aceptar
+    </button>
+
+    <button class="btn btn-default btn-md" ng-click="cancelar()">
+        <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+    </button>
+</div>

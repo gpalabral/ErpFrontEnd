@@ -1,0 +1,40 @@
+<div class="login">
+  <div class="panel panel-primary">
+    <div class="panel-heading" align="center">
+      <h3 class="panel-title">LOGIN</h3>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" ng-submit="login()">
+        <div class="form-group">
+          <label class="control-label col-xs-3">Login</label>
+          <div class="col-xs-7">
+            <input type="text"
+                   placeholder="Nombre de Usuario"
+                   class="form-control"
+                   ng-model="user.username"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-xs-3">Password</label>
+          <div class="col-xs-7">
+            <input type="password"
+                   placeholder="Contraseña"
+                   class="form-control"
+                   ng-model="user.password"/>
+          </div>
+        </div>
+
+        <div class="footer" style="text-align: center;">
+          <alert ng-if="formData.incorrectData">
+            Nombre de usuario o Contraseña incorrectos
+          </alert>
+          <button type="submit" class="btn btn-success">
+            INICIAR SESI&Oacute;N
+            <i class="fa fa-sign-in"></i>
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

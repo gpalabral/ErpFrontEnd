@@ -1,0 +1,10 @@
+{
+  "host_1": "http://192.168.1.240:8084",
+  "host_2": "http://192.168.1.240:8084",
+  "host_3": "http://192.168.1.240:8084",
+  "context1": "/ERP_WS-1.1/erpws",
+  "context2": "/ERP_CONTA_WS/erpws",
+  "context3": "/CPANEL_WS-1.1/cpanelws",
+  "TOKEN": "",
+  "API_KEY": ""
+}

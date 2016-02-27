@@ -1,0 +1,226 @@
+<div>
+    <div align="center" style="padding:1em 2.2em" ng-form="proveedorForm">
+        <br>
+
+        <div class="row" align="center">
+            <div class="col-sm-4">
+                <br>
+                <label class="control-label text-left">Tipo Proveedor</label>&nbsp;&nbsp;
+                <label class="radio-inline" for="radio-1" ng-disabled="readOnlyEnable">
+                    <input type="radio"
+                           ng-model="proveedorClientePojo.cppProveedorCliente.parTipoProveedorCliente.codigo"
+                           id="radio-1" value="NAT"
+                           ng-disabled="readOnlyEnable">
+                    Natural
+                </label>
+                <label class="radio-inline" for="radio-2" ng-disabled="readOnlyEnable">
+                    <input type="radio"
+                           ng-model="proveedorClientePojo.cppProveedorCliente.parTipoProveedorCliente.codigo"
+                           id="radio-2" value="JUR"
+                           ng-disabled="readOnlyEnable">
+                    Juridico
+                </label>
+            </div>
+            <br>
+            <div class="col-sm-5" align="left">
+                <label align="top">Establecer como Proveedor y Cliente a la vez</label>&nbsp;&nbsp;
+                <input type="checkbox" ng-model="proveedorClientePojo.cppProveedorCliente.parTipoRegistro.codigo"
+                       ng-true-value="'AMB'" ng-false-value="'PROV'"/>
+                <!--<p class="help-block">Establecer como Proveedor y Cliente a la vez.</p>-->
+            </div>
+            <div class="col-sm-3" align="left">
+                <label class="form-inline" for="vendorNumber">Vendor Number
+                    <input name="nroFactHuawei"
+                           type="text" class="form-control"
+                           style="font-size:14px"
+                           id="vendorNumber" size="15"
+                           ng-model="proveedorClientePojo.cppProveedorCliente.vendorNumber"
+                           ng-readonly="modo.valor"/></label>
+            </div>
+        </div>
+        <div class="row" align="left">
+            <div class="animate-if"
+                 ng-if="proveedorClientePojo.cppProveedorCliente.parTipoProveedorCliente.codigo=='NAT'">
+                <div class="col-sm-3 no-padding">
+                    <div class="form-group">
+                        <label>*Nombre Completo</label>
+                        <input type="text" class="form-control" placeholder="Nombres"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.nombre"
+                               required/>
+                    </div>
+                </div>
+                <div class="col-sm-3 no-padding">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <input type="text" class="form-control" placeholder="Primer Apellido"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.primerApellido"/>
+                    </div>
+                </div>
+                <div class="col-sm-3 no-padding">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <input type="text" class="form-control" placeholder="Segundo Apellido"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.segundoApellido">
+                    </div>
+                </div>
+            </div>
+            <div class="animate-if"
+                 ng-if="proveedorClientePojo.cppProveedorCliente.parTipoProveedorCliente.codigo=='JUR'">
+                <div class="col-sm-9 no-padding">
+                    <div class="form-group">
+                        <label>*Razon Social</label>
+                        <input type="text" class="form-control"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.razonSocial"
+                               required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3"
+                 ng-if="proveedorClientePojo.cppProveedorCliente.parTipoProveedorCliente.codigo=='JUR'">
+                <div class="form-group">
+                    <label>Sigla</label>
+                    <input type="text" class="form-control"
+                           ng-model="proveedorClientePojo.cppProveedorCliente.sigla">
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left"
+             ng-if="proveedorClientePojo.cppProveedorCliente.parTipoProveedorCliente.codigo=='NAT'">
+            <div class="col-sm-7 no-padding">
+                <div class="form-group">
+                    <label>*Documento Identificación</label>
+                    <select class="form-control"
+                            ng-model="proveedorClientePojo.cppProveedorCliente.parTipoDocumento.codigo" required>
+                        <!--  <option value="" label="[Seleccione Documento]"></option>-->
+                        <option ng-repeat="tipoDocumento in listaTipoDocumento" value="{{tipoDocumento.codigo}}">
+                            {{tipoDocumento.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label>*Número Documento</label>
+                    <input type="text" class="form-control"
+                           ng-model="proveedorClientePojo.cppProveedorCliente.numeroDocumento"
+                           required/>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-6 no-padding">
+                <div class="form-group">
+                    <label>*Dirección</label>
+                    <input type="text" class="form-control"
+                           ng-model="proveedorClientePojo.cppProveedorCliente.direccion" required>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>NIT</label>
+                    <input type="text" class="form-control" ng-model="proveedorClientePojo.cppProveedorCliente.nit"/>
+                </div>
+            </div>
+            <div class="col-sm-3"
+                 ng-if="proveedorClientePojo.cppProveedorCliente.parTipoProveedorCliente.codigo=='NAT'">
+                <div class="form-group">
+                    <label for="fechaAniversario">* Fecha Nacimiento</label>
+                    <input type="date" class="form-control" id="fechaCumplaenios"
+                           placeholder="Fecha Aniversario"
+                           ng-model="proveedorClientePojo.cppProveedorCliente.fechaAniversario"
+                           />
+
+                </div>
+            </div>
+            <div class="col-sm-3"
+                 ng-if="proveedorClientePojo.cppProveedorCliente.parTipoProveedorCliente.codigo=='JUR'">
+                <div class="form-group">
+                    <label for="fechaAniversario">* Fecha Aniversario</label>
+                    <input type="date" class="form-control" id="fechaAniversario"
+                           placeholder="Fecha Aniversario"
+                           ng-model="proveedorClientePojo.cppProveedorCliente.fechaAniversario"
+                           required/>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4 no-padding">
+                <div class="form-group">
+                    <label>Telefonos</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
+                        <input type="text" class="form-control" placeholder="Telefono 1"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.telefonoUno"/>
+                        <input type="text" class="form-control" placeholder="Telefono 2"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.telefonoDos">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Celular</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+                        <input type="text" class="form-control"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.numeroCelular">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Fax</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-print"></span></span>
+                        <input type="text" class="form-control"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.numeroFax">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-6 no-padding">
+                <div class="form-group">
+                    <label for="correoElectronico">Correo Electrónico</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                        <input type="email" class="form-control" id="correoElectronico"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.correoElectronico"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Dirección Web</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><strong>www.</strong></span>
+                        <input type="text" class="form-control"
+                               ng-model="proveedorClientePojo.cppProveedorCliente.direccionWeb">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-top: 0 !important;">
+        <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;">
+            <button ng-class="{disabled: proveedorForm.$invalid}"
+                    ng-disabled="proveedorForm.$invalid"
+                    class="btn btn-success btn-md"
+                    ng-click="guardarProveedorClientePojo()">
+                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;{{readOnlyEnable?'Guardar Cambios
+                ':'Guardar'}}
+            </button>
+            <button class="btn btn-danger btn-md"
+                    ng-click="eliminaProveedor()" ng-show="ocultaBotonElimina">
+                <span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar
+            </button>
+        </div>
+    </div>
+</div>
+

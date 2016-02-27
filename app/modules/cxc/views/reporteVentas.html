@@ -1,0 +1,84 @@
+<div class="container-fluid" align="center" style="width: 100%">
+    <div class="panel panel-primary" align="center" ng-form="reporteVentasForm">
+        <div class="panel-heading">
+            <h3 class="panel-title">REPORTE DE VENTAS</h3>
+        </div>
+        <div class="panel-body">
+            <br>
+            <div class="row" align="center">
+                <div class="col-sm-2" ></div>
+                <div class="col-sm-1" align="right">
+                    <label for="anio" class="control-label pull-right">*Año:</label>
+                </div>
+                <div class="col-sm-2" align="center">
+                    <select class="form-control"
+                            id="anio"
+                            name="anio"
+                            ng-model="datosEmpresa.gestion"
+                            ng-change="limpiar();"
+                            required>
+                        <option value="">&nbsp;</option>
+                        <option ng-repeat="gestion in listaGestiones"
+                                value="{{gestion}}"
+                                label="{{gestion}}"
+                                ng-selected="datosEmpresa.gestion==gestion">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-1">
+                    <label for="periodo" class="control-label pull-right">*Mes:</label>
+                </div>
+                <div class="col-sm-2" align="right">
+                    <select class="form-control"
+                            id="periodo"
+                            name="periodo"
+                            ng-model="datosEmpresa.mes"
+                            ng-change="limpiar();"
+                            required>
+                        <option value="">&nbsp;</option>
+                        <option ng-repeat="mes in listaMeses"
+                                value="{{mes.codigo}}"
+                                label="{{mes.descripcion}}"
+                                ng-selected="datosEmpresa.mes==mes.codigo">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-2" align="right">
+                    <button type="button" class="form-control btn btn-primary"
+                            ng-class="{disabled: reporteVentasForm.$invalid}"
+                            ng-disabled="reporteVentasForm.$invalid"
+                            ng-click="procesar(datosEmpresa.mes,datosEmpresa.gestion)">
+                        <span class="glyphicon glyphicon-retweet"></span>&nbsp;Procesar</button>
+                </div>
+            </div>
+            <br>
+            <p class="help-block" align="center" ng-show="reporteVentasForm.$invalid"><span class="text-left">(*) Los campos son requeridos.</span></p>
+            <hr ng-show="mostrar.grilla" />
+
+            <div class="gridStyles break-words" ng-grid="gridOptionsVentas" style="width:100%;height: 400px" ng-show="mostrar.grilla" ></div>
+            <div class="alert alert-info" role="alert" ng-show="mostrar.mensaje" >
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                No existen datos para la consulta.
+            </div>
+            <br/>
+            <div ng-show="mostrar.grilla" class="row">
+                <div class="col-sm-12">
+                    <div  role="group" aria-label="...">
+                        <!--XLS-->
+                        <button type="button" class="btn btn-primary"
+                                ng-class="{disabled: !datosReporteVentas || datosReporteVentas.length === 0}"
+                                ng-disabled="!datosReporteVentas || datosReporteVentas.length === 0"
+                                ng-click="exportar('xlsx')">
+                            <span class="glyphicon glyphicon-export"></span>&nbsp;Exportar a Excel</button
+                                >&nbsp;<!-- CSV --><button type="button" class="btn btn-primary"
+                                                           ng-class="{disabled: !datosReporteVentas || datosReporteVentas.length === 0}"
+                                                           ng-disabled="!datosReporteVentas || datosReporteVentas.length === 0"
+                                                           ng-csv="exportar('csv')" field-separator="|"
+                                                           filename="{{nombreReporte+'.txt'}}">
+                        <span class="glyphicon glyphicon-export"></span>&nbsp;Exportar a Archivo Plano</button>
+                    </div>
+                </div>
+            </div>
+        </div><!--fin panel body-->
+    </div><!--fin panel primary-->
+</div><!--fin container-->

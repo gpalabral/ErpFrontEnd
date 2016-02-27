@@ -1,0 +1,256 @@
+<!--<div class="container-fluid page-container" style="margin: 0 15px 0px 15px;">-->
+    <!--<div class="panel panel-primary page-container" align="center" ng-form="datosPersonalesForm">-->
+        <!--<div class="panel-heading" align="center">-->
+            <!--<h3 class="panel-title">REGISTRO DATOS PERSONALES</h3>-->
+        <!--</div>-->
+        <!--<div style="padding: 1em 1em 0 1em;position: absolute;top: 39px;left:0;right:0;bottom: 0;overflow-y: auto;">-->
+            <div align="center" style="padding:1em 2.2em" ng-form="datosPersonalesForm">
+
+                <div class="row">
+                    <div class="col-sm-8" align="center">
+                        <br/>
+                        <label class="control-label text-left">Sexo:&nbsp;</label>&nbsp;&nbsp;
+                        <label class="radio-inline" for="radio-3">
+                            <input type="radio" ng-disabled="readOnlyEnable?true:false"
+                                   ng-click="escondeCampoApellidoCasadaAction()"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.parGenero.codigo"
+                                   id="radio-3" value="F" required>
+                            Femenino
+                        </label>
+                        <label class="radio-inline" for="radio-4">
+                            <input type="radio" ng-disabled="readOnlyEnable?true:false"
+                                   ng-click="escondeCampoApellidoCasadaAction()"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.parGenero.codigo"
+                                   id="radio-4" value="M" required>
+                            Masculino
+                        </label>
+                    </div>
+                    <div class="col-sm-4" align="right">
+                        <label class="form-inline">Código:&nbsp;
+                            <input class="form-control"
+                                   name="codigo"
+                                   type="text"
+                                   width="150" style="width: 150px"
+                                   class="form-control"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.codigo" readonly></label>
+                    </div>
+                </div>
+                <br />
+                <div class="row" align="left">
+                    <div class="col-sm-3 no-padding">
+                        <div class="form-group">
+                            <label>* Nombre Completo</label>
+                            <input name="nombres" type="text" class="form-control" placeholder="Nombres"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.nombre"
+                                   ng-disabled="readOnlyEnable?true:false" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <input name="primerApellido" type="text" class="form-control" placeholder="Primer Apellido"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.primerApellido"
+                                   ng-disabled="readOnlyEnable?true:false" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <input name="segundoApellido" type="text" class="form-control" placeholder="Segundo Apellido"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.segundoApellido" ng-disabled="readOnlyEnable?true:false">
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-show="escondeCampoApellidoCasada">
+                        <div class="form-group">
+                            <label>Apellido Casada</label>
+                            <input name="apellidoCasada" type="text" class="form-control"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.apellidoCasada" ng-disabled="readOnlyEnable?true:false">
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-4 no-padding">
+                        <div class="form-group">
+                            <label>* Nacionalidad</label>
+                            <input name="direccion"
+                                   type="text" class="form-control"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.nacionalidad" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>* Fecha Nacimiento</label>
+                            <input type="date" class="form-control" id="fechaAniversario"
+                                   ng-disabled="readOnlyEnable?true:false"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.fechaNacimiento" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>* Estado Civil</label>
+                            <select class="form-control" ng-disabled="readOnlyEnable?true:false" name="estadoCivil"
+                                    ng-model="rhEmpleadoCargo.rhEmpleado.parEstadoCivil.codigo" required>
+                                <option value="" label="[Seleccione Estado]"></option>
+                                <option ng-repeat="parEstadoCivil in listaParEstadoCivil" value="{{parEstadoCivil.codigo}}"
+                                        ng-selected="parEstadoCivil.codigo== rhEmpleadoCargo.rhEmpleado.parEstadoCivil.codigo">
+                                    {{parEstadoCivil.descripcion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-3 no-padding">
+                        <div class="form-group">
+                            <label>* Documento Identificación</label>
+                            <select class="form-control" ng-disabled="readOnlyEnable?true:false" name="docIdentificacion"
+                                    ng-model="rhEmpleadoCargo.rhEmpleado.parTipoDocumento.codigo" required>
+                                <option value="" label="[Seleccione Documento]"></option>
+                                <option ng-repeat="tipoDocumento in listaParTipoDocumento" value="{{tipoDocumento.codigo}}"
+                                        ng-selected="tipoDocumento.codigo== rhEmpleadoCargo.rhEmpleado.parTipoDocumento.codigo">
+                                    {{tipoDocumento.descripcion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>* N° Documento</label>
+                            <input name="nroDocumento" type="text" ng-disabled="readOnlyEnable?true:false"
+                                   class="form-control" ng-model="rhEmpleadoCargo.rhEmpleado.numeroDocumento"
+                                   required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>* Expedido en</label>
+                            <input name="expedido" type="text" ng-disabled="readOnlyEnable?true:false"
+                                   class="form-control" ng-model="rhEmpleadoCargo.rhEmpleado.expedido"
+                                   required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label>* Dirección Domicilio</label>
+                            <input name="direccion" type="text" ng-disabled="readOnlyEnable?true:false"
+                                   class="form-control" ng-model="rhEmpleadoCargo.rhEmpleado.direccion"
+                                   required/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-6 no-padding">
+                        <div class="form-group">
+                            <label>* Profesión</label>
+                            <input name="profesion"
+                                   type="text" class="form-control"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.profesion" required/>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>* Codigo de Banco</label>
+                            <select class="form-control" ng-disabled="readOnlyEnable?true:false" name="parBanco"
+                                    ng-model="rhEmpleadoCargo.rhEmpleado.parBanco.codigo" required>
+                                <option value="" label="[Seleccione Código]"></option>
+                                <option ng-repeat="banco in listaParBanco" value="{{banco.codigo}}"
+                                        ng-selected="banco.codigo== rhEmpleadoCargo.rhEmpleado.parBanco.codigo">
+                                    {{banco.codigo}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>* N° Cuenta Bancaria</label>
+                            <input type="text" class="form-control"
+                                   ng-disabled="readOnlyEnable?true:false"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.numeroCuentaBancaria" required/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-4 no-padding">
+                        <label>Teléfono 1</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                            <input type="text" class="form-control"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.telefonoUno">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 ">
+                        <label>Teléfono 2</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                            <input type="text" class="form-control"
+                                   ng-model="rhEmpleadoCargo.rhEmpleado.telefonoDos">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Celular</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+                                <input type="text" class="form-control"
+                                       ng-model="rhEmpleadoCargo.rhEmpleado.numeroCelular">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-6 no-padding">
+                        <div class="form-group">
+                            <label for="correoElectronico">* Correo Electrónico</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <input name="correoElectronico" type="email" class="form-control" id="correoElectronico"
+                                       placeholder="e-mail"
+                                       ng-model="rhEmpleadoCargo.rhEmpleado.correoElectronico"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Dirección Web</label>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-cloud"></span></span>
+                                <input type="text" class="form-control" placeholder="enlace"
+                                       ng-model="rhEmpleadoCargo.rhEmpleado.direccionWeb">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="margin-top: 0 !important;">
+            <p class="help-block" align="center" ng-show="datosPersonalesForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span>
+            </p>
+
+            <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;">
+                <button class="btn btn-success btn-md"
+                        ng-class="{disabled:datosPersonalesForm.$invalid}"
+                        ng-disabled="datosPersonalesForm.$invalid"
+                        ng-click="guardaDatosEmpleado()">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;{{readOnlyEnable?'Guardar Cambios':'Guardar'}}
+                </button>
+                <button class="btn btn-danger btn-md"
+                        ng-click="eliminaProveedor()" ng-show="ocultaBotonElimina">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar Proveedor
+                </button>
+            </div>
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+

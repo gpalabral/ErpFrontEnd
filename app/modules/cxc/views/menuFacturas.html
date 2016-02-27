@@ -1,0 +1,21 @@
+<div>
+    <div class="panel-list-container">
+        <div class=" panel panel-primary custom-panel" align="left">
+            <div class="panel-heading">
+                <h3 class="panel-title" align="center">FACTURAS
+            <!--<span style="cursor: pointer;">
+              <i class="fa fa-plus pull-right" ng-click="registroNuevoCliente()"></i>
+            </span>--></h3>
+            </div>
+            <div class="panel-body" style="top:40px;overflow: hidden">
+              <div auto-height>
+                <div class="gridStyles break-words" ng-grid="gridOptions" style="width: 100%;"></div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-container">
+        <div ui-view="consulta-Factura" style="position: absolute;top: 0;bottom: 0;left: 0;right: 0;"></div>
+    </div>
+</div>

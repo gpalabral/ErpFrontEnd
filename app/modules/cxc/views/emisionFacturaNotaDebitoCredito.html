@@ -1,0 +1,326 @@
+<div class="container-fluid" align="center" style="width: 90%">
+    <div class="panel panel-primary" align="center">
+        <div class="panel-heading">
+            <h3 class="panel-title">NOTA DE CRÉDITO - DÉBITO</h3>
+        </div>
+
+        <div class="panel-body">
+
+
+            <div class="row" align="center">
+                <div class="col-sm-4 pull-right" style="margin-right: 15px !important;">
+                    <br/> <br/>
+
+                    <div class="row well">
+                        <div class="col-sm-7" align="left">
+                            <label class="control-label" align="left">NIT:</label><br/>
+                            <label class="control-label">N° Nota Fiscal:</label><br/>
+                            <label class="control-label">N° Autorización:</label>
+                        </div>
+                        <div class="col-sm-5" align="left">
+                            <label class="control-label">{{datosEmpresa.nit}}</label><br/>
+                            <label class="control-label">{{erpNotaCreditoDebito.numeroNotaCreditoDebito}}</label><br/>
+                            <label class="control-label">{{erpNotaCreditoDebito.numeroAutorizacion}}</label>
+                        </div>
+                    </div>
+                    <br/>
+
+                </div>
+                <div class="col-sm-1 pull-right">
+                </div>
+                <div class="col-sm-6 pull-left" align="center" style="line-height: 50%">
+                    <img src="images/huaweiLogo.jpg" class="img-responsive" alt="Logo" width="100" height="50">
+                    <small style="line-height: 50%">
+                        <label class="control-label">{{sucursalCasaMatriz.descripcion}}</label><br/>
+                        <label class="control-label">{{sucursalCasaMatriz.direccion|uppercase}}</label><br/>
+                        <label class="control-label">{{sucursalCasaMatriz.parLocalizacion.descripcion|uppercase}}{{sucursalCasaMatriz.nombreLocalizacion|uppercase}}</label><br/>
+                        <label class="control-label">TELÉFONO(S): {{sucursalCasaMatriz.telefonoUno}}
+                            {{sucursalCasaMatriz.telefonoDos}}</label><br/>
+                        <label class="control-label">{{sucursalCasaMatriz.parDepartamento.descripcion}}-BOLIVIA</label><br/>
+                    </small>
+                    <small ng-show="mostrar.datosSucursal">
+                        <label class="control-label">{{sucursal.descripcion}}</label><br/>
+                        <label class="control-label">{{sucursal.direccion|uppercase}}</label><br/>
+                        <label class="control-label">{{sucursal.parLocalizacion.descripcion|uppercase}}
+                            {{sucursal.nombreLocalizacion|uppercase}}</label><br/>
+                        <label class="control-label">TELÉFONO(S):{{sucursal.telefonoUno}}
+                            {{sucursal.telefonoDos}}</label><br/>
+                        <label class="control-label">{{sucursal.parDepartamento.descripcion}}-BOLIVIA</label><br/>
+                    </small>
+                </div>
+
+            </div>
+
+
+            <!--fin row logo y datos empresa-->
+
+
+            <!--<div class="row">-->
+            <!--<div class="col-sm-12">-->
+            <!--<label class="control-label"><h5><b>FACTURA</b></h5></label>-->
+            <!--</div>-->
+            <!--</div>-->
+
+
+        </div>
+        <!--fin panel body-->
+        <div class="panel-body">
+            <div class="row" align="left" style="padding:0em 2em">
+                <div class="col-sm-6">
+                    <label class="control-label" align="left">*Modalidad Transacción:&nbsp;
+                        <label class="radio-inline" for="radios-0" align="right">
+                            <input type="radio"
+                                   name="parModCodigo"
+                                   ng-model="erpNotaCreditoDebito.parModalidadTransaccion.codigo"
+                                   id="radios-0"
+                                   required
+                                   value="CONT" ng-disabled="modo.valor" required/>
+                            Contado
+                        </label>
+                        <label class="radio-inline" for="radios-1" align="right">
+                            <input type="radio"
+                                   name="parModCodigo"
+                                   ng-model="erpNotaCreditoDebito.parModalidadTransaccion.codigo"
+                                   id="radios-1"
+                                   required
+                                   value="CRED" ng-disabled="modo.valor" required/>
+                            Crédito
+                        </label>
+                    </label>
+                </div>
+                <div class="col-sm-6" readonly>
+                    <label class="control-label" align="left">*Tipo Transacción:&nbsp;
+                        <label class="radio-inline" for="rad-0" align="right" readonly>
+                            <input type="radio"
+                                   ng-model="erpNotaCreditoDebito.parTipoTransaccion.codigo"
+                                   id="rad-0" value="VENT" ng-disabled="modo.valor" required/>
+                            Ventas
+                        </label>
+                        <label class="radio-inline" for="rad-1" align="right" readonly>
+                            <input type="radio"
+                                   ng-model="erpNotaCreditoDebito.parTipoTransaccion.codigo"
+                                   id="rad-1" value="EXPO" ng-disabled="modo.valor" required/>
+                            Exportaciones
+                        </label>
+                        <label class="radio-inline" for="rad-2" align="right" readonly>
+                            <input type="radio"
+                                   ng-model="erpNotaCreditoDebito.parTipoTransaccion.codigo"
+                                   id="rad-2" value="OTR" ng-disabled="modo.valor" required/>
+                            Otros
+                        </label>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row" align="left" style="padding:0.1em 0.1em">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><label>Fecha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label></span>
+                        <input type="date" class="form-control"
+                               ng-model="erpNotaCreditoDebito.fechaNotaCreditoDebito" disabled>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><label>NIT :</label></span>
+                        <input type="text" class="form-control"
+                               ng-model="cpcFacturaEmitida.cpcFacturaEmitida.cppProveedorCliente.nit" ng-disabled="bloqueaCamposFormulario">
+                    </div>
+                </div>
+            </div>
+            <div class="row" align="left" style="padding:0.1em 0.1em">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon"><label>Señor (es) :</label></span>
+                        <input type="text" class="form-control"
+                               ng-model="cpcFacturaEmitida.nombre" ng-disabled="bloqueaCamposFormulario">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div align="center" style="padding:1em 1em">
+            <div class="row row-fluid" align="left">
+                <div class="col-sm-12" align="left">
+
+                    <div class="panel-heading" style="border: 1px solid rgb(212,212,212)" align="center">
+                        <h5><b> DATOS DE LA FACTURA ORIGINAL</b></h5>
+
+                        <div class="row" align="left" style="padding:0.1em 0.1em">
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><label>N° Factura:</label></span>
+                                    <input type="text" class="form-control"
+                                           ng-model="cpcFacturaEmitida.cpcFacturaEmitida.numeroFactura" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><label>N° Autorización:</label></span>
+                                    <input type="text" class="form-control"
+                                           ng-model="cpcFacturaEmitida.cpcFacturaEmitida.cpcDosificacion.numeroAutorizacion"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><label>Fecha de Emisión:</label></span>
+                                    <input type="date" class="form-control"
+                                           ng-model="cpcFacturaEmitida.cpcFacturaEmitida.fechaFactura" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gridStyles" ng-grid="gridOptions"
+                         style="width: 100%;height: 200px">
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <!--fin panel primary-->
+        <!--<div class="panel-body">-->
+        <!--&lt;!&ndash;Logo-Datos Empresa&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;fin factura&ndash;&gt;-->
+
+
+        <!--<div class="footer" ng-show="!activar.gridNotasCreditoDebito">-->
+
+
+        <!--<button name="SelecionaAbajo" class="btn btn-success" align="center"-->
+        <!--ng-click="seleccionarFacturasParaNotaDebitoCredito()">-->
+        <!--<span class="glyphicon glyphicon-chevron-down"></span>Agregar-->
+        <!--</button>-->
+        <!--&lt;!&ndash;<button name="guardar" class="btn btn-success" align="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;ng-click="guardarFacturaEmitida()">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="glyphicon glyphicon-chevron-up"></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</button>&ndash;&gt;-->
+
+        <!--</div>-->
+
+        <!--</div>-->
+        <!--fin panel body-->
+
+        <!--fin panel primary FACTURA-->
+    </div>
+    <div class="panel panel-primary" align="center" ng-form="notaCreditoDebitoForm"
+         ng-show="!activar.gridNotasCreditoDebito">
+        <div class="panel-body">
+            <!--Logo-Datos Empresa-->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="control-label"><h5><b>DETALLE DE LA DEVOLUCIÓN O RESCISIÓN DE SERVICIOS</b></h5>
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12" align="center">
+                    <div class="gridStyles break-words" ng-grid="gridOptionsNotaDebitoCredito"
+                         style="width: 100%;height: 200px"></div>
+                </div>
+            </div>
+            <hr/>
+            <!--<div class="row" align="left">-->
+                <!--<div class="col-sm-1">-->
+                    <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;MOTIVO&nbsp;&nbsp;:</label>-->
+                <!--</div>-->
+                <!--<div class="col-sm-11">-->
+                    <!--<input type="text" class="form-control" ng-model="cpcFacturaEmitida.cpcFacturaEmitida.motivo"-->
+                           <!--style="text-align: left" required/>-->
+                <!--</div>-->
+            <!--</div>-->
+            <hr ng-show="muestraCodigoControl"/>
+            <div class="row" align="left" ng-show="muestraCodigoControl">
+                <div class="col-sm-8" align="left">
+                    <label class="form-inline" for="codigoControl">Código de
+                        Control:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" class="form-control" id="codigoControl" size="16"
+                               ng-model="erpNotaCreditoDebito.codigoControlNotaDebitoCredito" readonly></label>
+                    <br/>
+                    <label class="form-inline" for="fechaLimiteEmision">Fecha Límite de Emisión:&nbsp;
+                        <input type="date" class="form-control" id="fechaLimiteEmision" size="12"
+                               ng-model="cpcdosificacionesNotaDebito.fechaLimiteEmision"
+                               disabled></label>
+                </div>
+                <div id="qr" class="col-sm-4" align="center" width="100" height="50">
+                </div>
+            </div>
+            <hr/>
+            <div class="footer" ng-show="activaBotonGuardar">
+
+
+                <button ng-class="{disabled: notaCreditoDebitoForm.$invalid}"
+                        ng-disabled="notaCreditoDebitoForm.$invalid"
+                        name="Guardar" class="btn btn-success" align="center"
+                        ng-click="generaQR_Y_GuardaNotaCreditoDebito()">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>Guardar Nota Crédito-Débito
+                </button>
+                <button name="Guardar" class="btn btn-default" align="center"
+                        ng-click="cancelarAddNotaCreditoDebito()">
+                    <span class="glyphicon glyphicon-remove"></span>Cancelar
+                </button>
+
+            </div>
+
+            <div class="footer" ng-show="activaBotonImprimir">
+
+
+                <button name="Imprimir" class="btn btn-success" align="center"
+                        ng-click="imprimeNotaCreditoDebitoDespuesDeGuardar()">
+                    <span class="glyphicon glyphicon-print"></span>Imprimir Nota Crédito-Débito
+                </button>
+                <button name="Volver" class="btn btn-primary" align="center"
+                        ng-click="volverNotaCreditoDebitoDespuesDeGuardar()">
+                    <span class="glyphicon glyphicon-ok"></span>Continuar
+                </button>
+
+            </div>
+
+            <div class="footer" ng-show="activaBotonContinua">
+                <button name="Volver" class="btn btn-primary" align="center"
+                        ng-click="volverNotaCreditoDebitoDespuesDeGuardar()">
+                    <span class="glyphicon glyphicon-ok"></span>Continuar
+                </button>
+            </div>
+        </div>
+        <!--fin panel body-->
+
+    </div>
+    <div class="panel panel-primary" style="width: 100%" ng-show="activar.gridNotasCreditoDebito">
+        <div class="panel panel-default" style="width: 100%">
+            <div class="panel-heading" style="border: 1px solid rgb(212,212,212)" align="center">
+                <h3 class="panel-title">LISTA DE NOTA DE CRÉDITO - DÉBITO {{cpcsucursal.descripcion}}
+                 <span style="cursor: pointer;" ng-click="addNotaCreditoDebito()">
+                        <i class="fa fa-plus pull-right"></i>
+                 </span>
+                </h3>
+            </div>
+            <div class="gridStyles" ng-grid="gridNotaCreditoDebitoLista"
+                 style="width: 100%;height: 150px">
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+
+
+
+
+    <div class="footer" ng-show="activar.gridNotasCreditoDebito">
+
+        <button name="Volver" class="btn btn-primary" align="center"
+                ng-click="cancelarRegistroNotaDebitoCredito()">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+        </button>
+
+    </div>
+</div>
+<!--fin contenedor-->

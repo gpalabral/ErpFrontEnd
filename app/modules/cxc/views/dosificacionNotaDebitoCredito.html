@@ -1,0 +1,174 @@
+<div style="position: absolute;top: 15px;left:0;right:0;bottom: 0;overflow-y: auto;" ng-form="dosificacionCreditoDebitoForm">
+
+
+    <div align="center" style="padding:1em 3em">
+        <div class="panel-heading panel-default" style="border: 1px solid rgb(212,212,212)">
+            <h3 class="panel-title">Nueva Dosificación Notas Crédito - Débito
+
+            </h3>
+        </div>
+        <hr>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Sucursal</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.descripcion" disabled/>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Código</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.codigo" disabled/>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Número Sucursal</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.numeroSucursal" disabled/>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row row-fluid" align="center">
+            <div class="col-sm-4" align="right">
+                <label>*Modalidad Facturación</label>
+            </div>
+            <div class="col-sm-6" align="left">
+                <label class="radio-inline" for="radios-0">
+                    <input type="radio" ng-model="cpcdosificaciones.parModalidadFacturacion.codigo" required
+                           id="radios-4" value="MAN" ng-click="eventoModalidadFacturacion();" ng-disabled="desactivaEdicionCampos">
+                    Manual
+                </label>
+                <label class="radio-inline" for="radios-2">
+                    <input type="radio" ng-model="cpcdosificaciones.parModalidadFacturacion.codigo" required
+                           id="radios-6" value="COMP" ng-disabled="desactivaEdicionCampos">
+                    Computarizada
+                </label>
+            </div>
+        </div>
+        <hr>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>*Número Autorización</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcdosificaciones.numeroAutorizacion"
+                           ng-disabled="desactivaEdicionCampos" required/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>*Número Nota Crédito - Débito</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcdosificaciones.numeroFacturaInicial"
+                           ng-disabled="desactivaEdicionCampos" required/>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="fechaLimiteEmision">*Fecha Limite Emisión</label>
+                    <input type="date" class="form-control" id="fechaLimiteEmision"
+                           placeholder="Fecha Vencimiento"
+                           ng-model="cpcdosificaciones.fechaLimiteEmision"
+                           ng-disabled="desactivaEdicionCampos" required/>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label>*Caracteristica Especial</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcdosificaciones.parCaracteristicaEspecial.descripcion"
+                           disabled/>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+
+        <div class="row row-fluid" align="center">
+            <div class="col-sm-4" align="right">
+                <label>*Estado Proceso</label>
+            </div>
+            <div class="col-sm-8" align="left">
+                <label class="radio-inline" for="radios-0">
+                    <input type="radio" ng-model="cpcdosificaciones.parEstadoProceso.codigo"
+                           id="radios-0" value="PACT" ng-disabled="desactivaEdicionRadioPACT" required>
+                    Por Activarse
+                </label>
+                <label class="radio-inline" for="radios-1">
+                    <input type="radio" ng-model="cpcdosificaciones.parEstadoProceso.codigo"
+                           id="radios-1" value="ACT" ng-disabled="desactivaEdicionRadioACT" required>
+                    Activa
+                </label>
+                <label class="radio-inline" for="radios-2">
+                    <input type="radio" ng-model="cpcdosificaciones.parEstadoProceso.codigo"
+                           id="radios-2" value="PAS" ng-disabled="desactivaEdicionRadioPAS" required>
+                    Pasiva
+                </label>
+            </div>
+
+        </div>
+        <hr>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>*Llave de Dosificación</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcdosificaciones.llaveDosificacion"
+                           ng-disabled="desactivaEdicionCampos" required>
+                </div>
+            </div>
+            <!--<div class="col-sm-12">-->
+                <!--<div class="form-group">-->
+                    <!--<label>Confirmacion Llave de Dosificacion</label>-->
+                    <!--<input type="text" class="form-control"-->
+                           <!--ng-model="llaveDosificacion.confirmacion">-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <!--<div class="row row-fluid" align="left">-->
+            <!--<div class="col-sm-12">-->
+                <!--<div class="form-group">-->
+                    <!--<label>Establecer por Defecto</label>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<div class="btn-group">-->
+                            <!--<label class="btn btn-default" btn-radio="true"-->
+                                   <!--ng-model="cpcdosificaciones.preEstablecido" ng-disabled="isBotonClickSI(cpcdosificaciones.preEstablecido)">SI</label>-->
+                            <!--<label class="btn btn-default" btn-radio="false"-->
+                                   <!--ng-model="cpcdosificaciones.preEstablecido" ng-disabled="isBotonClickNO(cpcdosificaciones.preEstablecido)">NO</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="footer">
+            <button ng-class="{disabled: dosificacionCreditoDebitoForm.$invalid}"
+                    ng-disabled="dosificacionCreditoDebitoForm.$invalid"
+                    ng-show="!readOnlyEnable " id="guardar" name="guardar" class="btn btn-success"
+                    align="center" ng-click="guardaDosificacion()">
+                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar
+            </button>
+            <button ng-show="readOnlyEnable" id="modifica" name="guardar" class="btn btn-success"
+                    align="center" ng-click="modificaDosificacion()">
+                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Cambios
+            </button>
+            <button id="cancelar" name="guardar" class="btn btn-default" align="center"
+                    ng-click="cancelarDosificacion()">
+                <span class="glyphicon glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+

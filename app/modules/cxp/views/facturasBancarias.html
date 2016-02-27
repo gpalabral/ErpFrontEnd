@@ -1,0 +1,102 @@
+<div class="container-fluid" align="center" style="width: 100%">
+    <div class="panel panel-primary" align="center" ng-form="facturaForm">
+        <div class="panel panel-primary" align="center">
+            <div class="panel-heading">
+                <h3 class="panel-title">FACTURAS BANCARIAS</h3>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div class="row col-sm-2"></div>
+                <div class="row col-sm-8">
+                    <div class="input-group" style="padding:0.2em 0em">
+                         <span class="input-group-btn">
+                            <div class="form-control btn btn-primary"
+                                 ngf-select=""
+                                 ngf-change="importarXLSFacturasBancarias($files)"
+                                 ngf-multiple="false"><i class="fa fa-upload"></i>&nbsp;Importar Excel Facturas
+                                Bancarias
+                            </div>
+                        </span>
+                        <input type="text" class="form-control" ng-model="nombreArchivoUno" required disabled>
+                    </div>
+                </div>
+                <div class="row col-sm-2"></div>
+            </div>
+        </div>
+        <div style="padding:0.2em 10em;">
+            <div class="well" style="border-color: #286090">
+                <div class="row" align="left">
+                    <div class="col-sm-12" align="center">
+                        <label class="form-inline">* Proveedor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                            <div class="input-group">
+                                <input type="text"
+                                       class="form-control"
+                                       width="300" style="width: 500px"
+                                       ng-model="valores.nombreRazonSocial"
+                                       placeholder="Buscar ..." required readonly/>
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button"
+                            ng-click="modalBuscadorProveedoresFacturasBancarias()">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row" align="center">
+                    <div class="col-sm-12" align="left">
+
+                        <label class="control-label">* Modalidad Transacción:&nbsp;
+                            <div ng-repeat="modalidadTransaccion in listaModalidadTransaccion"
+                                 style="padding:0.1em 10em">
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <input type="radio"
+                                       align="right"
+                                       ng-model="valores.codigoModalidadTransaccion"
+                                       name="modalidadTransaccion"
+                                       ng-value="modalidadTransaccion.codigo" required/>
+                                {{modalidadTransaccion.descripcion}}
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-sm-12" align="left">
+
+                        <label class="control-label">* Tipo Compra:&nbsp;
+                            <div ng-repeat="tipoCompra in listaTipoCompras" style="padding:0.1em 10em">
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <input type="radio"
+                                       align="right"
+                                       ng-model="valores.codigoTipoCompra"
+                                       name="tipoCompra"
+                                       ng-value="tipoCompra.codigo" required/>
+                                {{tipoCompra.descripcion}}
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--FIN Encabezado-->
+            <div class="footer middle" align="center">
+                <button ng-class="{disabled: facturaForm.$invalid}"
+                        ng-disabled="facturaForm.$invalid"
+                        class="btn btn-success btn-md"
+                        ng-click="guardaFacturasBancarias()"><span
+                        class="glyphicon glyphicon-list-alt"></span>&nbsp;Guardar Facturas Bancarias
+                </button>
+                <button class="btn btn-default btn-md"
+                        ng-click="limpiaFormularioFacturasBancaria()"><span
+                        class="glyphicon glyphicon-erase"></span>&nbsp;Limpiar
+                </button>
+            </div>
+            <br/>
+
+            <br/>
+            <br/>
+
+        </div>
+    </div>
+</div>
+<!--fin contenedor-->

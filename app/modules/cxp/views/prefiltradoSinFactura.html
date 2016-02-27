@@ -1,0 +1,39 @@
+<div class="container-fluid" align="center" style="width: 100%">
+    <div class="panel panel-primary" align="center">
+        <div class="panel-heading">
+            <h3 class="panel-title">REGISTRO FACTURA</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row" align="center">
+               <div class="col-sm-3" align="left"></div>
+               <div class="col-sm-6" align="left">
+                   <div class="input-group">
+                     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                       <input type="search" ng-model="busqueda.ocurrencia" class="form-control" autofocus/>
+                   </div>
+               </div>
+            </div>
+            <br>
+            <div class="row" align="center">
+                <div class="col-sm-4 "></div>
+                <div class="col-sm-6 text-left">
+                    <label class="control-label">Buscar por:</label>&nbsp;&nbsp;&nbsp;
+                    <label class="radio-inline">
+                        <input type="radio" name="criterioBusqueda" value="0"
+
+                               ng-model="busqueda.criterio">Proveedor
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="criterioBusqueda" value="1"
+                               ng-model="busqueda.criterio">Concepto
+                    </label>
+                </div>
+            </div>
+            <hr />
+            <h5><p class="text-primary text-left"><strong>RESULTADOS POR {{busqueda.criterio==0?'PROVEEDOR':'CONCEPTO'}} </strong></p>
+            </h5>
+            <hr />
+            <div class="gridStyles" ng-grid="gridOptionsConceptos" style="width: 100%;height: 400px"></div>
+        </div><!--fin panel body-->
+    </div><!--fin panel primary-->
+</div><!--fin container-->

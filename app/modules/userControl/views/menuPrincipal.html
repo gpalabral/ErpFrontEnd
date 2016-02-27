@@ -1,0 +1,14 @@
+<div class="main-menu" align="center">
+    <div id="panelMenuBap">
+        <div ng-repeat="module in userModulePermission" ng-if="module.permission" class="{{module.containerClass}}">
+            <div id="{{module.id}}"
+                 class="{{module.class}}"
+                 ng-click="onSelectModule(module)">
+                <h1>{{module.nombre}}</h1>
+                <i class="{{module.iconClass}}"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancelarDialogoTipoCambio()" data-dismiss="modal"
+            aria-hidden="true">&times;</button>
+    <h3 class="panel-title">Mensaje Confirmación</h3>
+</div>
+<div class="modal-body">
+    <div align="center" style="padding:1em 2.2em">
+
+        <div class="panel panel-primary" style="width: 80%;padding:1em 1em" align="center">
+            <div class="panel-heading" align="center">
+                <h3 class="panel-title">MENSAJE CONFIRMACIÓN</h3>
+            </div>
+            <br>
+
+            <div class="blockquote-box blockquote-info clearfix">
+                <div class="square pull-left">
+                    <span class="glyphicon glyphicon-info-sign glyphicon-lg"></span>
+                </div>
+                <h4>Información</h4>
+
+                <p>
+                    Se registrara el periodo con los siguientes datos, desea continuar?.
+                </p>
+
+            </div>
+
+            <div align="center" style="padding:1em 5em;">
+
+                <div class="form-group" style="padding:1em 0em;">
+                    <label for="periodo" class="col-sm-4 control-label">Periodo</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="periodo" ng-model="rhPeriodoGestion.periodo"
+                               disabled/>
+                    </div>
+                </div>
+                <div class="form-group" style="padding:1em 0em;">
+                    <label for="gestion" class="col-sm-4 control-label">Gestión</label>
+                    <div class="col-sm-8">
+                        <input id="gestion" type="number" class="form-control" ng-model="rhPeriodoGestion.gestion" disabled>
+                    </div>
+                </div>
+
+            </div>
+
+            <div cltipoass="footer" align="center" style="padding:1em 1em;">
+                <button class="btn btn-info" ng-click="guardaPeriodoGestionConfirmacion()">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Periodo
+                </button>
+                <button class="btn btn-default" ng-click="cancelarRegistroPeriodoGestionConfirmacion()">
+                    <span class="glyphicon glyphicon-list-alt"></span>&nbsp;Volver Menú
+                </button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

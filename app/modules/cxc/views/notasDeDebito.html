@@ -1,0 +1,121 @@
+<div class="container-fluid" style="position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: 0 15px 0px 15px;">
+    <div class="panel panel-primary" align="center" style="position: absolute;top: 0;bottom: 0;left:0px;right: 0px;">
+        <div class="panel-heading" align="center">
+            <h3 class="panel-title">{{readOnlyEnable?'EDITAR NOTA DE DEBITO':'NUEVA NOTA DE DEBITO'}}</h3>
+        </div>
+        <div style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+            <div align="center" style="padding:1em 2.2em">
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Cliente</label>
+                            <input type="text" class="form-control"
+                                   ng-model="cpcFacturaEmitida.cppProveedorCliente.razonSocial"
+                                   value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIT</label>
+                            <input type="text" class="form-control"
+                                   ng-model="cpcFacturaEmitida.cppProveedorCliente.nit"
+                                   value=""/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Factura Nro.</label>
+                            <input type="text" class="form-control"
+                                   ng-model="cpcFacturaEmitida.numeroFactura"
+                                   value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Nro. Autorización</label>
+                            <input type="text" class="form-control"
+                                   ng-model="cpcFacturaEmitida.cpcDosificacion.numeroAutorizacion"
+                                   value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Nro. Orden</label>
+                            <input type="text" class="form-control"
+                                   ng-model="cpcFacturaEmitida."
+                                   value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="fechaFactura">Fecha de la Factura</label>
+                            <input type="date" class="form-control"
+                                   placeholder="Fecha de la Factura"
+                                   ng-model="cpcFacturaEmitida.fechaFactura"
+                                   value=""/>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin-top: 0 !important;">
+                <div class="gridStyles" ng-grid="grid"
+                     style="width: 100%;height: 150px">Espacio para ng-grid
+                </div>
+                <div class="footer middle" align="center">
+                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-up"></span></button>
+                </div>
+                <br>
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Nota de Debito - Credito Nro</label>
+                            <input type="text" class="form-control"
+                                   ng-model="cpcFacturaEmitida.cpcPagoContrato.nroPago"
+                                   value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="fechaFactura">Fecha de Emision</label>
+                            <input type="date" class="form-control" id="fechaFactura"
+                                   placeholder="Fecha de la Factura"
+                                   ng-model="cpcFacturaEmitida.fechaFactura"
+                                   value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Nro. Autorización</label>
+                            <input type="text" class="form-control"
+                                   ng-model="cpcFacturaEmitida"
+                                   value=""/>
+                        </div>
+                    </div>
+                </div>
+                <div class="gridStyles" ng-grid="grid"
+                     style="width: 100%;height: 150px">Espacio para ng-grid
+                </div>
+                <br>
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Glosa</label>
+                            <input type="text" class="form-control"
+                                   ng-model="cpcFacturaEmitida.glosa"
+                                   value=""/>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin-top: 0 !important;">
+                <div class="footer middle" align="center">
+                    <button type="button" class="btn btn-primary">Anular</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,78 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">CUENTA BANCARIA</h4>
+</div>
+<div class="modal-body" align="center">
+
+
+    <div align="center" style="padding:1em 2.2em">
+        <div class="row" align="left">
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label >Número Cuenta</label>
+                    <input type="text" class="form-control" placeholder="Número Cuenta"
+                           ng-model="cuentaBancariaEmpresaObjeto.numeroCuenta">
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label>Entidad Financiera</label>
+                    <select class="form-control"
+                            ng-model="cuentaBancariaEmpresaObjeto.parBanco.codigo" ng-change="bancoSeleccionado()">
+                        <option value="" label="[Seleccione Banco]"></option>
+                        <option ng-repeat="banco in listaParBanco"
+                                ng-selected="banco.codigo== cuentaBancariaEmpresaObjeto.parBanco.codigo"
+                                value="{{banco.codigo}}">
+                            {{banco.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label >NIT</label>
+                    <input type="text" class="form-control" placeholder="NIT BANCO"
+                           ng-model="cuentaBancariaEmpresaObjeto.parBanco.nit" disabled>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label>Tipo Moneda</label>
+                    <select class="form-control"
+                            ng-model="cuentaBancariaEmpresaObjeto.parTipoMoneda.codigo" ng-change="monedaSeleccionado()">
+                        <option value="" label="[Seleccione Moneda]"></option>
+                        <option ng-repeat="tipoMoneda in listaParTipoMoneda"
+                                ng-selected="tipoMoneda.codigo== cuentaBancariaEmpresaObjeto.parTipoMoneda.codigo"
+                                value="{{tipoMoneda.codigo}}">
+                            {{tipoMoneda.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row row-fluid" align="left" ng-show="activaMensajeErroneo">
+                <div class="col-sm-12">
+                    <div class="badger-left badger-danger estilo-mensaje-error"
+                         data-badger="MENSAJE ERROR">
+                        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                        &nbsp;&nbsp;Existen campos vacios, verifique porfavor..
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+
+</div>
+<hr>
+
+
+<div class="modal-footer header-center" align="center">
+    <button class="btn btn-success btn-md" ng-click="adicionarCuentaBancariaEmpresa()">
+        <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;Adicionar
+    </button>
+</div>

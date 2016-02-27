@@ -1,0 +1,57 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">Editar Criterio de Ingreso</h4>
+</div>
+<div class="modal-body" align="center" ng-form="criterioDeIngresoForm">
+    <div class="row" align="left">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>* Código</label>
+                <input type="text" class="form-control"
+                       ng-model="rhCriterioDeIngreso.codigo" required/>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="form-group">
+                <label>* Nombre Descuento</label>
+                <input type="text" class="form-control"
+                       ng-model="rhCriterioDeIngreso.descripcion" required/>
+            </div>
+        </div>
+
+        <!-- NOTA: No Borrar lo comentado, esta opcion se utilizara mas adelante -->
+        <!--<div class="col-sm-4">-->
+        <!--<label>* Modo Aplicación</label>-->
+
+        <!--<div class="input-group">-->
+        <!--<label class="radio-inline" for="rad-0" align="right" readonly>-->
+        <!--<input type="radio" ng-model="rhCriterioDeIngreso.parTipoAplicacionDescuentoBono.codigo"-->
+        <!--id="rad-0"-->
+        <!--value="MONT" required>-->
+        <!--Monto-->
+        <!--</label>-->
+        <!--<label class="radio-inline" for="rad-1" align="right" readonly>-->
+        <!--<input type="radio" ng-model="rhCriterioDeIngreso.parTipoAplicacionDescuentoBono.codigo"-->
+        <!--id="rad-1"-->
+        <!--value="PORC" required>-->
+        <!--Porcentaje-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <br/>
+
+    </div>
+
+</div>
+<div class="modal-footer header-center" align="center">
+
+    <button ng-class="{disabled:criterioDeIngresoForm.$invalid}"
+            ng-disabled="criterioDeIngresoForm.$invalid"
+            class="btn btn-success btn-md" ng-click="seleccionar()">
+        <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;Modificar Criterio de Ingreso
+    </button>
+
+    <button class="btn btn-default btn-md" ng-click="cancelar()">
+        <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+    </button>
+</div>

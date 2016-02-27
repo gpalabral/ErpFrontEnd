@@ -1,0 +1,244 @@
+<div ng-form="datosLaboralesForm">
+    <div align="center" style="padding:1em 2.2em">
+        <br/>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>* N° Item</label>
+                    <input name="nroItem"
+                           type="text" class="form-control"
+                           ng-model="rhEmpleadoCargo.numeroItem" required/>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <label>* Tipo Empleado</label>
+                <select class="form-control" ng-disabled="readOnlyEnable?true:false" name="tipoEmpleado"
+                        ng-change="activaValidacionFechaRetiroAction(rhEmpleadoCargo.parTipoContratoEmpleado.codigo)"
+                        ng-model="rhEmpleadoCargo.parTipoContratoEmpleado.codigo" required>
+                    <option value="" label="[Seleccione Tipo Empleado]"></option>
+                    <option ng-repeat="tipoContratoEmpleado in listaParTipoContratoEmpleado" value="{{tipoContratoEmpleado.codigo}}"
+                            ng-selected="tipoContratoEmpleado.codigo== rhEmpleadoCargo.parTipoContratoEmpleado.codigo">
+                        {{tipoContratoEmpleado.descripcion}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>*Nº Seguro Social</label>
+                    <input type="text" class="form-control"
+                           ng-model="rhEmpleadoCargo.rhEmpleado.numeroSeguroSocial" required readonly/>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4 no-padding">
+                <label>*NUA</label>
+                <input type="text" class="form-control"
+                       ng-model="rhEmpleadoCargo.rhEmpleado.nua" required>
+            </div>
+            <div class="col-sm-4 ">
+                <div class="form-group">
+                    <label>* Fecha Vinculación</label>
+                    <input type="date" class="form-control"
+                           ng-disabled="readOnlyEnable?true:false"
+                           ng-blur="adicionaFechaLiquidacion()"
+                           ng-model="rhEmpleadoCargo.rhEmpleado.fechaIngreso" required/>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Fecha Retiro</label>
+                    <input type="date" class="form-control"
+                           ng-disabled="readOnlyEnable?true:false"
+                           ng-model="rhEmpleadoCargo.rhEmpleado.fechaRetiro"
+                           ng-required="activaValidacionTipoContrato.requerido"/>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4 no-padding">
+                <label class="control-label">*Cargo </label>
+
+                <div class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           ng-model="rhEmpleadoCargo.rhCargo.nombreCargo"
+                           placeholder="Buscar ..." required readonly/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" ng-click="modalListaAdicionaRhCargo()">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                </div>
+                <!-- /input-group -->
+
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>* Departamento</label>
+                    <input name="nroDocumento" type="text" ng-disabled="readOnlyEnable?true:false"
+                           class="form-control" ng-model="rhEmpleadoCargo.rhCargo.erpDepartamento.descripcion"
+                           ng-required="validaCampoDocumento" readonly/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Sección</label>
+                    <input name="nroDocumento" type="text" ng-disabled="readOnlyEnable?true:false"
+                           class="form-control" ng-model="rhEmpleadoCargo.rhCargo.rhSeccion.descripcion"
+                           ng-required="validaCampoDocumento" readonly/>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4 no-padding">
+                <div class="form-group">
+                    <label>* Fecha Inicio en el Cargo</label>
+                    <input type="date" class="form-control" id="fechaInicio"
+                           ng-disabled="readOnlyEnable?true:false"
+                           ng-model="rhEmpleadoCargo.fechaInicio" required/>
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>* Fecha Fin en el Cargo</label>
+                    <input type="date" class="form-control" id="fechaFin"
+                           ng-disabled="readOnlyEnable?true:false"
+                           ng-model="rhEmpleadoCargo.fechaFin"/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Sueldo Básico</label>
+                    <input name="sueldo" style="text-align: right"
+                           type="text" class="form-control"
+                           currency-input decimals="2"
+                           ng-model="rhEmpleadoCargo.sueldo" required/>
+
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4" align="center">
+                <label class="control-label" align="center">*Aporta:&nbsp;
+                    <label class="radio-inline" for="rad-0" align="right">
+                        <input type="radio"
+                               name="aporta"
+                               ng-model="rhEmpleadoCargo.rhEmpleado.aporta"
+                               ng-change="activaValidacionAFPAction(rhEmpleadoCargo.rhEmpleado.aporta)"
+                               id="rad-0"
+                               ng-value="true" readonly required>
+                        Si
+                    </label>
+                    <label class="radio-inline" for="rad-1" align="right">
+                        <input type="radio"
+                               name="aporta"
+                               ng-model="rhEmpleadoCargo.rhEmpleado.aporta"
+                               ng-change="activaValidacionAFPAction(rhEmpleadoCargo.rhEmpleado.aporta)"
+                               id="rad-1"
+                               ng-value="false" readonly required>
+                        No
+                    </label>
+                </label>
+            </div>
+            <div class="col-sm-8" align="center">
+                <label class="control-label" align="center">AFP:&nbsp;
+                    <label class="radio-inline" for="rad-0" align="right">
+                        <input type="radio"
+                               name="parTipoAFP"
+                               ng-model="rhEmpleadoCargo.rhEmpleado.parTipoAFP.codigo"
+                               id="r-0"
+                               value="FUT"
+                               ng-required="activaValidacionAFP.requerido"
+                               ng-disabled="activaDisableAFP.requerido " readonly>
+                        Futuro de Bolivia S.A.
+                    </label>
+                    <label class="radio-inline" for="rad-1" align="right" readonly>
+                        <input type="radio"
+                               name="parTipoAFP"
+                               ng-model="rhEmpleadoCargo.rhEmpleado.parTipoAFP.codigo"
+                               id="r-1"
+                               value="BBV"
+                               ng-required="activaValidacionAFP.requerido"
+                               ng-disabled="activaDisableAFP.requerido " readonly>
+                        BBVA Previsión
+                    </label>
+                </label>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-5 no-padding">
+                <label>Condición de Pensión</label>
+                <select class="form-control" ng-disabled="readOnlyEnable?true:false" name="estadoCivil"
+                        ng-model="rhEmpleadoCargo.rhEmpleado.parCondicionPension.codigo" required>
+                    <option value="" label="[Seleccione Opción]"></option>
+                    <option ng-repeat="parCondicionPension in listaParCondicionPension" value="{{parCondicionPension.codigo}}"
+                            ng-selected="parCondicionPension.codigo== rhEmpleadoCargo.rhEmpleado.parCondicionPension.codigo">
+                        {{parCondicionPension.descripcion}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Fecha Última Liquidación</label>
+                    <input type="date" class="form-control" id="fechaUltLiquidacion"
+                           ng-disabled="readOnlyEnable?true:false"
+                           ng-model="rhEmpleadoCargo.rhEmpleado.fechaUltimaLiquidacion"/>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Días de Vacación</label>
+                    <input name="nroItem"
+                           type="text" class="form-control"
+                           ng-model="rhEmpleadoCargo.rhEmpleado.diasVacacion" readonly/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="margin-top: 0 !important;">
+    <p class="help-block" align="center" ng-show="clienteForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span>
+    </p>
+
+    <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;" ng-show="disabledBoton.muestraPanelBotones">
+        <button class="btn btn-success btn-md" ng-show="!modificaDatosLaborales"
+                ng-class="{disabled:datosLaboralesForm.$invalid}"
+                ng-disabled="datosLaboralesForm.$invalid"
+                ng-click="guardaDatosLaborales()">
+            <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar
+        </button>
+        <button class="btn btn-success btn-md" ng-show="modificaDatosLaborales"
+                ng-class="{disabled:datosLaboralesForm.$invalid}"
+                ng-disabled="datosLaboralesForm.$invalid"
+                ng-click="modificaDatosEmpleadoAndDatosLaboralesAmbasOpciones()">
+            <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Cambios
+        </button>
+        <!--<button class="btn btn-danger btn-md" ng-show="modificaDatosLaborales"-->
+                <!--ng-class="{disabled:datosLaboralesForm.$invalid}"-->
+                <!--ng-disabled="datosLaboralesForm.$invalid"-->
+                <!--ng-click="modificaDatosEmpleadoAndDatosLaboralesAmbasOpciones()">-->
+            <!--<span class="glyphicon glyphicon-trash"></span>&nbsp;Elimina-->
+        <!--</button>-->
+        <!--<button class="btn btn-warning btn-md" ng-show="modificaDatosLaborales"-->
+                <!--ng-class="{disabled:datosLaboralesForm.$invalid}"-->
+                <!--ng-disabled="datosLaboralesForm.$invalid"-->
+                <!--ng-click="modificaDatosEmpleadoAndDatosLaboralesAmbasOpciones()">-->
+            <!--<span class="glyphicon glyphicon-import"></span>&nbsp;Baja-->
+        <!--</button>-->
+    </div>
+</div>
+

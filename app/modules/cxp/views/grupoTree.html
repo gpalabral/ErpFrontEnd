@@ -1,0 +1,24 @@
+<div class=" panel panel-primary custom-panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">GRUPOS
+            <span style="cursor: pointer;" ng-click="addGrupo()">
+            <i class="fa fa-plus pull-right"></i>
+            </span>
+            <!--<span class="circle-btn pull-right" ng-click="addGrupo()">
+            </span>-->
+        </h3>
+    </div>
+  <div class="panel-body" style="top:40px;">
+    <!--<div class="item-row" ng-repeat="grupo in grupos" ng-click="viewGroupDetail(grupo)">
+      {{grupo.idEntidad}}
+      {{grupo.descripcion}}
+    </div>-->
+
+   <!--<div>-->
+      <angular-tree-grid tree-config="treeConfig">
+      </angular-tree-grid>
+      <sin-registros ng-if="treeConfig && (!treeConfig.collection || treeConfig.collection.length == 0)"></sin-registros>
+   <!--</div>-->
+  </div>
+
+</div>

@@ -1,0 +1,46 @@
+<div class="container-fluid page-container">
+  <div class="panel panel-primary" align="center">
+    <div class="panel-heading">
+      <h3 class="panel-title">TIPO DE CAMBIO</h3>
+    </div>
+    <div class="panel-body">
+      <h5>
+        <p class="text-primary text-left"><strong>Dato Tipo de Cambio Actual</strong></p>
+      </h5>
+      <br>
+      <div class="row" align="left">
+        <div class="col-sm-4 pull-left">
+          Fecha:
+        </div>
+        <div class="col-sm-4 pull-left">
+          Tipo Cambio:
+        </div>
+        <div class="col-sm-4 pull-left">
+          Tipo UFV:
+        </div>
+      </div>
+      <hr />
+      <div class="row col-sm-3" align="center" style="margin-left: 40%;">
+          <div class="form-control btn btn-primary"
+               ngf-select=""
+               ngf-change="importarXLS($files)"
+               ngf-multiple="false"><i class="fa fa-upload"></i>&nbsp;Importar de Excel</div>
+      </div>
+      <br/>
+      <hr />
+      <h5>
+        <p class="text-primary text-left"><strong>Lista de Tipo de Cambio y UFV</strong></p>
+      </h5>
+      <div class="gridStyles break-words" ng-grid="gridTipoCambio" style="width: 100%;height: 200px"></div>
+      <br/>
+      <div class="footer middle">
+        <button class="btn btn-success icon-search" ng-click="guardar();">
+          <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar
+        </button>
+        <button class="btn btn-default" ng-click="volver()">
+          <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+        </button>
+      </div>
+    </div><!--fin panel body-->
+  </div><!--fin panel primary-->
+</div><!--fin container-->

@@ -1,0 +1,31 @@
+<div class="container-fluid" align="center" style="width: 100%">
+    <div class="panel panel-primary" align="center" ng-form="libroVentasForm">
+        <div class="panel-heading">
+            <h3 class="panel-title inline" align="center">REPORTE PARA TRANSFERENCIAS BANCARIAS</h3><strong class="inline pull-right">PERIODO: {{periodo}}&nbsp;&nbsp;GESTIÓN: {{gestion}}</strong>
+        </div>
+        <div class="panel-body">
+            <div class="gridStyles break-words" ng-grid="gridTransferencias" style="width: 100%;height: 400px"></div>
+            <br/>
+            <div ng-show="mostrar.grilla" class="row">
+                <div class="col-sm-12">
+                    <div  role="group" aria-label="...">
+                        <!--XLS-->
+                        <button type="button" class="btn btn-primary"
+                                ng-class="{disabled: !datosTransferencias || datosTransferencias.length === 0}"
+                                ng-disabled="!datosTransferencias || datosTransferencias.length === 0"
+                                ng-click="exportar('xlsx')">
+                            <span class="glyphicon glyphicon-export"></span>&nbsp;Exportar a Excel</button
+                                >&nbsp;
+                        <!-- CSV -->
+                       <!-- <button type="button" class="btn btn-primary"
+                                                           ng-class="{disabled: !datosTransferencias || datosTransferencias.length === 0}"
+                                                           ng-disabled="!datosTransferencias || datosTransferencias.length === 0"
+                                                           ng-csv="exportar('csv')" field-separator="|"
+                                                           filename="{{nombreReporte+'.txt'}}">
+                        <span class="glyphicon glyphicon-export"></span>&nbsp;Exportar a Archivo Plano</button>-->
+                    </div>
+                </div>
+            </div>
+        </div><!--fin panel body-->
+    </div><!--fin panel primary-->
+</div><!--fin container-->

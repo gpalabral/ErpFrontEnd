@@ -1,0 +1,446 @@
+<!doctype html>
+<html class="no-js" ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-snap/angular-snap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-fileinput/css/fileinput.min.css" />
+    <link rel="stylesheet" href="bower_components/ng-grid/ng-grid.css" />
+    <link rel="stylesheet" href="bower_components/angular-tree-grid/src/styles/angular-tree-grid.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body ng-controller="mainCtrl" class="main-container" ng-cloak>
+<div class="overlay" ng-show="documentControls.showLoadingAnimation">
+    <i class="fa fa-spinner fa-spin spin-normal"></i>
+</div>
+
+<!-- Validation for old browsers-->
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- application header -->
+<!--<div class="header" ng-if="menu.mostrarMenu">-->
+<div class="header">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!--<a class="navbar-brand" href="#">-->
+                <img src="images/logoBAP5.png" class="img-circle">
+                <!--CUENTAS POR PAGAR</a>-->
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" ng-if="moduloSeleccionado && moduloSeleccionado.nombreModulo">
+                    <li class="dropdown">
+                        <a class="navbar-brand" href="">
+                            <strong>{{moduloSeleccionado.nombreModulo}}</strong>
+                        </a>
+                    </li>
+                    <li class="dropdown"
+                        ng-repeat="modulo in moduloSeleccionado.menuModulo"
+                        ng-if="modulo.hasPermission">
+                    <!--<li class="dropdown"
+                        ng-repeat="modulo in moduloSeleccionado.menuModulo">-->
+                        <a ng-href="{{modulo.url}}"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-expanded="false">
+                            <span class="glyphicon glyphicon-cog"></span>&nbsp;{{modulo.mainLabel}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul ng-if="modulo.menu && modulo.menu.length > 0" class="dropdown-menu" role="menu">
+                            <li class="divider"></li>
+                            <li ng-repeat="oneMenu in modulo.menu"
+                                ng-if="oneMenu.permission === true">
+                            <!--<li ng-repeat="oneMenu in modulo.menu">-->
+                                <a ng-href="{{oneMenu.url}}">{{oneMenu.label}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-if="userData">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrador<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                           <!-- <li><a href="">Ayuda</a></li>
+                            <li><a href="">Ver Datos</a></li>
+                            <li class="divider"></li>-->
+                            <li><a href="" ng-click="logout()">Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-if="userData" ng-controller="menuPrincipalCtrl">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Seleccionar Modulo<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li ng-repeat="module in userModulePermission"
+                                ng-if="module.permission"><a href="" ng-click="onSelectModule(module, true)">{{module.nombre}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</div>
+
+
+<!-- Add your site or application content here -->
+<div class="view-container">
+    <!-- side menu -->
+    <!--<snap-drawer>-->
+    <!--<div ng-include src="'modules/cxp/views/menuPrincipal.html'"></div>-->
+    <!--</snap-drawer>-->
+
+
+    <!-- content section -->
+    <!--<snap-content>-->
+    <div ui-view class="main-content"></div>
+    <!--</snap-content>-->
+
+
+</div>
+
+<!--<div ng-include src="'views/footer.html'"></div>-->
+
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/snapjs/snap.js"></script>
+<script src="bower_components/angular-snap/angular-snap.js"></script>
+<script src="bower_components/adapt-strap/dist/adapt-strap.min.js"></script>
+<script src="bower_components/adapt-strap/dist/adapt-strap.tpl.min.js"></script>
+<script src="bower_components/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script src="bower_components/ng-grid/build/ng-grid.js"></script>
+<script src="bower_components/angular-tree-grid/src/js/angular-tree-grid.js"></script>
+<script src="bower_components/pdfjs-dist/build/pdf.js"></script>
+<script src="bower_components/pdfjs-dist/build/pdf.worker.js"></script>
+<script src="bower_components/angular-pdf/dist/angular-pdf.js"></script>
+<script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
+<script src="bower_components/br-validations/releases/br-validations.js"></script>
+<script src="bower_components/string-mask/src/string-mask.js"></script>
+<script src="bower_components/angular-input-masks/angular-input-masks.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<script src="scripts/config.js"></script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!-- UTILS SECTION  -->
+
+
+<!--Carga imagen componente SCRIPT-->
+<script>
+    setTimeout(function () {
+        $("#file-3").fileinput({
+            showCaption: false,
+            browseClass: "btn btn-primary btn-lg",
+            fileType: "any"
+        });
+    }, 2000);
+
+</script>
+<!-- Fin Carga imagen componente SCRIPT-->
+<script src="scripts/libs/alasql/js/alasql.min.js"></script>
+<script src="scripts/libs/alasql/js/xlsx.core.min.js"></script>
+<!-- CONFIG SECTION -->
+<script src="scripts/constants.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/routers.js"></script>
+
+<script src="scripts/server.js"></script>
+<script src="scripts/errorInterceptor.js"></script>
+<script src="scripts/filters.js"></script>
+
+<script src="scripts/localStorageService.js"></script>
+<script src="scripts/mainCtrl.js"></script>
+<script src="scripts/run.js"></script>
+<script src="scripts/tempCache.js"></script>
+<script src="scripts/modalService.js"></script>
+<script src="scripts/controllers/modalControllers.js"></script>
+<script src="scripts/qrcode.js"></script>
+
+<script src="scripts/pdfViewerCtrl.js"></script>
+<!-- UTILS SECTIONS -->
+<script src="scripts/utils/treeComponentUtils.js"></script>
+<script src="scripts/utils/commonMethods.js"></script>
+<script src="modules/cxc/common-cxc.js"></script>
+<!-- MODELS SECTION -->
+<script src="scripts/models/modelService.js"></script>
+<script src="scripts/models/grupoModel.js"></script>
+<script src="scripts/models/conceptoModel.js"></script>
+<script src="scripts/models/sucursalModel.js"></script>
+<script src="scripts/models/dosificacionModel.js"></script>
+<script src="scripts/models/itemModel.js"></script>
+<script src="scripts/models/contratoModel.js"></script>
+<script src="scripts/models/pagoContratoModel.js"></script>
+<script src="scripts/models/tipoCambioModel.js"></script>
+<script src="scripts/models/proveedorModel.js"></script>
+<script src="scripts/models/clienteModel.js"></script>
+<script src="scripts/models/contratoItemModel.js"></script>
+<script src="scripts/models/emisionFacturaModel.js"></script>
+<script src="scripts/models/codigoControlModel.js"></script>
+<script src="scripts/models/planPagosPeriodoModel.js"></script>
+<script src="scripts/models/empresaModel.js"></script>
+<script src="scripts/models/emisionFacturaEntidadModel.js"></script>
+<script src="scripts/models/cuentaBancariaEmnpresaModel.js"></script>
+<script src="scripts/models/cuentaBancariaProveedorClienteModel.js"></script>
+<script src="scripts/models/formaPagoCobroModel.js"></script>
+<script src="scripts/models/formaPagoCobroCuentasBancariasPojoModel.js"></script>
+<!--<script src="scripts/models/erpFacturaCpcDetalleFacturaPojoModel.js"></script>-->
+<script src="scripts/models/detalleFacturaGridModel.js"></script>
+<script src="scripts/models/facturaEmitidaModel.js"></script>
+<script src="scripts/models/cpcActividadEconomicaModel.js"></script>
+<script src="scripts/models/conciliacionPojoModel.js"></script>
+<script src="scripts/models/facturaEmitidaPojoModel.js"></script>
+<script src="scripts/models/erpNotaCreditoDebitoModel.js"></script>
+<script src="scripts/models/erpNotaCreditoDebitoCpcDetalleFacturaPojoModel.js"></script>
+<script src="scripts/models/erpDetalleFacturaModel.js"></script>
+<script src="scripts/models/parTipoAlicuotaModel.js"></script>
+<script src="scripts/models/retencionGrossingUpModel.js"></script>
+<script src="scripts/models/retencionModel.js"></script>
+<script src="scripts/models/detalleRetencionModel.js"></script>
+<script src="scripts/models/facturasBancariasPojoModel.js"></script>
+<script src="scripts/models/rhEmpleadoModel.js"></script>
+<script src="scripts/models/rhEmpleadoCargoModel.js"></script>
+<script src="scripts/models/rhCargoModel.js"></script>
+<script src="scripts/models/periodoGestionModel.js"></script>
+<script src="scripts/models/rhParametrosModel.js"></script>
+<script src="scripts/models/rhDescuentoModel.js"></script>
+<script src="scripts/models/rhCriterioDeIngresoModel.js"></script>
+<!--<script src="scripts/models/clienteModel.js"></script>-->
+<!--<script src="scripts/models/contratoModel2.js"></script>-->
+<!-- SERVICES SECTION -->
+<script src="modules/cxp/cxpServices.js"></script>
+<script src="modules/cxc/cxcServices.js"></script>
+<script src="modules/cpanel/cpanelService.js"></script>
+<script src="modules/rh/rhServices.js"></script>
+
+<script src="scripts/contabilidadService.js"></script>
+<!-- DIRECTIVES SECTION -->
+<script src="scripts/directives/commonDirectives.js"></script>
+<!-- CONTROLLERS SECTION -->
+<!--<script src="scripts/directives/commonDirectives.js"></script>-->
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/about.js"></script>
+
+<!-- modulo de control de usuario -->
+<script src="modules/userControl/userControlService.js"></script>
+<script src="modules/userControl/controllers/loginCtrl.js"></script>
+<script src="modules/userControl/controllers/menuPrincipalCtrl.js"></script>
+<script src="modules/userControl/data/sharingData.js"></script>
+
+<!-- modulo de cuentas por pagar -->
+<script src="modules/cxp/routers.js"></script>
+<script src="modules/cxp/controllers/grupoListCtrl.js"></script>
+<script src="modules/cxp/controllers/grupoAltaCtrl.js"></script>
+<script src="modules/cxp/controllers/grupoDetalleCtrl.js"></script>
+<script src="modules/cxp/controllers/conceptoListaCtrl.js"></script>
+<script src="modules/cxp/controllers/conceptoAltaCtrl.js"></script>
+<script src="modules/cxp/controllers/panelProveedorClienteCtrl.js"></script>
+<script src="modules/cxp/controllers/menuProveedorClienteCtrl.js"></script>
+<script src="modules/cxp/controllers/planPagosCtrl.js"></script>
+<script src="modules/cxp/controllers/tabProveedorClienteCtrl.js"></script>
+<script src="modules/cxp/controllers/registroFacturaCtrl.js"></script>
+<script src="modules/cxp/controllers/tipoDeCambioCtrl.js"></script>
+<script src="modules/cxp/controllers/paginaInicialCuentasPagarCtrl.js"></script>
+<script src="modules/cxp/controllers/buscadorConceptosCtrl.js"></script>
+<script src="modules/cxp/controllers/menuProveedorConceptoCtrl.js"></script>
+<script src="modules/cxp/controllers/tabProveedorClienteDetalleCtrl.js"></script>
+<script src="modules/cxp/controllers/conceptoProveedoresCtrl.js"></script>
+<script src="modules/cxp/controllers/grupoTreeCtrl.js"></script>
+<script src="modules/cxp/controllers/grupoAdicionaCtrl.js"></script>
+<script src="modules/cxp/controllers/grupoModificaCtrl.js"></script>
+<script src="modules/cxp/controllers/facturaAnularEliminarCtrl.js"></script>
+<script src="modules/cxp/controllers/conceptoAdicionaCtrl.js"></script>
+<script src="modules/cxp/controllers/conceptoModificaCtrl.js"></script>
+<script src="modules/cxp/controllers/prefiltradoFacturaCtrl.js"></script>
+<script src="modules/cxp/controllers/libroComprasCtrl.js"></script>
+<script src="modules/cxp/controllers/prefiltradoSinFacturaCtrl.js"></script>
+<script src="modules/cxp/controllers/registroSinFacturaCtrl.js"></script>
+<script src="modules/cxp/controllers/parametrizacionAlicuotasCtrl.js"></script>
+<script src="modules/cxp/controllers/modalCreacionRetencionGrossingUpCtrl.js"></script>
+<script src="modules/cxp/controllers/buscadorProveedoresCtrl.js"></script>
+<script src="modules/cxp/controllers/modalMensajeConfirmacionCambioMonedaRetencionCtrl.js"></script>
+<script src="modules/cxp/controllers/modalMensajeConfirmacionEliminacionProveedorCtrl.js"></script>
+<script src="modules/cxp/controllers/listaBancarizacionComprasCtrl.js"></script>
+<script src="modules/cxp/controllers/registroRetencionCtrl.js"></script>
+<script src="modules/cxp/controllers/documentoPagoCtrl.js"></script>
+<script src="modules/cxp/controllers/libroComprasCtrl.js"></script>
+<script src="modules/cxp/controllers/facturasBancariasCtrl.js"></script>
+<script src="modules/cxp/controllers/libroBancarizacionComprasCtrl.js"></script>
+<script src="modules/cxp/controllers/libroComprasNotaCreditoDebitoCtrl.js"></script>
+<script src="modules/cxp/controllers/verificaExistenciaDatosAlicuotaCtrl.js"></script>
+<script src="modules/cxp/controllers/mensajeExistenciaValorAlicuotaCtrl.js"></script>
+
+<!-- modulo de cuentas por cobrar -->
+<script src="modules/cxc/routers.js"></script>
+<script src="modules/cxc/controllers/menuClienteCtrl.js"></script>
+<script src="modules/cxc/controllers/tabClienteCtrl.js"></script>
+<script src="modules/cxc/controllers/templateSucursalCtrl.js"></script>
+<script src="modules/cxc/controllers/tabSucursalAdicionaCtrl.js"></script>
+<script src="modules/cxc/controllers/tabSucursalModificaCtrl.js"></script>
+<script src="modules/cxc/controllers/templateDosificacionCtrl.js"></script>
+<script src="modules/cxc/controllers/dosificacionAdicionaCtrl.js"></script>
+<script src="modules/cxc/controllers/dosificacionModificaCtrl.js"></script>
+<script src="modules/cxc/controllers/templateServicioCtrl.js"></script>
+<script src="modules/cxc/controllers/servicioAdicionaCtrl.js"></script>
+<script src="modules/cxc/controllers/servicioModificaCtrl.js"></script>
+<script src="modules/cxc/controllers/dosificacionEmisionFacturaCtrl.js"></script>
+<script src="modules/cxc/controllers/emisionFacturaCtrl.js"></script>
+<script src="modules/cxc/controllers/buscadorServicios.js"></script>
+<script src="modules/cxc/controllers/tabClienteDetalleCtrl.js"></script>
+<script src="modules/cxc/controllers/dosificacionTreeCtrl.js"></script>
+<script src="modules/cxc/controllers/facturaComercialExportacionCtrl.js"></script>
+<script src="modules/cxc/controllers/dosificacionFacturaExportacionCtrl.js"></script>
+<script src="modules/cxc/controllers/templateContratoCtrl.js"></script>
+<script src="modules/cxc/controllers/contratoAdicionaCtrl.js"></script>
+<script src="modules/cxc/controllers/contratoModificaCtrl.js"></script>
+<script src="modules/cxc/controllers/buscadorServiciosParaContratoCtrl.js"></script>
+<script src="modules/cxc/controllers/cobrosPorFacturarCtrl.js"></script>
+<script src="modules/cxc/controllers/listaFacturaClienteCtrl.js"></script>
+<script src="modules/cxc/controllers/pagoBancarizadoCtrl.js"></script>
+<script src="modules/cxc/controllers/modalPagoContratoCtrl.js"></script>
+<script src="modules/cxc/controllers/emisionFacturaContrato.js"></script>
+<script src="modules/cxc/controllers/libroVentasCtrl.js"></script>
+<script src="modules/cxc/controllers/menuContratoClienteCtrl.js"></script>
+<script src="modules/cxc/controllers/tipoCambioCtrl.js"></script>
+<script src="modules/cxc/controllers/codigoControlCtrl.js"></script>
+<script src="modules/cxc/controllers/modalBuscadorDosificacionCtrl.js"></script>
+<script src="modules/cxc/controllers/dosificacionNotaDebitoCreditoTreeCtrl.js"></script>
+<script src="modules/cxc/controllers/dosificacionNotaDebitoCreditoAdicionaCtrl.js"></script>
+<script src="modules/cxc/controllers/dosificacionNotaDebitoCreditoModificaCtrl.js"></script>
+<script src="modules/cxc/controllers/listaFacturaClienteNotaDebitoCreditoCtrl.js"></script>
+<script src="modules/cxc/controllers/emisionFacturaNotaDebitoCreditoCtrl.js"></script>
+<script src="modules/cxc/controllers/menuFacturasCtrl.js"></script>
+<script src="modules/cxc/controllers/consultaFacturaCtrl.js"></script>
+<script src="modules/cxc/controllers/libroBancarizacionVentasCtrl.js"></script>
+<script src="modules/cxc/controllers/modalAsignaActividadEconomicaCtrl.js"></script>
+<script src="modules/cxc/controllers/modalAdicionaActividadEconomicaCtrl.js"></script>
+<script src="modules/cxc/controllers/buscadorDosificacionesCtrl.js"></script>
+<script src="modules/cxc/controllers/conciliacionCtrl.js"></script>
+<script src="modules/cxc/controllers/modalPagoContratoModificaCtrl.js"></script>
+<script src="modules/cxc/controllers/modalPagoContratoReprogramacionCtrl.js"></script>
+<script src="modules/cxc/controllers/modalModificaServicioBienCtrl.js"></script>
+<script src="modules/cxc/controllers/modalPagoContratoEditaCtrl.js"></script>
+<script src="modules/cxc/controllers/modalValidaIngresoContratosCtrl.js"></script>
+<script src="modules/cxc/controllers/modalMensajeConfirmacionCambioMontoContratoCtrl.js"></script>
+<script src="modules/cxc/controllers/modalMensajeConfirmacionCambioMonedaContratoCtrl.js"></script>
+<script src="modules/cxc/controllers/buscadorDosificacionesCreditoDebitoCtrl.js"></script>
+<script src="modules/cxc/controllers/modalDetalleNotaCreditoDebitoCtrl.js"></script>
+<script src="modules/cxc/controllers/reporteVentasCtrl.js"></script>
+<script src="modules/cxc/controllers/modalMensajeConfirmacionRetornaNotaCreditoDebitoCtrl.js"></script>
+<script src="modules/cxc/controllers/modalMensajeConfirmacionCambioGeneraPorcentajeMontoCtrl.js"></script>
+<script src="modules/cxc/controllers/modalPagoContratoEditaRegistradoCtrl.js"></script>
+<script src="modules/cxc/controllers/controlIngresosCtrl.js"></script>
+<script src="modules/cxc/controllers/reporteGeneradoControlIngCtrl.js"></script>
+<script src="modules/cxc/controllers/conciliacionIngresosCtrl.js"></script>
+
+<!-- modulo de c panel -->
+<script src="modules/cpanel/routers.js"></script>
+<script src="modules/cpanel/controllers/usuariosCtrl.js"></script>
+<script src="modules/cpanel/controllers/administracionRolesCtrl.js"></script>
+<script src="modules/cpanel/controllers/empresaCtrl.js"></script>
+<script src="modules/cpanel/controllers/perfilUsuarioCtrl.js"></script>
+<script src="modules/cpanel/controllers/modalCuentaBancariaCtrl.js"></script>
+<script src="modules/cpanel/controllers/tabRoleCtrl.js"></script>
+<script src="modules/cpanel/controllers/roleAdicionaCtrl.js"></script>
+<script src="modules/cpanel/controllers/roleModificaCtrl.js"></script>
+
+<!-- modulo recursos humanos-->
+<script src="modules/rh/routers.js"></script>
+<script src="modules/rh/controllers/menuEmpleadoCtrl.js"></script>
+<script src="modules/rh/controllers/tabFichaPersonalEmpleadoCtrl.js"></script>
+<script src="modules/rh/controllers/tabIngresosDescuentos.js"></script>
+<script src="modules/rh/controllers/variacionesCtrl.js"></script>
+<script src="modules/rh/controllers/datosPersonalesCtrl.js"></script>
+<script src="modules/rh/controllers/tabFichaPersonalEmpleadoEditaCtrl.js"></script>
+<script src="modules/rh/controllers/modalListaAdicionaCargoCtrl.js"></script>
+<script src="modules/rh/controllers/paginaInicialRecursosHumanosCtrl.js"></script>
+<script src="modules/rh/controllers/periodoRegistroPaginaInicioCtrl.js"></script>
+<script src="modules/rh/controllers/registroPeriodoGestionConfirmacionCtrl.js"></script>
+<script src="modules/rh/controllers/descuentosCtrl.js"></script>
+<script src="modules/rh/controllers/panelParamGeneralCtrl.js"></script>
+<script src="modules/rh/controllers/panelParamDescuentosCtrl.js"></script>
+<script src="modules/rh/controllers/panelParamCriterioDeIngresoCtrl.js"></script>
+<script src="modules/rh/controllers/mensajePeriodoGestionCtrl.js"></script>
+<script src="modules/rh/controllers/modalDescuentoEditaRegistradoCtrl.js"></script>
+<script src="modules/rh/controllers/modalCriterioDeIngresoEditaRegistradoCtrl.js"></script>
+<script src="modules/rh/controllers/mensajeConfirmacionEliminacionDescuentoCtrl.js"></script>
+<script src="modules/rh/controllers/mensajeConfirmacionEliminacionCriterioDeIngresoCtrl.js"></script>
+<script src="modules/rh/controllers/planillaSueldosCtrl.js"></script>
+<script src="modules/rh/controllers/planillaRcIvaCtrl.js"></script>
+<script src="modules/rh/controllers/empleadoImportacionCtrl.js"></script>
+<script src="modules/rh/controllers/planillaAportesSocialesCtrl.js"></script>
+<script src="modules/rh/controllers/reporteTransBancariasCtrl.js"></script>
+
+
+<!-- endbuild -->
+
+</body>
+                                                                                                                   

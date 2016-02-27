@@ -1,0 +1,30 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">Mensaje Alerta</h4>
+</div>
+<div class="modal-body">
+    <div class="blockquote-box blockquote-warning clearfix">
+        <div class="square pull-left">
+            <span class="glyphicon glyphicon-warning-sign glyphicon-lg"></span>
+        </div>
+        <h4>Alerta</h4>
+
+        <p>
+            {{mensaje}}
+        </p>
+
+
+
+        <p class="squareTransaparente pull-left">
+            <h5><B> Desea continuar.</B></h5>
+        </p>
+    </div>
+
+</div>
+<div class="modal-footer header-center" align="center">
+    <button class="btn btn-success" ng-click="confirmarEliminacion()">
+        <span class="glyphicon glyphicon-ok"></span>&nbsp;Confirmar
+    </button>
+    <button class="btn btn-default" ng-click="cancelarEliminacion()">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span>&nbsp;Cancelar
+    </button>
+</div>

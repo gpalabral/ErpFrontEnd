@@ -1,0 +1,16 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">Facturación por Ventas: SELECCIONE BIEN O SERVICIO</h4>
+</div>
+<div class="modal-body">
+    <angular-tree-grid tree-config="treeConfig">
+    </angular-tree-grid>
+    <sin-registros ng-if="treeConfig && (!treeConfig.collection || treeConfig.collection.length == 0)"></sin-registros>
+</div>
+<div class="modal-footer header-center" align="center">
+    <button class="btn btn-success"
+            ng-class="{disabled:!valorSel}"
+            ng-disabled="!valorSel"
+            ng-click="seleccionar()">Seleccionar</button>
+    <button class="btn btn-default"
+            ng-click="cancelar()">Cancelar</button>
+</div>

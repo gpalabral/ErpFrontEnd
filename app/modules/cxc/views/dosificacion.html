@@ -1,0 +1,189 @@
+<div style="position: absolute;top: 15px;left:0;right:0;bottom: 0;overflow-y: auto;">
+
+
+    <div align="center" style="padding:1em 3em" ng-form="contratoForm">
+        <div class="panel-heading panel-default" style="border: 1px solid rgb(212,212,212)">
+            <h3 class="panel-title">Nueva Dosificación
+
+            </h3>
+        </div>
+        <hr>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Sucursal</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.descripcion" disabled/>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Código</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.codigo" disabled/>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Número Sucursal</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.numeroSucursal" disabled/>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row row-fluid" align="center">
+            <div class="col-sm-4" align="right">
+                <label>* Modalidad Facturación</label>
+            </div>
+            <div class="col-sm-8" align="left">
+                <label class="radio-inline" for="radios-0">
+                    <input type="radio" ng-model="cpcdosificaciones.parModalidadFacturacion.codigo"
+                           id="radios-4" value="MAN" ng-click="eventoModalidadFacturacion();" ng-disabled="desactivaEdicionCampos" required>
+                    Manual
+                </label>
+                <label class="radio-inline" for="radios-1">
+                    <input type="radio" ng-model="cpcdosificaciones.parModalidadFacturacion.codigo"
+                           id="radios-5" value="ELEC" ng-disabled="desactivaEdicionCampos" required>
+                    Electrónica
+                </label>
+                <label class="radio-inline" for="radios-2">
+                    <input type="radio" ng-model="cpcdosificaciones.parModalidadFacturacion.codigo"
+                           id="radios-6" value="COMP" ng-disabled="desactivaEdicionCampos" required>
+                    Computarizada
+                </label>
+            </div>
+
+
+        </div>
+        <hr>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>* Número Autorización</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcdosificaciones.numeroAutorizacion"
+                           ng-disabled="desactivaEdicionCampos" required/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>* Número Factura</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcdosificaciones.numeroFacturaInicial"
+                           ng-disabled="desactivaEdicionCampos" required/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="fechaLimiteEmision">* Fecha Límite Emisión</label>
+                    <input type="date" class="form-control" id="fechaLimiteEmision"
+                           placeholder="Fecha Vencimiento"
+                           ng-model="cpcdosificaciones.fechaLimiteEmision"
+                           ng-disabled="desactivaEdicionCampos" required/>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row row-fluid" align="left">
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>* Actividad Económica</label>
+
+                    <div class="row">
+                        <div class="col-sm-2 no-padding-r">
+                            <button id="adicionaCuenta" type="button" height="5" class="btn btn-primary"
+                                    ng-click="modalAdicionaActividadEconomica();" ng-disabled="desactivaEdicionCampos" style="cursor: pointer;">
+                                <span class="glyphicon glyphicon-plus"></span></button>
+                        </div>
+                        <div class="col-sm-10 no-padding">
+
+                            <select class="form-control"
+                                    ng-model="cpcdosificaciones.cpcActividadEconomica.idActividadEconomica" ng-disabled="desactivaEdicionCampos" required>
+                                <option value="" label="[Seleccione una Actividad Economica]"></option>
+                                <option ng-repeat="actividadEconomica in listaActividadEconomica"
+                                        ng-selected="actividadEconomica.idActividadEconomica == cpcdosificaciones.cpcActividadEconomica.idActividadEconomica"
+                                        value="{{actividadEconomica.idActividadEconomica}}">
+                                    {{actividadEconomica.descripcion}}
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="control-label">* Característica Especial</label>
+                <select class="form-control"
+                        ng-model="cpcdosificaciones.parCaracteristicaEspecial.codigo" ng-disabled="desactivaEdicionCampos" required>
+                    <option ng-repeat="parCaracteristicaEspecial in listParCaracteristicaEspecial"
+                            ng-selected="parCaracteristicaEspecial.codigo == cpcdosificaciones.parCaracteristicaEspecial.codigo"
+                            value="{{parCaracteristicaEspecial.codigo}}">
+                        {{parCaracteristicaEspecial.descripcion}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <hr>
+
+
+        <div class="row row-fluid" align="center">
+            <div class="col-sm-4" align="right">
+                <label>* Estado Proceso</label>
+            </div>
+            <div class="col-sm-8" align="left">
+                <label class="radio-inline" for="radios-0">
+                    <input type="radio" ng-model="cpcdosificaciones.parEstadoProceso.codigo"
+                           id="radios-0" value="PACT" ng-disabled="desactivaEdicionRadioPACT" required>
+                    Por Activarse
+                </label>
+                <label class="radio-inline" for="radios-1">
+                    <input type="radio" ng-model="cpcdosificaciones.parEstadoProceso.codigo"
+                           id="radios-1" value="ACT" ng-disabled="desactivaEdicionRadioACT" required>
+                    Activa
+                </label>
+                <label class="radio-inline" for="radios-2">
+                    <input type="radio" ng-model="cpcdosificaciones.parEstadoProceso.codigo"
+                           id="radios-2" value="PAS" ng-disabled="desactivaEdicionRadioPAS" required>
+                    Pasiva
+                </label>
+            </div>
+
+        </div>
+        <hr>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>* Llave de Dosificación</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcdosificaciones.llaveDosificacion"
+                           ng-disabled="desactivaEdicionCampos" required>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button ng-show="activar.adicionaDosificacion" id="guardar" name="guardar" class="btn btn-success"
+                    align="center" ng-click="guardaDosificacion()" ng-class="{disabled: contratoForm.$invalid}"
+                    ng-disabled="contratoForm.$invalid">
+                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Dosificación
+            </button>
+            <button ng-show="activar.modificaDosificacion" id="modifica" name="guardar" class="btn btn-success"
+                    align="center" ng-click="modificaDosificacion()">
+                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Cambios
+            </button>
+            <button id="cancelar" name="guardar" class="btn btn-default" align="center"
+                    ng-click="cancelarDosificacion()">
+                <span class="glyphicon glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+

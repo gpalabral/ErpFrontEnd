@@ -1,0 +1,58 @@
+<div class="container-fluid" style="
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 15px 0px 15px;
+">
+    <div class="alert {{mainAlert.alertType}}" ng-show="mainAlert.isShown">
+        <span class="glyphicon-alert"></span>
+        <button type="button" class="close" ng-click="closeAlert()" aria-hidden="true">&times;</button>
+        {{mainAlert.message}}
+    </div>
+
+    <div class="panel panel-primary" align="center" style="position: absolute;top: 0;bottom: 0;left:0px;right: 0px;">
+        <div class="panel-heading" align="center">
+            <h3 class="panel-title">{{readOnlyEnable?'EDITAR PROVEEDOR':'NUEVO PROVEEDOR'}}</h3>
+        </div>
+        <div style="padding: 1em 1em 0 1em;position: absolute;
+top: 37px;
+left:0;
+right:0;
+bottom: 0;
+overflow-y: auto;">
+            <tabset >
+                <tab>
+                    <tab-heading>
+                        Datos Proveedor
+                    </tab-heading>
+                    <div ng-include src="'modules/cxp/views/proveedorCliente.html'"></div>
+                </tab>
+                <!--<tab disabled="activar.tab">-->
+                    <!--<tab-heading>-->
+                        <!--Contactos-->
+                    <!--</tab-heading>-->
+                    <!--<div ng-include src="'modules/cxp/views/contacto.html'"></div>-->
+                <!--</tab>-->
+                <!--<tab >-->
+                    <!--<tab-heading>-->
+                        <!--Datos Pagos-->
+                    <!--</tab-heading>-->
+                    <!--<div ng-include src="'modules/cxp/views/datosPagoAlta.html'"></div>-->
+                <!--</tab>-->
+                <!--<tab disabled="activar.tab">-->
+                    <!--<tab-heading>-->
+                        <!--Asignar Conceptos-->
+                    <!--</tab-heading>-->
+                    <!--<div ng-include src="'modules/cxp/views/proveedorConcepto.html'"></div>-->
+                <!--</tab>-->
+            </tabset>
+     <!--       <hr style="margin-top: 0 !important;">
+            <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;">
+                <button class="btn btn-success btn-md" ng-click="guardarProveedorClientePojo()"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;{{readOnlyEnable?'Guardar Cambios':'Guardar'}}</button>
+            </div>-->
+        </div>
+
+    </div>
+</div>

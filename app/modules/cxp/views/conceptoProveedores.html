@@ -1,0 +1,63 @@
+<div class="container-fluid" align="center" style="width: 100%">
+    <div class="panel panel-primary" align="center">
+        <div class="panel-heading">
+            <h3 class="panel-title">ASIGNAR PROVEEDOR(ES)</h3>
+        </div>
+      <div class="panel-body">
+        <div class="row" align="left">
+            <div class="col-sm-6">
+                <label class="control-label" for="nomGrupo">Grupo</label>
+                <input class="form-control" type="text" id="nomGrupo" ng-model="ngNombreGrupo" disabled/>
+            </div>
+            <div class="col-sm-6">
+                <label class="control-label" for="recurrencia">Recurrencia</label>
+                <input class="form-control" type="text" id="recurrencia" ng-model="ngRecurrencia" disabled/>
+                <br>
+            </div>
+        </div>
+        <div class="row" align="left">
+            <div class="col-sm-12">
+                <label class="control-label" for="nomConcepto">Concepto</label>
+                <input class="form-control" type="text"  id="nomConcepto" ng-model="ngNombreConcepto" disabled/>
+            </div>
+        </div>
+      </div>
+   </div>
+   <div class="panel panel-primary" align="center">
+      <div class="panel-body">
+        <div class="row" align="left">
+         <div class="col-sm-4">
+            <select class="form-control well"
+                    ng-model="leftSelect" multiple
+                    size="10">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+         </div>
+         <div class="col-sm-3" align="center">
+             <br> <br><br> <br>
+             <button class="btn btn-primary" ng-click="moveLeft()">
+             <span class="glyphicon glyphicon-chevron-left"></span></button>
+            <button class="btn btn-primary" ng-click="moveRight()">
+            <span class="glyphicon glyphicon-chevron-right"></span></button>
+
+         </div>
+         <div class="col-sm-4">
+             <select class="form-control well"
+                     ng-model="proveedorSeleccionado"
+                     ng-change="getProveedorSeleccionado()"
+                     ng-options="proveedorByConcepto as proveedorByConcepto.cppProveedorCliente.razonSocial
+                        for proveedorByConcepto in proveedoresByConcepto"
+                     size="10">
+             </select>
+         </div>
+        </div>
+      </div>
+   </div>
+</div>
+<div class="modal-footer header-center" align="center">
+    <button class="btn btn-success" ng-click="guardarAsignacion()">Guardar</button>
+    <button class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+</div>
+

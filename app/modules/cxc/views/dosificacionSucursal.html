@@ -1,0 +1,12 @@
+    <div style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+        <div ng-show="activar.treeDosificacion"
+             ng-include="'modules/cxc/views/dosificacionTree.html'"
+             ng-controller="dosificacionTreeCtrl"></div>
+        <div ng-show="activar.adicionaDosificacion"
+             ng-include="'modules/cxc/views/dosificacion.html'"
+             ng-controller="dosificacionAdicionaCtrl"></div>
+        <div ng-show="activar.modificaDosificacion"
+             ng-include="'modules/cxc/views/dosificacion.html'"
+             ng-controller="dosificacionModificaCtrl"></div>
+    </div>
+

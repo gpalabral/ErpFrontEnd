@@ -1,0 +1,25 @@
+<div class="container-fluid" style="position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: 0 15px 0px 15px;">
+    <div class="panel panel-primary" align="center" style="position: absolute;top: 0;bottom: 0;left:0px;right: 0px;">
+        <div class="panel-heading" align="center">
+            <h3 class="panel-title">{{readOnlyEnable?'EDITAR SUCURSAL':'NUEVA SUCURSAL'}}</h3>
+        </div>
+        <div style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+            <tabset>
+                <tab>
+                    <tab-heading>
+                        Datos Sucursal
+                    </tab-heading>
+                    <div ng-include src="'modules/cxc/views/contrato.html'"></div>
+                </tab>
+                <tab disabled="activar.tab">
+                    <tab-heading>
+                        Dosificacion
+                    </tab-heading>
+                    <div ng-include src="'modules/cxc/views/planPagos.html'"></div>
+                </tab>
+            </tabset>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container-fluid" style="width: 100%">
+  <div class="panel panel-primary">
+    <div class="panel-heading" align="center">
+      <h3 class="panel-title">{{readOnlyEnable?'DETALLE GRUPO':'REGISTRAR NUEVO GRUPO'}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Nombre de Grupo</label>
+          <input type="text"
+                 class="form-control"
+                 ng-disabled="readOnlyEnable"
+                 ng-model="grupo.nombre"/>
+        </div>
+        <div class="col-xs-6">
+          <label>Recurrencia</label>
+          <div class="col-xs-12">
+            <div ng-repeat="parRec in parRecurrenciaOptions" class="inline">
+              {{parRec.descripcion}}
+              <input type="radio"
+                     ng-model="grupo.parRecurrencia.codigo"
+                     ng-disabled="readOnlyEnable"
+                     name="parRecurrencia"
+                     ng-value="parRec.codigo"/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="plan-pagos"  ng-grid="gridConf"></div>
+    </div>
+  </div>
+
+  <div class="footer middle" align="center" ng-if="!readOnlyEnable">
+    <button class="btn btn-success" ng-click="guardarGrupo();">
+        <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar
+    </button>
+    <button class="btn btn-default" ng-click="volver()">
+        <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+    </button>
+  </div>
+</div>

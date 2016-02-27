@@ -1,0 +1,14 @@
+<div  class="panel panel-primary custom-panel">
+  <h2 ng-if="tree.children.length > 0">This landing page is under construction</h2>
+  <button class="btn btn-info" ng-click="treeConfig.controls.expandAll()">Expandir Todo</button>
+  <button class="btn btn-info" ng-click="treeConfig.controls.collapseAll()">Colapsar Todo</button>
+  <input class="form-control" style="display: inline-block;width: auto;" type="text" placeholder="descripcion"  ng-model="treeConfig.search"/>
+  <button class="btn btn-info" ng-click="filterData(filterDescription)">Filtrar</button>
+  <input class="form-control" style="display: inline-block;width: auto;"  type="text" ng-model="valueToSelect" placeholder="mascar"/>
+  <button class="btn btn-info" ng-click="treeConfig.controls.selectByKeyAndValue('mascaraGenerada',valueToSelect)">Seleccionar por mascara</button>
+  <div>
+    <angular-tree-grid tree-config="treeConfig">
+    </angular-tree-grid>
+    <sin-registros ng-if="treeConfig && (!treeConfig.collection || treeConfig.collection.length == 0)"></sin-registros>
+  </div>
+</div>

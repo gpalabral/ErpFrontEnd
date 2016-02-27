@@ -1,0 +1,28 @@
+<div>
+  <div class="modal-header">
+    {{modalOptions.headerText}}
+  </div>
+  <div class="modal-body" style="max-height: 350px;overflow-y:auto;">
+
+    <button class="btn btn-info" ng-click="expandAll()">Expandir Todo</button>
+    <button class="btn btn-info" ng-click="collapseAll()">Colapsar Todo</button>
+    <input class="form-control"
+           style="display: inline-block;width: auto;"
+           type="text"
+           placeholder="descripcion"
+           ng-model="filterDescription"/>
+    <button class="btn btn-info"
+            ng-click="filterData(filterDescription)">Filtrar</button>
+
+
+      <angular-tree-grid tree-config="treeConfig">
+      </angular-tree-grid>
+      <sin-registros ng-if="treeConfig && (!treeConfig.collection || treeConfig.collection.length == 0)"></sin-registros>
+
+
+  </div>
+  <div class="modal-footer ">
+    <button ng-click="modalOptions.ok();"    class="btn btn-success">{{modalOptions.actionButtonText}}</button>
+    <button ng-click="modalOptions.close();" class="btn btn-default">{{modalOptions.closeButtonText}}</button>
+  </div>
+</div>

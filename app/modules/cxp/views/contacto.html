@@ -1,0 +1,124 @@
+
+<div>
+    <div align="center" style="padding:1em 2.2em">
+        <div class="row row-fluid" align="right" ng-if="!mostrar.formContacto">
+          <div class="col-sm-12">
+             <button id="formularioContacto" type="button" class="btn btn-primary pull-right" align="right" ng-click="nuevoContacto()" style="cursor: pointer;" data-placement="bottom" title="Nuevo Contacto">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;Nuevo Contacto</button>
+           </div>
+        </div>
+
+      <div class="animate-if" ng-if="mostrar.formContacto">
+        <hr><p class="text-primary text-left"><strong>DATOS CONTACTO</strong></p><hr>
+            <div class="row row-fluid" align="left">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nombres</label>
+                        <input type="text" class="form-control"
+                               ng-model="contacto.nombre">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Primer Apellido</label>
+                        <input type="text" class="form-control"
+                               ng-model="contacto.primerApellido">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Segundo Apellido</label>
+                        <input type="text" class="form-control"
+                               ng-model="contacto.segundoApellido">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-fluid" align="left">
+                <div class="col-sm-7">
+                    <div class="form-group">
+                        <label>Cargo</label>
+                        <input type="text" class="form-control"
+                               ng-model="contacto.cargo">
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label>Tipo Contacto</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <select class="form-control" ng-model="contacto.parTipoContacto.codigo">
+                                <option value="" label="[SELECCIONE UNA OPCION]"></option>
+                                <option ng-repeat="tipoContacto in listaTipoContacto"
+                                        ng-selected="tipoContacto.codigo == contacto.parTipoContacto.codigo"
+                                        value="{{tipoContacto.codigo}}">
+                                    {{tipoContacto.descripcion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+      </div>
+      <div class="row row-fluid" align="left">
+          <div class="col-sm-4">
+              <div class="form-group">
+                  <label for="fechaAniversario">Fecha Aniversario</label>
+                  <input type="date" class="form-control" id="fechaAniversario" placeholder="Fecha Aniversario"
+                         ng-model="contacto.fechaAniversario"/>
+              </div>
+          </div>
+          <div class="col-sm-4">
+              <div class="form-group">
+                  <label for="telefono">Telefono</label>
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
+                      <input type="number" class="form-control" id="telefono"
+                             ng-model="contacto.telefono"/>
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-4">
+              <div class="form-group">
+                  <label for="telefonoInterno">Número Interno</label>
+                  <input type="text" class="form-control" id="telefonoInterno"
+                         ng-model="contacto.interno"/>
+              </div>
+          </div>
+      </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="celular">Celular</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+                        <input type="number" class="form-control" id="celular"
+                               ng-model="contacto.celular"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="correoElectronico">Correo Electrónico</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                        <input type="email" class="form-control" id="correoElectronico"
+                               placeholder="e-mail"
+                               ng-model="contacto.correoElectronico"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div><!--fin formulario contacto-->
+
+    <div class="gridStyles" ng-if="!mostrar.formContacto" ng-grid="gridOptions" style="width: 100%;height: 200px"></div>
+    <sin-registros ng-if="!mostrar.formContacto && gridOptions && (!contactos || contactos.length == 0)"></sin-registros>
+    <hr style="margin-top: 0 !important;">
+    <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;" ng-if="mostrar.formContacto">
+        <button class="btn btn-success btn-md" ng-click="guardarContacto()">
+            <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;{{readOnlyEnable?'Guardar Cambios':'Guardar'}}</button>
+        <button id="cancelar" name="cancelar" ng-click="cancelarContacto()" class="btn btn-default" align="center">
+            <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</button>
+    </div>
+  </div>
+</div>

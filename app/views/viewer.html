@@ -1,0 +1,22 @@
+<nav ng-class="getNavStyle(scroll)">
+  <div class="row">
+    <div class="pull-left back-button">
+      <a href="" ng-click="volver()"><i class="fa fa-arrow-left fa-3x"></i>&nbsp; Volver
+      </a>
+    </div>
+  </div>
+</nav>
+<br/>
+<hr>
+
+<!--<object id="exPDF"
+        type="application/pdf"
+        class="pdf-container"
+        ng-attr-data="{{pdfUrl}}#toolbar=1&navpanes=0&statusbar=0&messages=0" >
+</object>-->
+<iframe id="iframePDF"
+        name="iframePDF"
+        ng-src="{{iframeSrc}}"
+        width="90%"
+        height="90%">
+</iframe>

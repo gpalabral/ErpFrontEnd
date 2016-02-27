@@ -1,0 +1,162 @@
+<div style="position: absolute;top: 60px;left:0;right:0;bottom: 0;overflow-y: auto;" ng-form="sucursalForm">
+    <div align="center" style="padding:1em 2.2em">
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label>* Código</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.codigo" required/>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label>Número Sucursal</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.numeroSucursal" disabled/>
+                </div>
+            </div>
+
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label>* Descripción</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.descripcion" style="text-transform: uppercase;" required/>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label>Teléfonos</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
+                        <input type="text" class="form-control" placeholder="Telefono 1"
+                               ng-model="cpcsucursal.telefonoUno" required/>
+                        <input type="text" class="form-control" placeholder="Telefono 2"
+                               ng-model="cpcsucursal.telefonoDos">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row row-fluid" align="left">
+
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label>* Departamento</label>
+                    <select class="form-control" required
+                            ng-model="cpcsucursal.parDepartamento.codigo" ng-change="actualizaListaMunicipio()">
+                        <option value="" label="[Seleccione Documento]"></option>
+                        <option ng-repeat="departamento in listaParDepartamento"
+                                ng-selected="departamento.codigo== cpcsucursal.parDepartamento.codigo"
+                                value="{{departamento.codigo}}">
+                            {{departamento.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label>* Municipio</label>
+                    <select class="form-control"
+                            ng-model="cpcsucursal.parMunicipio.codigo" required>
+                        <option value="" label="[Seleccione Documento]"></option>
+                        <option ng-repeat="municipio in listaParMunicipio"
+                                ng-selected="municipio.codigo== cpcsucursal.parMunicipio.codigo"
+                                value="{{municipio.codigo}}">
+                            {{municipio.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label>* Localización</label>
+                    <select class="form-control"
+                            ng-model="cpcsucursal.parLocalizacion.codigo" required>
+                        <option value="" label="[Seleccione Documento]"></option>
+                        <option ng-repeat="localizacion in listaParLocalizacion"
+                                ng-selected="localizacion.codigo== cpcsucursal.parLocalizacion.codigo"
+                                value="{{localizacion.codigo}}">
+                            {{localizacion.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label>* Nombre Localización</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.nombreLocalizacion" required/>
+                </div>
+            </div>
+
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <label>* Dirección</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcsucursal.direccion" required>
+                </div>
+            </div>
+        </div>
+        <div class="row" align="left">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Emite Factura</label>
+
+                    <div class="form-group">
+                        <div class="btn-group">
+                            <label class="btn btn-default" btn-radio="true"
+                                   ng-model="cpcsucursal.emiteFactura" required>SI</label>
+                            <label class="btn btn-default" btn-radio="false"
+                                   ng-model="cpcsucursal.emiteFactura" required>NO</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Estado</label>
+
+                    <div>
+                        <label class="radio-inline" for="radios-0">
+                            <input type="radio" ng-model="cpcsucursal.parEstado.codigo"
+                                   id="radios-0" value="VIG" required>
+                            Vigente
+                        </label>
+                        <label class="radio-inline" for="radios-1">
+                            <input type="radio" ng-model="cpcsucursal.parEstado.codigo"
+                                   id="radios-1" value="NVIG" required>
+                            No Vigente
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr style="margin-top: 0 !important;">
+
+        <div class="footer middle" align="center">
+            <button ng-class="{disabled: sucursalForm.$invalid}"
+                    ng-disabled="sucursalForm.$invalid"
+                    ng-show="botonAdiciona" class="btn btn-success btn-md" ng-click="guardarSucursal()"><span
+                    class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Sucursal
+            </button>
+            <button ng-show="botonModifica" class="btn btn-success btn-md" ng-click="modificaSucursal()"><span
+                    class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Cambios
+            </button>
+            <button ng-show="botonModifica" class="btn btn-default btn-md" ng-click="cancelar()"><span
+                    class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+            </button>
+        </div>
+
+
+    </div>
+</div>
+

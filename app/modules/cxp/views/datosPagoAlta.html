@@ -1,0 +1,87 @@
+<div align="center" style="padding:1em 2.2em">
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="limiteCredito">Limite de Credito</label>
+                    <input type="text" class="form-control" id="limiteCredito" placeholder="Monto"
+                           ng-model="proveedorClientePojo.cppFormaPagoCobro.limiteCredito">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Tipo Moneda</label>
+                    <select class="form-control" ng-model="proveedorClientePojo.cppFormaPagoCobro.parTipoMoneda.codigo">
+                        <option value="BOL">BOLIVIANOS</option>
+                        <option value="SUS">DOLARES</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="plazoCredito">Plazo Pago Credito</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="plazoCredito" placeholder="Tiempo"
+                               ng-model="proveedorClientePojo.cppFormaPagoCobro.diasPagoCredito">
+                        <span class="input-group-addon">dia(s)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Forma de Pago:</label>
+                    <select class="form-control" ng-model="proveedorClientePojo.cppFormaPagoCobro.parFormaDePago.codigo">
+                        <option ng-repeat="formaPago in listaFormaPago" value="{{formaPago.codigo}}">
+                            {{formaPago.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row" align="left">
+            <div class="col-sm-12">
+                <label for="plazoCredito">Cuenta Bancaria</label>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Número Cuenta"
+                               ng-model="proveedorClientePojo.cppFormaPagoCobro.numeroCuenta">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Nombre Cuenta"
+                               ng-model="proveedorClientePojo.cppFormaPagoCobro.banco">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row" align="left">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Proveedor Combustible</label>
+
+                    <div class="form-group">
+                        <div class="btn-group">
+                            <label class="btn btn-default" btn-radio="true"
+                                   ng-model="proveedorClientePojo.cppFormaPagoCobro.proveedorCombustible">SI</label>
+                            <label class="btn btn-default" btn-radio="false"
+                                   ng-model="proveedorClientePojo.cppFormaPagoCobro.proveedorCombustible">NO</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="beneficiario">Beneficiario</label>
+                    <input type="text" class="form-control" id="beneficiario" placeholder="Beneficiario"
+                           ng-model="proveedorClientePojo.cppFormaPagoCobro.beneficiario">
+                </div>
+            </div>
+        </div>
+    <hr style="margin-top: 0 !important;">
+    <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;">
+        <button class="btn btn-success btn-md" ng-click="guardarProveedorClientePojo()"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;{{readOnlyEnable?'Guardar Cambios':'Guardar'}}</button>
+    </div>
+</div>

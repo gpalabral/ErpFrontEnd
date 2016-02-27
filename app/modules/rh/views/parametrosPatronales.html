@@ -1,0 +1,85 @@
+<div ng-form="parametrosPatronalesForm">
+    <div align="center" style="padding:1em 2.2em">
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>Caja de Salud</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.cajaSalud">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>Provivienda</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.provivienda">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>Infocal</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.infocal">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row row-fluid">
+            <div class="col-sm-12 no-padding" align="left">
+                <label class="text-primary control-label">Riesgo Profesional</label>
+                <hr style="margin-top: 0 !important;">
+            </div>
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>AFP</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.afp">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>Aporte Solidario</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.aporteSolidarioPatronales">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="margin-top: 0 !important;">
+    <p class="help-block" align="center" ng-show="parametrosPatronalesForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span>
+    </p>
+    <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;" ng-show="muestraPanelBotones">
+        <button class="btn btn-success btn-md"
+                ng-class="{disabled:parametrosPatronalesForm.$invalid}"
+                ng-disabled="parametrosPatronalesForm.$invalid"
+                ng-click="modificaRhParametrosPatronalesAndLaborales()">
+            <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;{{readOnlyEnable?'Guardar Cambios':'Guardar'}}
+        </button>
+    </div>
+</div>
+

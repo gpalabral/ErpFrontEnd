@@ -1,0 +1,77 @@
+<div ng-form="parametrosLaboralesForm">
+    <div align="center" style="padding:1em 2.2em">
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>Fondo Capitalización Individual</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.fondoCapitalizacionIndividual">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>Riesgo Común</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.riesgoComun">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>Comisiones</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.comision">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>Aporte Solidario</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.aporteSolidarioLaborales">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-top: 0 !important;">
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+                    <label>RC-IVA</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" style="text-align: right" min="0" required
+                               ng-model="rhParametros.rc_iva">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="margin-top: 0 !important;">
+    <p class="help-block" align="center" ng-show="parametrosLaboralesForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span>
+    </p>
+    <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;" ng-show="muestraPanelBotones">
+        <button class="btn btn-success btn-md"
+                ng-class="{disabled:parametrosLaboralesForm.$invalid}"
+                ng-disabled="parametrosLaboralesForm.$invalid"
+                ng-click="modificaRhParametrosPatronalesAndLaborales()">
+            <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;{{readOnlyEnable?'Guardar Cambios':'Guardar'}}
+        </button>
+    </div>
+</div>
+

@@ -1,0 +1,164 @@
+<div class="container-fluid" align="center" style="width: 70%">
+    <div class="panel panel-primary" align="center">
+        <div class="panel-heading">
+            <h3 class="panel-title">DATOS USUARIO</h3>
+        </div>
+        <div class="panel-body">
+            <br/>
+
+            <div class="row row-fluid" align="center" ng-if="!mostrar.formUsuario">
+                <div class="col-sm-12">
+                    <button id="formularioUsuario" type="button" class="btn btn-primary" align="center"
+                            ng-click="crearNuevoUsuario()" style="cursor: pointer;" data-placement="bottom"
+                            title="Crear Nuevo Usuario">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Crear Usuario
+                    </button>
+                </div>
+            </div>
+            <br/>
+
+            <div ng-if="mostrar.formUsuario">
+                <div class="row row-fluid" align="right">
+                    <div class="col-sm-12">
+                        <label class="form-inline">Nombre Completo:&nbsp;
+                            <input type="text" class="form-control" ng-model="usuarioPersona.admPersona.nombre"
+                                   placeholder="Nombres">
+                            <input type="text" class="form-control" ng-model="usuarioPersona.admPersona.apPaterno"
+                                   placeholder="Primer Apellido">
+                            <input type="text" class="form-control" ng-model="usuarioPersona.admPersona.apMaterno"
+                                   placeholder="Segundo Apellido">
+                        </label>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row row-fluid" align="right">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-inline">Tipo Documento:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control"
+                                ng-model="usuarioPersona.admPersona.parTipoDocumento.codigo">
+                            <option ng-repeat="tipoDocumento in listaTipoDocumento" value="{{tipoDocumento.codigo}}">
+                                {{tipoDocumento.descripcion}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-inline">N° Documento:</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" ng-model="usuarioPersona.admPersona.nroDocumento">
+                    </div>
+                    <div class="col-sm-1">
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row row-fluid" align="right">
+                    <div class="col-sm-3">
+                        <label class="form-inline">Correo Electrónico:</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="correo"
+                               ng-model="usuarioPersona.correoElectronico"/>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row row-fluid" align="right">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-inline">Login:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" ng-model="usuarioPersona.login">
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-inline">Contraseña:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="password" class="form-control" id="contrasena"
+                               ng-model="usuarioPersona.contrasena"/>
+                    </div>
+                    <div class="col-sm-1">
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row row-fluid" align="right">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-inline">Fecha Expiración:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="date" class="form-control" id="fechaExpirarcion"
+                               ng-model="usuarioPersona.fechaExpiracion"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-inline">Estado:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                ng-model="usuarioPersona.parEstadoUsuario.codigo">
+                            <option ng-repeat="estadoUsuario in listaEstadoUsuario" value="{{estadoUsuario.codigo}}">
+                                {{estadoUsuario.descripcion}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                    </div>
+                </div>
+                <br/>
+                <!--SUCURSAL PREDETERMINADA-->
+                <div class="row row-fluid" align="left" ng-if="mostrar.formUsuario">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-2" align="right">
+                        <label class="form-inline">Sucursal :</label>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="input-group" >
+                            <input type="text"
+                                   class="form-control"
+                                   width="300" style="width: 300px"
+                                   ng-model="valores.nombreRazonSocial"
+                                   required />
+                            <span class="input-group-btn">
+                                <button  id="adiciona" class="btn btn-primary" type="button" ng-click="abrirModal();">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div>
+
+                </div>
+                <!--FIN SUCURSAL PREDETERMINADA-->
+            </div>
+            <br/>
+
+            <div class="gridStyles" ng-if="!mostrar.formUsuario" ng-grid="gridOptions"
+                 style="width: 100%;height: 400px"></div>
+            <sin-registros ng-if="gridOptions && (!usuarios || usuarios.length == 0)"></sin-registros>
+            <hr style="margin-top: 0 !important;">
+
+            <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;" ng-if="mostrar.formUsuario">
+                <button class="btn btn-success btn-md" ng-click="guardarUsuarioPersona()">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar
+                </button>
+                <button id="cancelar" name="cancelar" ng-click="cancelarNuevoUsuario()" class="btn btn-default"
+                        align="center">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+                </button>
+
+            </div>
+            <!--fin panel body-->
+        </div>
+        <!--fin panel primary-->
+    </div>
+    <!--fin container-->
+</div>

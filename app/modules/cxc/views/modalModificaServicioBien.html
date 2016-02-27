@@ -1,0 +1,121 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">Modificar Servicio o Bien</h4>
+</div>
+<div class="modal-body" align="center">
+    <div align="center" style="padding:1em 2.2em">
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Código</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpccontratoitemAux.cpcItem.codigo"
+                           disabled
+                           style="text-align: right"/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpccontratoitemAux.cpcItem.descripcion"
+                           disabled
+                           style="text-align: right"/>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>Cantidad</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpccontratoitemAux.cantidad"
+                           ng-change="cambiaMontosPorCantidad();"
+                           style="text-align: right"/>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left" ng-show="muestraPrimeraMoneda">
+
+
+            <div class="col-sm-6" >
+                <div class="form-group">
+                    <label>Precio Unitario (BOB)</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               ng-model="cpccontratoitemAux.montoPrimeraMoneda"
+                               currency-input decimals="5"
+                               ng-change="cambiaMontosPorCantidad();"
+                               style="text-align: right"/>
+                        <span class="input-group-addon">BOB&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Subtotal (BOB)</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               ng-model="cpccontratoitemAux.subtotalPrimeraMoneda"
+                               currency-input decimals="2"
+                               disabled
+                               style="text-align: right"/>
+                        <span class="input-group-addon">BOB&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row row-fluid" align="left" ng-show="muestraSegundaMoneda">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Precio Unitario (USD)</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               ng-model="cpccontratoitemAux.montoSegundaMoneda"
+                               currency-input decimals="5"
+                               ng-change="cambiaMontosPorCantidad();"
+                               style="text-align: right"/>
+                        <span class="input-group-addon">USD&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Subtotal (USD)</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               ng-model="cpccontratoitemAux.subtotalSegundaMoneda"
+                               currency-input decimals="2"
+                               disabled
+                               style="text-align: right"/>
+                        <span class="input-group-addon">USD&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left" ng-show="activaMensajeErroneo">
+            <div class="col-sm-12">
+                <div class="badger-left badger-danger estilo-mensaje-error"
+                     data-badger="MENSAJE ERROR">
+                    <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                    &nbsp;&nbsp;{{labelMensajeError}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer header-center" align="center">
+
+    <button class="btn btn-success btn-md" ng-show="!labelBotonReprogramado" ng-click="seleccionar()">
+        <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;{{labelBoton?'Adicionar':'Modificar'}}
+    </button>
+
+
+    <button class="btn btn-default btn-md" ng-click="cancelar()">
+        <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+    </button>
+</div>

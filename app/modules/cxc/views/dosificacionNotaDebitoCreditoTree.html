@@ -1,0 +1,14 @@
+<div style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+    <div class=" panel custom-panel" style="width: 95%">
+        <div class="panel-heading" style="border: 1px solid rgb(212,212,212)" align="center">
+            <h3 class="panel-title">Lista Dosificaciones Notas Crédito-Débito para la {{cpcsucursal.descripcion}}
+                 <span style="cursor: pointer;" ng-click="addDosificacion()">
+                        <i class="fa fa-plus pull-right"></i>
+                 </span>
+            </h3>
+        </div>
+        <div class="gridStyles" ng-grid="gridDosificacion"
+             style="width: 100%;height: 200px">
+        </div>
+    </div>
+</div>

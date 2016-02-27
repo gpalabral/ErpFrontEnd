@@ -1,0 +1,33 @@
+<div>
+    <div align="center" style="padding:1em 2.2em">
+        <div class="row well" align="center">
+            <div class="col-sm-5" align="left">
+                  <div width="100%" style="height : 260px; position : absolute; left: 0; right: 0; overflow-y: auto" >
+                    <angular-tree-grid tree-config="treeGruposConceptos" >
+                    </angular-tree-grid>
+                    <sin-registros ng-if="treeGruposConceptos && (!treeGruposConceptos.collection || treeGruposConceptos.collection.length == 0)"></sin-registros>
+                  </div>
+            </div>
+            <div class="col-sm-2 no-padding" align="center">
+                <br><br><br><br>
+                <button class="btn btn-primary" ng-click="moveRight()">
+                    <span class="glyphicon glyphicon-chevron-right"></span></button><br>
+                <button class="btn btn-primary" ng-click="moveLeft()">
+                    <span class="glyphicon glyphicon-chevron-left"></span></button>
+            </div>
+            <div class="col-sm-5" align="left">
+                <div style="height:260px;" >
+                    <angular-tree-grid tree-config="treeConceptosAsignados">
+                    </angular-tree-grid>
+                    <sin-registros ng-if="treeConceptosAsignados && (!treeConceptosAsignados.collection || treeConceptosAsignados.collection.length == 0)"></sin-registros>
+                </div>
+            </div>
+        </div>
+     </div>
+    <hr style="margin-top: 0 !important;">
+    <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;">
+        <button class="btn btn-success btn-md" ng-click="guardarProveedorClientePojo()"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;{{readOnlyEnable?'Guardar Cambios':'Guardar'}}</button>
+    </div>
+</div>
+
+

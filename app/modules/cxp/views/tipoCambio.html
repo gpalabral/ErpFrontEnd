@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancelarDialogoTipoCambio()" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 class="panel-title">Tipo Cambio</h3>
+</div>
+<div class="modal-body">
+    <div align="center" style="padding:1em 2.2em">
+
+        <div class="panel panel-primary" style="width: 80%;padding:1em 1em" align="center">
+            <div class="panel-heading" align="center">
+                <h3 class="panel-title">TIPO CAMBIO</h3>
+            </div>
+            <br>
+
+            <div class="row" align="left">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="fecha">Fecha </label>
+                        <input type="date" class="form-control" id="fecha" ng-model="tipoCambio.fecha"  ng-change="obtenerFecha()"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row" align="left">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Tipo Cambio </label>
+                        <input type="number" class="form-control" ng-model="tipoCambio.tipoCambio">
+                    </div>
+                </div>
+            </div>
+
+            <div cltipoass="footer" align="center" style="padding:1em 1em;">
+                <button class="btn btn-success" ng-click="guardaCaheTipoCambioDesdeContabilidad()">Continuar</button>
+                <button class="btn btn-default" ng-click="cancelarDialogoTipoCambio()">Cancelar</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

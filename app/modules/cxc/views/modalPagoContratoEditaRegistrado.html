@@ -1,0 +1,157 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">Editar Plan de Facturación</h4>
+</div>
+<div class="modal-body" align="center">
+    <div align="center" style="padding:1em 2.2em">
+        <div class="row row-fluid" align="left" ng-show="readOnlyEnableReprogramacion?false:true">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <span class="input-group-addon">Monto Total Contrato</span>
+                    <input type="text" class="form-control"
+                           style="text-align: right"
+                           ng-model="montoContrato"
+                           currency-input decimals="2"
+                           disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left" ng-show="readOnlyEnableReprogramacion?false:true">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        Saldo
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <input type="text" class="form-control"
+                           style="text-align: right"
+                           ng-model="saldo"
+                           currency-input decimals="2"
+                           disabled>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>N°</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcPagoContratoAux.nroPago" disabled
+                           style="text-align: right"/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" class="form-control" id="fecha"
+                           placeholder="Fecha"
+                           ng-model="cpcPagoContratoAux.fechaProgramada"
+                           style="text-align: right"/>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3" ng-show="generarPorPorcentaje">
+                <div class="form-group">
+                    <label>Porcentaje</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               ng-model="cpcPagoContratoAux.porcentajeProgramado"
+                               ng-blur="convieteMontosPorPorcentajeV1();"
+                               style="text-align: right"/>
+                        <span class="input-group-addon">%&nbsp;&nbsp;</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6" ng-show="muestraPrimeraMoneda">
+                <div class="form-group">
+                    <label>Monto (BOB)</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               ng-model="cpcPagoContratoAux.montoProgramado"
+                               ng-disabled="generarPorPorcentaje"
+                               currency-input decimals="5"
+                               style="text-align: right"/>
+                        <span class="input-group-addon">BOB&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" ng-show="muestraSegundaMoneda">
+                <div class="form-group">
+                    <label>Monto (USD)</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               ng-model="cpcPagoContratoAux.montoProgramadoSegMoneda"
+                               ng-disabled="generarPorPorcentaje"
+                               currency-input decimals="5"
+                               style="text-align: right"/>
+                        <span class="input-group-addon">USD&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label>Hito&nbsp;</label>
+                    <select name="hitoContrato" class="form-control"
+                            ng-model="cpcPagoContratoAux.parTipoHito.codigo"
+                            ng-change="adicionaConceptoPorMedioDeHito()"
+                            required>
+                        <option value="" label="[Seleccione una Opción]"></option>
+                        <option ng-repeat="tipoHito in listaParTipoHito"
+                                ng-selected="tipoHito.codigo== cpcPagoContratoAux.parTipoHito.codigo"
+                                value="{{tipoHito.codigo}}">
+                            {{tipoHito.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label>Concepto</label>
+                    <input type="text" class="form-control"
+                           ng-model="cpcPagoContratoAux.descripcionPago"/>
+                </div>
+            </div>
+        </div>
+        <div class="row row-fluid" align="left" ng-show="activaMensajeErroneo">
+            <div class="col-sm-12">
+                <div class="badger-left badger-danger estilo-mensaje-error"
+                     data-badger="MENSAJE ERROR">
+                    <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                    &nbsp;&nbsp;{{mensajeErrorPagoContrato}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer header-center" align="center">
+
+    <button class="btn btn-success btn-md" ng-click="seleccionar()">
+        <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;{{labelBoton?'Adicionar':'Modificar'}}
+    </button>
+
+    <button class="btn btn-default btn-md" ng-click="cancelar()">
+        <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+    </button>
+</div>

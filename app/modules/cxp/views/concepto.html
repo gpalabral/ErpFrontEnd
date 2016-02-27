@@ -1,0 +1,155 @@
+<div class="container-fluid page-container" style="margin: 0 15px 0px 15px;">
+    <div class="panel panel-primary page-container" align="center" ng-form="conceptoForm">
+        <div class="panel-heading" align="center">
+            <h3 class="panel-title">{{readOnlyEnable?'EDITAR CONCEPTO':'NUEVO CONCEPTO'}}</h3>
+        </div>
+        <div style="padding: 1em 1em 0 1em;position: absolute;top: 39px;left:0;right:0;bottom: 0;overflow-y: auto;">
+            <div align="center" style="padding:0.0em 4em">
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-6">
+                        <b><h5> Grupo: <i>{{grupo.nombre}}</i></h5></b>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5> Recurrencia: <i>{{grupo.parRecurrencia.descripcion}}</i></h5>
+                    </div>
+                </div>
+
+                <hr>
+            </div>
+            <div align="center" style="padding:0.0em 8em">
+
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-8">
+                        <label class="control-label">Descripcion</label>
+                        <input class="form-control" type="text" ng-model="concepto.descripcion"
+                               placeholder="Descripcion del Concepto" required/>
+                    </div>
+                    <!--<div class="col-sm-3">-->
+                    <!--<label>* Monto</label>-->
+                    <!--<input name="descripcion" type="number"-->
+                    <!--class="form-control text-right"-->
+                    <!--ng-model="concepto.monto"-->
+                    <!--required/>-->
+                    <!--</div>-->
+
+                    <div class="col-sm-4">
+                        <label class="control-label">Periodo</label>
+
+                        <select class="form-control"
+                                ng-model="concepto.parPeriodo.codigo" required>
+                            <option value="" label="[Seleccione un Periodo]"></option>
+                            <option ng-repeat="parPeriodo in listParPeriodo"
+                                    ng-selected="parPeriodo.codigo == concepto.parPeriodo.codigo"
+                                    value="{{parPeriodo.codigo}}">
+                                {{parPeriodo.descripcion}}
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+            <div align="center" style="padding:1em 8em">
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-6">
+                        <label class="control-label">Retenciones</label>
+                        <select class="form-control">
+                            <option value="" label="Bienes"></option>
+                            <option value="" label="Servicios"></option>
+                            <option value="" label="RC-IVA"></option>
+                            <option value="" label="ALQUILERES"></option>
+                            <option value="" label="REMESAS AL EXTERIOR"></option>
+                            <option value="" label="IUE - IT IND. EXPORTADOR"></option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label">Grossing Up</label>
+                        <select class="form-control">
+                            <option value="" label="Bienes"></option>
+                            <option value="" label="Servicios"></option>
+                            <option value="" label="RC-IVA"></option>
+                            <option value="" label="ALQUILERES"></option>
+                            <option value="" label="REMESAS AL EXTERIOR"></option>
+                            <option value="" label="IUE - IT IND. EXPORTADOR"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div align="center" style="padding:1em 8em">
+                <div class="row row-fluid" align="left">
+                    <div class="col-xs-4">
+                        <label>Sin Factura</label>
+                        <div class="col-xs-12">
+                            <label class="radio-inline" for="radios-0" align="right">
+                                <input type="radio"
+                                       name="parSinFacturaCodigo"
+                                       id="radios-0"
+                                       value="CONT"/>
+                                Si
+                            </label>
+                            <label class="radio-inline" for="radios-1" align="right">
+                                <input type="radio"
+                                       name="parSinFacturaCodigo"
+                                       id="radios-1"
+                                       value="CRED"/>
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<div align="center" style="padding:0.0em 4em">-->
+            <!--<hr>-->
+            <!--<div class="row">-->
+            <!--<div class="col-xs-12" align="center">-->
+            <!--<b><h5> ASIGNACIÓN DE PROVEEDORES</h5></b>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row row-fluid" align="left">-->
+            <!--<div class="col-sm-6" align="left">-->
+
+            <!--<div class="panel-heading" style="border: 1px solid rgb(212,212,212)" align="center">-->
+            <!--<h3 class="panel-title">Proveedores Sin Asignar</h3>-->
+            <!--</div>-->
+            <!--<div class="gridStyles" ng-grid="gridProveedorNoAsignados"-->
+            <!--style="width: 100%;height: 200px">-->
+            <!--</div>-->
+
+            <!--</div>-->
+            <!--<div class="col-sm-6">-->
+            <!--<div class="panel-heading" style="border: 1px solid rgb(212,212,212)" align="center">-->
+            <!--<h3 class="panel-title">Proveedores Asignados</h3>-->
+            <!--</div>-->
+            <!--<div class="gridStyles" ng-grid="gridProveedorSiAsignados"-->
+            <!--style="width: 100%;height: 200px">-->
+            <!--</div>-->
+
+            <!--</div>-->
+            <!--</div>-->
+
+
+            <!--</div>-->
+            <hr/>
+            <p class="help-block" align="center" ng-show="conceptoForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span>
+            </p>
+
+            <div class="footer middle" align="center">
+                <button ng-click="adicionarConceptoConAsignacionProveedor()" class="btn btn-success"
+                        ng-show="activaBotonGuarda" ng-class="{disabled: conceptoForm.$invalid}"
+                        ng-disabled="conceptoForm.$invalid">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Concepto
+                </button>
+                <button ng-click="modificaConcepto()" class="btn btn-success" ng-show="activaBotonModifica">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Cambios
+                </button>
+                <button ng-click="volverGrupo();" class="btn btn-default">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+

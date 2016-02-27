@@ -1,0 +1,394 @@
+<div class="container-fluid page-container" style="margin: 0 15px 0px 15px;">
+    <div class="panel panel-primary page-container" align="center" ng-form="contratoForm">
+        <div class="panel-heading" align="center">
+            <h3 class="panel-title">{{readOnlyEnable?'EDITAR CONTRATO':'NUEVO CONTRATO'}}</h3>
+        </div>
+        <div class="panel-body" style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+            <br/>
+            <div align="center">
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>* Orden de Compra</label>
+                            <input name="nroCliente" type="text" class="form-control"
+                                   ng-model="cpccontrato.nroContratoCliente"
+                                   ng-disabled="readOnlyEnable?true:false" style="text-align: right" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            <label>* N° Contrato</label>
+                            <input name="nroContrato" type="text" class="form-control"
+                                   ng-model="cpccontrato.nroContrato"
+                                   ng-disabled="readOnlyEnable?true:false" style="text-align: right" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>* Sucursal</label>
+                            <select name="sucursal" class="form-control"
+                                    ng-disabled="readOnlyEnable?true:false"
+                                    ng-model="cpccontrato.cpcSucursal.idSucursal" required>
+                                <option value="" label="[Seleccione Sucursal]"></option>
+                                <option ng-repeat="sucursal in listaSucursales"
+                                        ng-selected="sucursal.idSucursal== cpccontrato.cpcSucursal.idSucursal"
+                                        value="{{sucursal.idSucursal}}">
+                                    {{sucursal.descripcion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-8">
+
+                        <div class="form-group">
+                            <label>* Nombre Contrato</label>
+                            <input name="nroContrato" type="text" class="form-control"
+                                   ng-model="cpccontrato.nombreContrato"
+                                   ng-disabled="readOnlyEnable?true:false" style="text-align: left" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>* Fecha Contrato</label>
+                            <input name="fechaContrato"
+                                   type="date" class="form-control" id="fechaContrato"
+                                   placeholder="Fecha Contrato"
+                                   ng-model="cpccontrato.fechaContrato"
+                                   ng-disabled="readOnlyEnable?true:false" style="text-align: right" required/>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row row-fluid" align="left">
+
+                    <div class="col-sm-6" align="left">
+                        <div class="form-group">
+                            <label>* Cliente</label>
+                            <select class="form-control"
+                                    id="idProveedorCliente"
+                                    name="cliente"
+                                    ng-disabled="readOnlyEnable?true:false"
+                                    ng-model="cpccontrato.cppProveedorCliente.idProveedorCliente"
+                                    ng-disabled="modo.valor" required>
+                                <option value="" ng-selected="true">[SELECCIONE UN CLIENTE]</option>
+                                <option ng-repeat="cliente in listclientes track by cliente.idProveedorCliente"
+                                        ng-selected="cpccontrato.cppProveedorCliente.idProveedorCliente == cliente.idProveedorCliente"
+                                        value="{{cliente.idProveedorCliente}}">
+                                    {{cliente.nombre}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>* Depositar en la Cta. Cte.</label>
+                            <select name="cuentaBancaria" class="form-control"
+                                    ng-disabled="readOnlyEnable?true:false"
+                                    ng-model="cpccontrato.cuentaBancaria.idCuentaBancaria" required>
+                                <option value="" label="[Seleccione Cuenta Bancaria]"></option>
+                                <option ng-repeat="cuentas in listaCuentaBancaria"
+                                        ng-selected="cuentas.idCuentaBancaria== cpccontrato.cuentaBancaria.idCuentaBancaria"
+                                        value="{{cuentas.idCuentaBancaria}}">
+                                    {{cuentas.descripcion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row row-fluid" align="left">
+
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label>* Vigencia del Contrato</label>
+
+                            <div class="form-group">
+
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Del :</span>
+                                        <input name="fechaInicio" type="date" class="form-control"
+                                               id="fechaVigenciaInicio"
+                                               placeholder="Fecha Vigencia Inicio"
+                                               ng-model="cpccontrato.fechaVigenciaInicio"
+                                               ng-disabled="readOnlyEnable?true:false" style="text-align: right"
+                                               required/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Al :</span>
+                                        <input name="fechaFin" type="date" class="form-control" id="fechaVigenciaFin"
+                                               placeholder="Fecha Vigencia Fin"
+                                               ng-model="cpccontrato.fechaVigenciaFin"
+                                               ng-disabled="readOnlyEnable?true:false" style="text-align: right"
+                                               required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>* Moneda Contrato</label>
+                            <select name="monedaContrato" class="form-control"
+                                    ng-change="monedaContratoCombo()"
+                                    ng-disabled="readOnlyEnable?true:false"
+                                    ng-model="cpccontrato.parTipoMoneda.codigo" required>
+                                <option value="" label="[Seleccione Moneda]"></option>
+                                <option ng-repeat="tipoMoneda in listaParTipoMoneda"
+                                        ng-selected="tipoMoneda.codigo== cpccontrato.parTipoMoneda.codigo"
+                                        value="{{tipoMoneda.codigo}}">
+                                    {{tipoMoneda.descripcion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-6" ng-show="muestraPrimeraMoneda">
+                        <label>* Monto Total del Contrato</label>
+
+                        <div class="input-group">
+                            <input name="montoPrimeraMomenda" class="form-control text-right"
+                                   type="text"
+                                   ng-model="cpccontrato.montoPrimeraMoneda"
+                                   ng-blur="convierteMonedaDolar_validaCambioTotalContrato()"
+                                   ng-disabled="readOnlyEnable?true:false"
+                                   style="text-align: right"
+                                   currency-input decimals="5"
+                                   required/>
+                            <span class="input-group-addon">{{parValorPrimeraMoneda}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-show="muestraSegundaMoneda">
+                        <label>* Monto Total de Contrato</label>
+
+                        <div class="input-group">
+                            <input name="montoSegundaMoneda" class="form-control text-right"
+                                   type="text"
+                                   ng-model="cpccontrato.montoSegundaMoneda"
+                                   ng-blur="convierteMonedaBolivianos_validaCambioTotalContrato()"
+                                   ng-disabled="readOnlyEnable?true:false"
+                                   style="text-align: right"
+                                   currency-input decimals="5"
+                                   disabled required/>
+                            <span class="input-group-addon">{{parValorSegundaMoneda}}</span>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-2" ng-show="muestraSegundaMoneda">
+                        <div class="form-group">
+                            <label>* Tipo Cambio</label>
+                            <input type="text" class="form-control"
+                                   name="tipoCambio"
+                                   ng-model="cpccontrato.tipoCambio"
+                                   ng-disabled="readOnlyEnable?true:false" style="text-align: right" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div align="center" style="padding:0.0em 2.2em">
+                <div class="row row-fluid" align="left">
+                    <div class="col-sm-12">
+                        <tabset>
+                            <tab>
+                                <tab-heading>
+                                    Actividad(es) Económica(s) asociada(s) al Contrato
+                                </tab-heading>
+                                <!--<div class="panel-heading" style="border: 1px solid rgb(212,212,212)" align="center">
+                                    <h3 class="panel-title">Lista de Actividad(es) Económica(s)
+                                     <span style="cursor: pointer;" ng-click="modalAsignaActividadEconomica()"
+                                           ng-show="readOnlyEnable?false:true">
+                                             <i class="fa fa-plus pull-right"></i>
+                                        </span>
+                                    </h3>
+                                </div>-->
+                                <br/>
+                                <div class="gridStyles" ng-grid="gridActividadEconomica"
+                                     style="width: 100%;height: 200px">
+                                </div>
+                            </tab>
+                            <tab>
+                                <tab-heading>
+                                    Bienes o Servicios
+                                </tab-heading>
+                               <!-- <div class="panel-heading" style="border: 1px solid rgb(212,212,212)" align="center">
+                                    <h3 class="panel-title">Lista de Bienes o Servicios
+                                     <span style="cursor: pointer;" ng-click="modalServicioBienes()"
+                                           ng-show="readOnlyEnable?false:true">
+                                             <i class="fa fa-plus pull-right"></i>
+                                        </span>
+                                    </h3>
+                                </div>-->
+                                <br/>
+                                <div class="gridStyles break-words" ng-grid="gridContratoItem"
+                                     style="width: 100%;height: 200px">
+                                </div>
+                            </tab>
+                            <tab>
+                                <tab-heading>
+                                    Plan de Facturación
+                                </tab-heading>
+
+                                <div align="center" style="padding:1em 20em">
+                                    <div class="row row-fluid" align="left">
+                                        <div class="col-sm-4" align="right">
+                                            <label> Generar por:</label>
+                                        </div>
+                                        <div class="col-sm-8" align="left">
+                                            <label class="radio-inline" for="radios-0">
+                                                <input type="radio"
+                                                       name="porcentaje"
+                                                       ng-model="valor.generarPorPorcentajeMonto"
+                                                       id="radios-0" value="PORC" ng-click="cambiaValorVariblePorcentaje();"
+                                                       required>
+                                                Porcentaje
+                                            </label>
+                                            <label class="radio-inline" for="radios-1">
+                                                <input type="radio"
+                                                       name="porcentaje"
+                                                       ng-model="valor.generarPorPorcentajeMonto"
+                                                       id="radios-1" value="MONT" ng-click="cambiaValorVaribleMonto();"
+                                                       required>
+                                                Monto
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<hr/>-->
+                                <!--<div class="panel panel-default" style="width: 100%" align="center"-->
+                                <!--ng-show="botonAdiciona">-->
+                                <!--<div class="panel-body">-->
+                                <!--<div class="row row-fluid" align="left">-->
+
+                                <!--<div class="col-sm-3">-->
+                                <!--<div class="form-group">-->
+                                <!--<label class="control-label">Fecha Inicio</label>-->
+                                <!--<input type="date" class="form-control"-->
+                                <!--placeholder="Fecha Inicio"-->
+                                <!--ng-model="fechaInicio"-->
+                                <!--ng-blur="generarPlanPagos()"-->
+                                <!--style="text-align: right"/>-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="col-sm-2">-->
+                                <!--<div class="form-group">-->
+                                <!--<label class="control-label">N° de Pagos</label>-->
+                                <!--<input type="text" class="form-control"-->
+                                <!--ng-model="planPagosPeriodoObjeto.numeroDePagos"-->
+                                <!--ng-disabled="activaCamposPagosPeriodicos"-->
+                                <!--ng-blur="generarPlanPagos()"/>-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+
+                                <!--<div class="col-sm-2">-->
+                                <!--<div class="form-group">-->
+                                <!--<label class="control-label">Cada</label>{{diasPagos}}-->
+                                <!--<div class="input-group">-->
+                                <!--<input id="dias" class="form-control" type="text"-->
+                                <!--ng-model="planPagosPeriodoObjeto.cantidadDias"-->
+                                <!--ng-disabled="activaCamposPagosPeriodicos"-->
+                                <!--ng-blur="generarPlanPagos()"/>-->
+                                <!--<span class="input-group-addon">dias</span>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+
+                                <!--<div class="col-sm-3">-->
+                                <!--<div class="form-group">-->
+                                <!--<label class="control-label" align="right">Pagos:</label>-->
+
+                                <!--<div class="input-group">-->
+                                <!--<label class="radio-inline">-->
+                                <!--<input type="radio" name="opciones" value="iguales"-->
+                                <!--checked="checked">Iguales</label>-->
+                                <!--</label>-->
+                                <!--<label class="radio-inline">-->
+                                <!--<input type="radio" name="opciones"-->
+                                <!--value="distintos">Distintos</label>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="col-sm-2">-->
+                                <!--<div class="form-group">-->
+                                <!--<label class="control-label" align="right"> </label>-->
+
+                                <!--<div class="input-group">-->
+                                <!--<button class="btn btn-success btn-md"-->
+                                <!--ng-click="limpiaListaPlanFacturacion()"><span-->
+                                <!--class="glyphicon glyphicon-th-list"></span>&nbsp;Limpiar-->
+                                <!--Lista-->
+                                <!--</button>-->
+
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+
+                                <!--</div>-->
+                                <!--&lt;!&ndash;Fin de la fila&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;Fin body&ndash;&gt;-->
+                                <!--</div>-->
+                                <div class="panel-heading" style="border: 1px solid rgb(212,212,212)" align="center">
+                                    <h3 class="panel-title">Plan de Facturación
+                                        <span style="cursor: pointer;" ng-click="modalFormularioPagoContrato()"
+                                              ng-show="readOnlyEnable?false:true">
+                                             <i class="fa fa-plus pull-right"></i>
+                                        </span>
+                                    </h3>
+                                </div>
+                                <div class="gridStyles break-words" ng-grid="gridPlanPagos"
+                                     style="width: 100%;height: 200px">
+                                </div>
+                            </tab>
+                        </tabset>
+
+                    </div>
+                </div>
+                <!--<hr style="margin-top: 0 !important;">-->
+            </div>
+
+            <p class="help-block" align="center" ng-show="contratoForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span>
+            </p>
+
+            <div class="footer middle" align="center">
+
+                <button ng-class="{disabled: contratoForm.$invalid}"
+                        ng-disabled="contratoForm.$invalid"
+                        ng-show="botonAdiciona" class="btn btn-success btn-md"
+                        ng-click="guardarContratoPojo()"><span
+                        class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Contrato
+                </button>
+
+                <button ng-class="{disabled: contratoForm.$invalid}"
+                        ng-disabled="contratoForm.$invalid"
+                        ng-show="botonModifica" class="btn btn-success btn-md"
+                        ng-click="guardarContratoPojo()"><span
+                        class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Modificación Contrato
+                </button>
+                <!--<button ng-show="botonAdiciona" class="btn btn-success btn-md"-->
+                <!--ng-click="redondea()"><span-->
+                <!--class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Redondea-->
+                <!--</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+

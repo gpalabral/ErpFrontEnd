@@ -1,0 +1,93 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">Diálogo Cargo</h4>
+</div>
+<div class="modal-body">
+    <div style="background: #C9DDE1;padding:0.5em 0.5em; border-style: groove; border-width: 1px;" ng-form="cargoForm">
+        <div class="row" align="left">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Código</label>
+                    <input type="text" class="form-control"
+                           ng-model="rhCargo.codigo" required/>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label>Nombre Cargo</label>
+                    <input type="text" class="form-control"
+                           ng-model="rhCargo.nombreCargo" required/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label>* Departamento</label>
+                <select class="form-control" ng-disabled="readOnlyEnable?true:false" name="idDepartamento"
+                        ng-model="rhCargo.erpDepartamento.idDepartamento"
+                        ng-change="selecionaSeccionPorIdDepartamento()"
+                        required>
+                    <option value="" label="[Seleccione Departamento]"></option>
+                    <option ng-repeat="departamento in listaDepartamento" value="{{departamento.idDepartamento}}"
+                            ng-selected="departamento.idDepartamento== rhCargo.erpDepartamento.idDepartamento">
+                        {{departamento.descripcion}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label>Sección</label>
+                <select class="form-control" ng-disabled="rhCargo.erpDepartamento.idDepartamento!=null?false:true"
+                        name="idSeccion"
+                        ng-model="rhCargo.rhSeccion.idSeccion">
+                    <option value="" label="[Seleccione Seccion]"></option>
+                    <option ng-repeat="secciones in listaSecciones" value="{{secciones.idSeccion}}"
+                            ng-selected="secciones.idSeccion== rhCargo.rhSeccion.idSeccion">
+                        {{secciones.descripcion}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="footer" align="center">
+            <button type="button"
+                    ng-class="{disabled:cargoForm.$invalid}"
+                    ng-disabled="cargoForm.$invalid"
+                    class="btn btn-success" ng-click="guardaRhCargo()">
+                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Adicionar Cargo
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div class="gridStyles" ng-grid="gridActividadEconomica"
+         style="width: 100%;height: 200px">
+    </div>
+    <hr>
+    <div class="row row-fluid" align="left" ng-show="activaMensajeExitoso">
+        <div class="col-sm-12">
+            <div class="badger-left badger-success estilo-mensaje-confirmacion"
+                 data-badger="Mensaje Confirmación">
+                <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i>
+                </button>
+                &nbsp;&nbsp;Se registro el Cargo exitosamente.
+            </div>
+        </div>
+    </div>
+    <div class="row row-fluid" align="left" ng-show="activaMensajeErroneo">
+        <div class="col-sm-12">
+            <div class="badger-left badger-danger estilo-mensaje-error"
+                 data-badger="Mensaje Error">
+                <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i>
+                </button>
+                &nbsp;&nbsp;{{mensajeError}}
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<div class="modal-footer header-center" align="center">
+    <button class="btn btn-success" ng-click="seleccionarCargo()">
+        <span class="glyphicon glyphicon-tags"></span>&nbsp;Seleccionar
+    </button>
+    <button class="btn btn-default" ng-click="volver()">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span>&nbsp;Volver
+    </button>
+</div>

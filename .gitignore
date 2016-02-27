@@ -1,0 +1,14 @@
+node_modules/
+bower_components/
+*.log
+*.iml
+
+build/
+dist/
+.idea/
+.tmp
+.sass-cache
+.idea/scopes
+
+app/scripts/config.js
+config-local.json

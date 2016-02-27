@@ -1,0 +1,16 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">Facturación por Ventas>&nbsp;<strong>SELECCIONE DOSIFICACIÓN CRÉDITO - DÉBITO:</strong></h4>
+</div>
+<div class="modal-body">
+    <div class="gridStyles break-words" ng-grid="gridDosificacionCreditoDebito" style="width: 100%;height: 250px"></div>
+
+    <sin-registros ng-if="gridDosificaciones && (!dosificacionesPorContrato || dosificacionesPorContrato.length == 0)"></sin-registros>
+
+</div>
+<div class="modal-footer header-center" align="center">
+    <button class="btn btn-success"
+            ng-class="{disabled: !dosificacionSeleccionada}"
+            ng-disabled="!dosificacionSeleccionada"
+            ng-click="seleccionar()">Seleccionar</button>
+    <button class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+</div>

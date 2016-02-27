@@ -1,0 +1,16 @@
+<div class=" panel panel-primary custom-panel" align="left">
+  <div class="panel-heading">
+    <h3 class="panel-title">GRUPOS
+      <span style="cursor: pointer;" ng-click="addGrupo()">
+        <i class="fa fa-plus pull-right"></i>
+      </span>
+      <!--<span class="circle-btn pull-right" ng-click="addGrupo()">
+      </span>-->
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="item-row" ng-repeat="grupo in grupos" ng-click="viewGroupDetail(grupo)">
+      {{grupo.nombre}}
+    </div>
+  </div>
+</div>

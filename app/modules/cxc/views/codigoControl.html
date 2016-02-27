@@ -1,0 +1,89 @@
+<div class="container-fluid page-container" style="margin: 0 15px 0px 15px;">
+    <div class="panel panel-primary page-container" align="center" ng-form="codControlForm">
+        <div class="panel-heading" align="center">
+            <h3 class="panel-title">GENERADOR CODIGO DE CONTROL</h3>
+        </div>
+        <div style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;">
+            <div align="center" style="padding:0.0em 20em">
+                <div class="row" align="left">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>* Numero de Autorizacion:</label>
+                            <input name="numAutorizacion" type="number" class="form-control"
+                                   ng-model="codigoControl.numeroAutorizacion" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>* Numero de Factura:</label>
+                            <input name="numFactura" type="number" class="form-control"
+                                   ng-model="codigoControl.numeroFactura" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>* NIT:</label>
+                            <input name="nit" type="number" class="form-control"
+                                   ng-model="codigoControl.nit" required/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>* Fecha:</label>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input name="fechaFactura" type="date" class="form-control" id=""
+                                   ng-model="codigoControl.fechaFactura" required/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>* Monto:</label>
+                            <input name="name" type="text" class="form-control"
+                                   ng-model="codigoControl.monto" required/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>* Llave de Dosificacion:</label>
+                            <input name="keyDosificacion" type="text" class="form-control"
+                                   ng-model="codigoControl.llaveDosificacion" required/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>CODIGO DE CONTROL</label>
+                            <input name="keyDosificacion" type="text" class="form-control"
+                                   ng-model="codigoControlGenerado" ng-disabled="true"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <p class="help-block" align="center" ng-show="codControlForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span>
+            </p>
+
+            <div class="footer middle" align="center">
+                <button ng-class="{disabled: codControlForm.$invalid}"
+                        ng-disabled="codControlForm.$invalid"
+                        type="button" class="btn btn-success" ng-click="generaCodigoControl()">
+                    <span class="glyphicon glyphicon-saved"></span>&nbsp;Generar
+                </button>
+
+                <button type="button" class="btn btn-primary" ng-click="limpiaFormulario()">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;Limpiar
+                </button>
+
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">-->
+                <!--<span class="glyphicon glyphicon-remove-circle"></span>&nbsp;Salir-->
+                <!--</button>-->
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

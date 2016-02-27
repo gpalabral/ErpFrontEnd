@@ -1,0 +1,168 @@
+<div class="panel panel-primary" align="center"
+     style="position: absolute;top: 0;bottom: 0;left:0px;right: 0px;">
+    <div class="panel-heading" align="center">
+        <h3 class="panel-title">{{readOnlyEnable?'EMPRESA':'EMPRESA'}}</h3>
+    </div>
+    <div style="padding: 1em 1em 0 1em;position: absolute;top: 39px;left:0;right:0;bottom: 0;overflow-y: auto;">
+        <div align="center" style="padding:1em 2.2em">
+
+            <div class="row row-fluid" align="left">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Razon Social</label>
+                        <input type="text"
+                               class="form-control"
+                               id="razonSocial"
+                               placeholder="Nombre"
+                               ng-model="empresa.razonSocial">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <select class="form-control"
+                                ng-model="ciudadSeleccionada"
+                                id="ciudad"
+                                ng-change="ciudadActualizada(ciudadSeleccionada)"
+                                ng-options="ciudad.descripcion for ciudad in listaDeCiudades">
+                            <option value="">Seleccionar una ciudad</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>NIT</label>
+                        <input type="text"
+                               class="form-control"
+                               id="nit"
+                               ng-model="empresa.nit"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Direccion</label>
+                        <input type="text"
+                               class="form-control"
+                               id="direccion"
+                               placeholder=""
+                               ng-model="empresa.direccion">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="parTipoMonedaPrimeroCodigo">Tipo Primera Moneda</label>
+                        <select class="form-control"
+                                id="parTipoMonedaPrimeroCodigo"
+                                ng-model="parTipoMonedaPrimero"
+                                ng-options="moneda.descripcion for moneda in tipoMoneda">
+                            <option value="">Tipo Primera Moneda</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="parTipoMonedaSegundoCodigo">Tipo Segunda Moneda</label>
+                        <select class="form-control"
+                                id="parTipoMonedaSegundoCodigo"
+                                ng-model="parTipoMonedaSegundo"
+                                ng-options="moneda.descripcion for moneda in tipoMoneda">
+                            <option value="">Tipo Segunda Moneda</option>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--************************************************************************************-->
+            <hr>
+
+            <div class="row" align="left">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Inicio de Gestion</label>
+                        <br>
+                        <label>Mes</label>
+                        <select class="form-control"
+                                id="periodoInicial"
+                                ng-model="empresa.periodoInicial"
+                                ng-options="mes for mes in meses">
+                            <option value="">Selecionar Mes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label> </label>
+                            <br>
+                            <label>Año</label>
+                            <select ng-model="empresa.gestionInicial"
+                                    class="form-control"
+                                    id="gestionInicial"
+                                    ng-options="year for year in years">
+                                <option value="">Año</option>
+                            </select>
+                            <!--<input type="date" class="form-control"-->
+                            <!--placeholder="año"/>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" align="left">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Fin de Gestion</label>
+                            <br>
+                            <label>Mes</label>
+                            <select class="form-control"
+                                    id="periodoFinal"
+                                    ng-model="empresa.periodoFinal"
+                                    ng-options="mes for mes in meses">
+                                <option value="">Selecionar Mes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label> </label>
+                                <br>
+                                <label>Año</label>
+                                <select ng-model="empresa.gestionFinal"
+                                        class="form-control"
+                                        id="gestionFinal"
+                                        ng-options="year for year in years">
+                                    <option value="">Año</option>
+                                </select>
+                                <!--<input type="date" class="form-control"-->
+                                <!--placeholder="año"/>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="panel-heading" style="border: 1px solid rgb(212,212,212)" align="center">
+                <h3 class="panel-title">Cuentas Bancarias
+                                        <span style="cursor: pointer;" ng-click="modalFormularioCuentaBancaria()"
+                                              ng-show="readOnlyEnable?false:true">
+                                             <i class="fa fa-plus pull-right"></i>
+                                        </span>
+                </h3>
+            </div>
+            <div class="gridStyles" ng-grid="gridCuentasBancarias"
+                 style="width: 100%;height: 200px">
+            </div>
+            <!--**************************************************************************************************************-->
+            <hr style="margin-top: 0 !important;">
+            <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;">
+                <button class="btn btn-success btn-md"
+                        ng-click="guardarDatosEmpresa()"><span
+                        class="glyphicon glyphicon-floppy-disk"></span>&nbsp;{{readOnlyEnable?'GuardarCambiosb':'GuardarCambios'}}
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+

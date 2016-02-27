@@ -1,0 +1,89 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancelar()" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 class="panel-title">PLAN DE PAGOS</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid" align="center" style="padding:1em 2.2em">
+        <div class="panel panel-primary" style="width: 100%" align="center">
+            <div class="panel-heading">
+                <h3 class="panel-title">PLAN DE PAGOS</h3>
+            </div>
+            <div class="panel-body" align="center">
+                <div class="row">
+                    <div class="col-sm-6" align="right"><label class="control-label" for="tipoCambio">Tipo de
+                        Cambio:</label></div>
+                    <div class="col-sm-2" align="left"><input type="text" class="form-control" id="tipoCambio"
+                                                              minlength="6"></div>
+                </div>
+            </div>
+            <!--fin de panel body-->
+        </div>
+        <!-- fin panel principal-->
+        <div class="panel panel-primary" style="width: 100%" align="center">
+            <div class="panel-body">
+                <div class="row" align="center">
+                    <div class="col-sm-5" align="right"><label class="control-label">Monto</label></div>
+                    <div class="col-sm-3" align="right"><label class="control-label">Sumatoria</label></div>
+                    <div class="col-sm-3" align="right"><label class="control-label">Diferencia</label></div>
+                </div>
+                <div class="row" align="center">
+                    <div class="col-sm-3" align="right"><label class="control-label">Bolivianos:</label></div>
+                    <div class="col-sm-3"><input type="text" class="form-control" id="montoBs"></div>
+                    <div class="col-sm-3"><input type="text" class="form-control" id="sumatoriaBs"></div>
+                    <div class="col-sm-3"><input type="text" class="form-control" id="diferenciaBs"></div>
+                </div>
+                <div class="row" align="center">
+                    <div class="col-sm-3" align="right"><label class="control-label">Dolares:</label></div>
+                    <div class="col-sm-3"><input type="text" class="form-control" id="montoSus"></div>
+                    <div class="col-sm-3"><input type="text" class="form-control" id="sumatoriaSus"></div>
+                    <div class="col-sm-3"><input type="text" class="form-control" id="diferenciaSus"></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary" style="width: 100%" align="center">
+            <div class="panel-body">
+                <div class="row" align="center">
+                    <div class="col-sm-2" align="right"><label class="control-label">Número de Pagos:</label></div>
+                    <div class="col-sm-2"><input type="text" class="form-control" id="numeroDePagos"
+                                                 ng-model="numeroDePagos"></div>
+                    <div class="col-sm-1" align="right"><label class="control-label">Cada:</label>{{diasPagos}}
+                    </div>
+                    <div class="col-sm-3">
+                        <div class=" input-group">
+                            <input id="dias" class="form-control" type="text" ng-model="cantDias"
+                                   ng-blur="genPlanPagos()" ng-change="limpiarGrilla()">
+                            <span class="input-group-addon">dias</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"><label class="control-label" align="right">Pagos:</label></div>
+                    <div class="col-sm-3" align="left">
+                        <label class="radio-inline">
+                            <input type="radio" name="opciones" value="iguales" checked="checked">Iguales</label>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="opciones" value="distintos">Distintos</label>
+                    </div>
+                </div>
+                <!--Fin de la fila-->
+            </div>
+            <!--Fin body-->
+        </div>
+        <div class="panel panel-primary" align="center" ng-show="mostrarGrilla" >
+            <div class="panel-body">
+                <div class="gridStyles" ng-grid="gridOptions" style="height: 200px"></div>
+            </div>
+        </div>
+
+        <button id="guardar" name="guardar" class="btn btn-success" ng-click="guardarPlanPagos()">GRABAR</button>
+        <button id="cancelar" name="cancelar" class="btn btn-default" ng-click="cancelar()">CANCELAR</button>
+
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <!--ULTIMO DIV-->
+</div>
+
+
+

@@ -1,0 +1,15 @@
+<div class=" panel panel-primary custom-panel" align="left">
+    <div class="panel-heading">
+            <h3 class="panel-title" align="center">PROVEEDORES
+            <span style="cursor: pointer;">
+              <i class="fa fa-plus pull-right" ng-click="registroNuevoProveedor()"></i>
+            </span></h3>
+    </div>
+    <div class="panel-body" >
+        <div style="height:300px; position : absolute; left: 0; right: 0; overflow-y: auto">
+            <angular-tree-grid tree-config="treeConfig">
+            </angular-tree-grid>
+            <sin-registros ng-if="treeConfig && (!treeConfig.collection || treeConfig.collection.length == 0)"></sin-registros>
+        </div>
+    </div>
+</div>

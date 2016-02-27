@@ -1,0 +1,20 @@
+<div ng-class="{'modal-error alert-danger' : modalOptions.type == 'error', 'modal-exito alert-success': modalOptions.type == 'exito'}">
+  <div class="modal-header" >
+    <strong>{{modalOptions.headerText}}</strong>
+  </div>
+  <div class="modal-body">
+    <button type="button"
+            ng-if="modalOptions.type == 'error'"
+            class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+    <button type="button"
+            ng-if="modalOptions.type == 'exito'"
+            class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i></button>&nbsp;&nbsp;{{modalOptions.bodyText}}.
+  </div>
+  <div class="modal-footer ">
+    <button ng-click="modalOptions.ok();"
+            class="btn btn-success"
+            ng-class="{'btn-danger':modalOptions.type == 'error', 'btn-success':modalOptions.type == 'exito'}">
+      {{modalOptions.actionButtonText}}
+    </button>
+  </div>
+</div>

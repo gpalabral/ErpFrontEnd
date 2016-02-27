@@ -1,0 +1,33 @@
+<div>
+    <div class="panel-list-container">
+        <div class=" panel panel-primary custom-panel" align="left">
+            <div class="panel-heading">
+                <h3 class="panel-title" align="center">CONTRATOS
+                    <span style="cursor: pointer;" ng-click="addContrato()">
+                        <i class="fa fa-plus pull-right"></i>
+                    </span>
+                </h3>
+            </div>
+            <div class="panel-body" style="top:40px;overflow: hidden">
+                <div auto-height>
+                    <div class="gridStyles break-words grid-padding"
+                         ng-grid="gridConfig" style="width: 100%;"></div>
+                </div>
+                <sin-registros ng-if="treeConfig && (!treeConfig.collection || treeConfig.collection.length == 0)"></sin-registros>
+            </div>
+            <!--<div class="panel-body" style="top:40px;">-->
+
+                <!--&lt;!&ndash;<angular-tree-grid tree-config="treeConfig">&ndash;&gt;-->
+                <!--&lt;!&ndash;</angular-tree-grid>&ndash;&gt;-->
+                <!--<div class="gridStyles break-words"-->
+                     <!--ng-grid="gridConfig"-->
+                     <!--style="width: 100%;height: 500px"></div>-->
+                <!--<sin-registros ng-if="treeConfig && (!treeConfig.collection || treeConfig.collection.length == 0)"></sin-registros>-->
+            <!--</div>-->
+        </div>
+    </div>
+
+    <div class="body-container">
+        <div ui-view="contrato-panel"></div>
+    </div>
+</div>

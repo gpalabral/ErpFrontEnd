@@ -1,0 +1,199 @@
+<div ng-form="datosGeneralesForm">
+    <div align="center" style="padding:1em 2.2em">
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-2 no-padding">
+                <div class="form-group">
+                    <label>Año</label>
+                    <input name="anio"
+                           type="text" class="form-control" style="text-align: right"
+                           ng-model="rhParametros.rhPeriodoGestion.gestion" required readonly/>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>Período</label>
+                    <input type="text" class="form-control" style="text-align: right"
+                           ng-model="rhParametros.rhPeriodoGestion.periodo" required readonly/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>Tipo de Cambio</label>
+                    <input type="number" class="form-control" style="text-align: right" min="0"
+                           ng-model="rhParametros.tipoCambio" currency-input decimals="2" required/>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>UFV</label>
+                    <input type="text" class="form-control" style="text-align: right" min="0"
+                           ng-model="rhParametros.tipoUfv" required/>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-4 no-padding">
+                <div class="form-group">
+                    <label>* N° Patronal</label>
+                    <input type="text" class="form-control" style="text-align: right"
+                           ng-model="rhParametros.numeroPatronal" required/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>* Sueldo Mínimo Nacional</label>
+                    <input type="text" class="form-control" style="text-align: right"
+                           currency-input decimals="2"
+                           ng-model="rhParametros.sueldoMinimoNacional" required/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>N° Aguinaldos</label>
+                    <input type="text" class="form-control" style="text-align: right"
+                           ng-model="rhParametros.numeroAguinaldos" required/>
+                </div>
+            </div>
+
+        </div>
+        <br/>
+
+        <div class="row row-fluid" align="left">
+            <!--<div class="col-sm-4 no-padding">
+                <div class="form-group">
+                    <label>N° Primas</label>
+                    <input type="text" class="form-control" style="text-align: right"
+                           ng-model="rhParametros.numeroPrimas" required/>
+                </div>
+            </div>-->
+            <div class="col-sm-4  no-padding">
+                <div class="form-group">
+                    <label>Horas Nocturnas</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><strong>%</strong></span>
+                        <input type="number" class="form-control" min="0"
+                               ng-model="rhParametros.horasNocturnas" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Fecha Liquidación</label>
+
+                    <div class='input-group date' id='fecha'>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span></span>
+                        <input type="date"
+                               class="form-control"
+                               ng-model="rhParametros.fechaLiquidacion"
+                               align="right" required/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row row-fluid" align="center">
+            <div class="col-sm-12" readonly>
+                <label class="control-label" align="left">Bono Antigüedad sobre:&nbsp;
+                    <label class="radio-inline" for="rad-0" align="right" readonly required>
+                        <input type="radio" ng-model="rhParametros.parTipoBonoAntiguedad.codigo" id="rad-0"
+                               value="1MIN">
+                        1 Mínimo Nacional
+                    </label>
+                    <label class="radio-inline" for="rad-1" align="right" readonly required>
+                        <input type="radio" ng-model="rhParametros.parTipoBonoAntiguedad.codigo" id="rad-1"
+                               value="3MIN">
+                        3 Mínimos Nacionales
+                    </label>
+                    <label class="radio-inline" for="rad-2" align="right" readonly required>
+                        <input type="radio" ng-model="rhParametros.parTipoBonoAntiguedad.codigo" id="rad-2"
+                               value="SUBC">
+                        Sueldo Básico
+                    </label>
+                    <label class="radio-inline" for="rad-2" align="right" readonly required>
+                        <input type="radio" ng-model="rhParametros.parTipoBonoAntiguedad.codigo" id="rad-3"
+                               value="NING">
+                        Ninguno
+                    </label>
+                </label>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row row-fluid">
+            <div class="col-sm-12 no-padding" align="left">
+                <label class="text-primary control-label">Responsables de Planilla</label>
+                <hr style="margin-top: 0 !important;">
+            </div>
+        </div>
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-6 no-padding">
+
+                <label>* Encargado</label>
+                <select class="form-control" name="rhEmpleadoEncargado"
+                        ng-model="rhParametros.rhEmpleadoEncargado.idEmpleado" ng-change="obtieneCargoPorIdEmpeladoEncargado()" required>
+                    <option value="" label="[Seleccione Encargado]"></option>
+                    <option ng-repeat="empleadoEncargado in listaEmpleadoEncargado"
+                            value="{{empleadoEncargado.idEmpleado}}"
+                            ng-selected="empleadoEncargado.idEmpleado== rhParametros.rhEmpleadoEncargado.idEmpleado">
+                        {{empleadoEncargado.nombreCompleto}}
+                    </option>
+                </select>
+
+            </div>
+            <div class="col-sm-6">
+                <label>Cargo</label>
+                <input type="text" class="form-control"
+                       ng-model="rhParametros.rhCargoEncargado.nombreCargo" readonly>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row row-fluid" align="left">
+            <div class="col-sm-6 no-padding">
+                <label>* Aprueba</label>
+                <select class="form-control" name="rhEmpleadoAprueba"
+                        ng-model="rhParametros.rhEmpleadoAprueba.idEmpleado" ng-change="obtieneCargoPorIdEmpeladoAprueba()" required>
+                    <option value="" label="[Seleccione Aprueba]"></option>
+                    <option ng-repeat="empleadoAprueba in listaEmpleadoAprueba" value="{{empleadoAprueba.idEmpleado}}"
+                            ng-selected="empleadoAprueba.idEmpleado== rhParametros.rhEmpleadoAprueba.idEmpleado">
+                        {{empleadoAprueba.nombreCompleto}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label>Cargo</label>
+                <input type="text" class="form-control"
+                       ng-model="rhParametros.rhCargoAprueba.nombreCargo" readonly>
+            </div>
+        </div>
+    </div>
+    <hr style="margin-top: 0 !important;">
+    <p class="help-block" align="center" ng-show="datosGeneralesForm.$invalid"><span class="text-justify">(*) Los campos son requeridos.</span>
+    </p>
+
+    <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;" ng-show="muestraPanelBotones">
+        <button class="btn btn-success btn-md"
+                ng-show="!readOnlyEnable"
+                ng-class="{disabled:datosGeneralesForm.$invalid}"
+                ng-disabled="datosGeneralesForm.$invalid"
+                ng-click="guardaDatosGenerales()">
+            <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar
+        </button>
+
+        <button class="btn btn-success btn-md"
+                ng-show="readOnlyEnable"
+                ng-class="{disabled:parametrosLaboralesForm.$invalid}"
+                ng-disabled="parametrosLaboralesForm.$invalid"
+                ng-click="modificaRhParametrosPatronalesAndLaborales()">
+            <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Guardar Cambios
+        </button>
+    </div>
+</div>
+

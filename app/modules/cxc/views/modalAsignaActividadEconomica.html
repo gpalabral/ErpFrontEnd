@@ -1,0 +1,27 @@
+<div class="modal-header bg-primary" width="50%">
+    <h4 class="modal-title">Asignar Actividad Económica</h4>
+</div>
+<div class="modal-body">
+    <div class="gridStyles" ng-grid="gridActividadEconomica"
+         style="width: 100%;height: 200px">
+    </div>
+    <hr>
+    <div class="row row-fluid" align="left" ng-show="activaMensajeErroneo">
+        <div class="col-sm-12">
+            <div class="badger-left badger-danger estilo-mensaje-error"
+                 data-badger="MENSAJE ERROR">
+                <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i>
+                </button>
+                &nbsp;&nbsp;{{mensajeError}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer header-center" align="center">
+    <button class="btn btn-success" ng-click="seleccionarActividadEconomica()">
+        <span class="glyphicon glyphicon-tags"></span>&nbsp;Seleccionar
+    </button>
+    <button class="btn btn-default" ng-click="cancelar()">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span>&nbsp;Volver
+    </button>
+</div>
