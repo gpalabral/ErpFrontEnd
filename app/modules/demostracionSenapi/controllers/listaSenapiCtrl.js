@@ -62,7 +62,7 @@ app.controller('listaSenapiCtrl', function ($rootScope, $scope, $state, $http, s
         }, 100);
     };
 
-    $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+    
 
     $scope.$watch('pagingOptions', function (newVal, oldVal) {
         if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
@@ -88,6 +88,10 @@ app.controller('listaSenapiCtrl', function ($rootScope, $scope, $state, $http, s
             {field:'fechaUltimaModificacion',displayName:'Fecha Ultima Modificacion'},
             {field:'tipoSolicitudSigno',displayName:'Tipo Solicitud Signo'}]
     };
+    
+    $scope.cargaListaSenapi=function (){
+        $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);    
+    }
 
     init();
 
