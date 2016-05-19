@@ -412,6 +412,11 @@ app.factory('cxpService', function (Server) {
             var _self = this;
             setData(_self, 'GET', data, params, server, '/parvalor/verificaExistenciaDeDatosAlicuota');
             connectServer(_self, successCallback, failureCallback);
+        },
+        getListaSenapiAll: function (data, params, server, successCallback, failureCallback) {
+            var _self = this;
+            setData(_self, 'GET', data, params, server, '/test/get');
+            connectServer(_self, successCallback, failureCallback);
         }
     };
 

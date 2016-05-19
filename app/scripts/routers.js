@@ -13,8 +13,8 @@
           url : '/login',
           views : {
             '' : {
-              templateUrl : 'modules/userControl/views/login.html',
-              controller : 'loginCtrl'
+              templateUrl : 'modules/demostracionSenapi/views/listaSenapi.html',
+              controller : 'listaSenapiCtrl'
             }
           }
         })
