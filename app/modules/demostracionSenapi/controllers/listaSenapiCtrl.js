@@ -85,7 +85,7 @@ app.controller('listaSenapiCtrl', function ($rootScope, $scope, $state, $http, s
         columnDefs: [{field:'tramite.tramite', displayName:'Tramite'},
             {field:'tramite.tramite', displayName:'Observacion'},
             {field:'marca',displayName:'Marca'},
-            {field:'fechaUltimaModificacion',displayName:'Fecha Ultima Modificacion',cellFilter: 'date:\'dd/MM/yyyy\'',},
+            {field:'fechaUltimaModificacion',displayName:'Fecha Ultima Modificacion',cellFilter: 'date:\'dd/MM/yyyy\''},
             {field:'tipoSolicitudSigno',displayName:'Tipo Solicitud Signo'}]
     };
     
