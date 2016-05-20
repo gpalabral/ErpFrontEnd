@@ -1,7 +1,7 @@
 {
-  "host_1": "http://ec2-52-24-29-233.us-west-2.compute.amazonaws.com:8084",
-  "host_2": "http://ec2-52-24-29-233.us-west-2.compute.amazonaws.com:8084",
-  "host_3": "http://ec2-52-24-29-233.us-west-2.compute.amazonaws.com:8084",
+  "host_1": "http://ec2-52-40-85-149.us-west-2.compute.amazonaws.com:8084",
+  "host_2": "http://ec2-52-40-85-149.us-west-2.compute.amazonaws.com:8084",
+  "host_3": "http://ec2-52-40-85-149.us-west-2.compute.amazonaws.com:8084",
   "context1": "/ERP_WS-1.1/erpws",
   "context2": "/ERP_CONTA_WS/erpws",
   "context3": "/CPANEL_WS-1.1/cpanelws",
