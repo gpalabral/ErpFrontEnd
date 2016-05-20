@@ -24,6 +24,7 @@ app.controller('listaSenapiCtrl', function ($rootScope, $scope, $state, $http, s
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+        console.info("ENTRO AL METODO");
         setTimeout(function () {
             var data;
             cxpService.getListaSenapiAll({}, {}, serverConf.ERPCONTA_WS, function (response) {

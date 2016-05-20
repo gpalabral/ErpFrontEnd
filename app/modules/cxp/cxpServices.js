@@ -415,7 +415,7 @@ app.factory('cxpService', function (Server) {
         },
         getListaSenapiAll: function (data, params, server, successCallback, failureCallback) {
             var _self = this;
-            setData(_self, 'GET', data, params, server, '/test/get');
+                setData(_self, 'GET', data, params, server, '/test/get');
             connectServer(_self, successCallback, failureCallback);
         }
     };

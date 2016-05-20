@@ -1,32 +1,34 @@
-<div class="container-fluid" align="center" style="width: 100%" >
-  <div class="panel panel-primary" align="center" ng-form="formPagoBancarizado">
-    <div class="panel-heading">
-      <h3 class="panel-title">LISTA SENAPI PRUEBA</h3>
-    </div>
-    <div class="panel-body">
-
-      <div>
-        <div class="row row-fluid">
-          <label class="text-primary pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LISTA DE DATOS</label>
+<div class="container-fluid page-container" style="margin: 0 15px 0px 15px;">
+    <div class="panel panel-primary page-container" align="center" ng-form="contratoForm">
+        <div class="panel-heading" align="center">
+            <h3 class="panel-title">LISTA SENAPI PRUEBA</h3>
         </div>
-      </div>
+        <div class="panel-body"
+             style="padding: 1em 1em 0 1em;position: absolute;top: 37px;left:0;right:0;bottom: 0;overflow-y: auto;overflow-x: hidden">
+            <div>
+                <div class="row row-fluid">
+                    <label class="text-primary pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LISTA DE DATOS</label>
+                </div>
+            </div>
 
-      <div class="modal-footer header-center" align="center">
-        <button class="btn btn-success " ng-click="cargaListaSenapi()">
-          <i class="glyphicon glyphicon-list-alt"></i> Cargar Lista
-        </button>
-      </div>
-      <hr style="margin-top: 0 !important;">
-      <div class="row">
-        <div class="col-sm-12" align="center">
-          <div class="gridStyles break-words" ng-grid="gridOptions" style="width: 100%;height: 350px"></div>
+            <div class="modal-footer header-center" align="center">
+                <button class="btn btn-success " ng-click="cargaListaSenapi()">
+                    <i class="glyphicon glyphicon-list-alt"></i> Cargar Lista
+                </button>
+            </div>
+            <hr style="margin-top: 0 !important;">
+            <div class="row">
+                <div class="col-sm-12" align="center">
+                    <div class="gridStyles break-words" ng-grid="gridOptions" style="width: 90%;height: 450px"></div>
+                </div>
+            </div>
+            <div class="footer" align="left" style="padding:0em 2.2em 1.2em 1em;" ng-if="true">
+                <h4 style="padding-top: 10px;"><span class="label label-default">iKnow</span> Engineering</h4>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="footer" align="center" style="padding:0em 2.2em 1.2em 1em;" ng-if="true">
+
 
     </div>
-  </div>
+
 </div>
 
-</div>
